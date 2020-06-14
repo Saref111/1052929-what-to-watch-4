@@ -1,9 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 
-const Main = (props) => {
-  // eslint-disable-next-line react/prop-types
-  const {name, genre, year} = props;
+const Main = ({name, genre, year}) => {
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -306,6 +305,12 @@ const Main = (props) => {
       </div>
     </React.Fragment>
   );
+};
+
+Main.propTypes = {
+  name: PropTypes.string.isRequired,
+  genre: PropTypes.string.isRequired,
+  year: PropTypes.number.isRequired,
 };
 
 export default Main;
