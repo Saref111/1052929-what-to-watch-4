@@ -21,10 +21,10 @@ class FilmsList extends PureComponent {
             key={`${movie.src}-${i}`}
             movie={movie}
             onHeaderClickHandler={onHeaderClickHandler}
-            onCardHoverHandler={() => {
+            onCardHoverHandler={(reply) => {
               this.setState(() => {
-                return {movie};
-              });
+                return {movie: reply};
+              }); // что то стейт приходит с опозданием
               // this.setState({
               //   movie
               // });

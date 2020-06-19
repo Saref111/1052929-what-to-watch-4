@@ -2,6 +2,45 @@ import React from "react";
 import {shallow} from "enzyme";
 import Main from "./main.jsx";
 
+const FILMS = [
+  {
+    title: `title`,
+    src: `src`,
+  },
+  {
+    title: `title`,
+    src: `src`,
+  },
+  {
+    title: `title`,
+    src: `src`,
+  },
+  {
+    title: `title`,
+    src: `src`,
+  },
+  {
+    title: `title`,
+    src: `src`,
+  },
+  {
+    title: `title`,
+    src: `src`,
+  },
+  {
+    title: `title`,
+    src: `src`,
+  },
+  {
+    title: `title`,
+    src: `src`,
+  },
+  {
+    title: `title`,
+    src: `src`,
+  },
+];
+
 describe(`Main e2e test`, () => {
   it(`Check click on headers`, () => {
     const onHeaderClickHandler = jest.fn();
@@ -12,6 +51,7 @@ describe(`Main e2e test`, () => {
           genre={`Robcore`}
           year={3020}
           onHeaderClickHandler={onHeaderClickHandler}
+          films={FILMS}
         />
     );
 
@@ -19,7 +59,6 @@ describe(`Main e2e test`, () => {
 
     headers.forEach((it) => {
       it.simulate(`click`);
-
     });
 
     expect(onHeaderClickHandler.mock.calls.length).toBe(headers.length);
