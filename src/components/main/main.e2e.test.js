@@ -1,22 +1,17 @@
 import React from "react";
-import Enzyme, {shallow} from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import {shallow} from "enzyme";
 import Main from "./main.jsx";
-
-Enzyme.configure({
-  adapter: new Adapter()
-});
 
 describe(`Main e2e test`, () => {
   it(`Check click on headers`, () => {
-    const headerClickHandler = jest.fn();
+    const onHeaderClickHandler = jest.fn();
 
     const MainElement = shallow(
         <Main
           name={`The Benders`}
           genre={`Robcore`}
           year={3020}
-          headerClickHandler={headerClickHandler}
+          onHeaderClickHandler={onHeaderClickHandler}
         />
     );
 
@@ -27,6 +22,6 @@ describe(`Main e2e test`, () => {
 
     });
 
-    expect(headerClickHandler.mock.calls.length).toBe(headers.length);
+    expect(onHeaderClickHandler.mock.calls.length).toBe(headers.length);
   });
 });

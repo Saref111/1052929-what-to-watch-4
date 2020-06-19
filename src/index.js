@@ -14,7 +14,7 @@ ReactDOM.render(
       name={MOCK_DATA.NAME}
       genre={MOCK_DATA.GENRE}
       year={MOCK_DATA.YEAR}
-      headerClickHandler={MOCK_DATA.HEADER_CLICK_HANDLER}
+      onHeaderClickHandler={MOCK_DATA.HEADER_CLICK_HANDLER}
     />,
     document.querySelector(`#root`)
 );

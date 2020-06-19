@@ -9,6 +9,7 @@ describe(`Test App`, () => {
           name={`The Benders`}
           genre={`Robcore`}
           year={3020}
+          onHeaderClickHandler={() => {}}
         />
     );
 

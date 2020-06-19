@@ -9,7 +9,7 @@ describe(`Test Main`, () => {
           name={`The Benders`}
           genre={`Robcore`}
           year={3020}
-          headerClickHandler={() => {}}
+          onHeaderClickHandler={() => {}}
         />
     );
 
