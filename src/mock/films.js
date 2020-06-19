@@ -1,4 +1,4 @@
-const HREF = `https://pixabay.com/illustrations/dollar-currency-money-us-dollar-517113/`;
+const HREF = `http://dummyimage.com/280x175/D76E00&text=`;
 
 export default [
   {
