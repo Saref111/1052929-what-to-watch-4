@@ -9,6 +9,14 @@ class FilmsList extends PureComponent {
     this.state = {
       movie: null
     };
+
+    this._onCardHoverHandler = this._onCardHoverHandler.bind(this);
+  }
+
+  _onCardHoverHandler(reply) {
+    this.setState(() => {
+      return {movie: reply};
+    });
   }
 
   render() {
@@ -21,14 +29,7 @@ class FilmsList extends PureComponent {
             key={`${movie.src}-${i}`}
             movie={movie}
             onHeaderClickHandler={onHeaderClickHandler}
-            onCardHoverHandler={(reply) => {
-              this.setState(() => {
-                return {movie: reply};
-              }); // что то стейт приходит с опозданием
-              // this.setState({
-              //   movie
-              // });
-            }} />
+            onCardHoverHandler={this._onCardHoverHandler} />
         ))}
       </div>
     );
