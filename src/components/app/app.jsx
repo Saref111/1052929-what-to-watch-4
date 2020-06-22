@@ -1,5 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
+import {Route, Switch, BrowserRouter} from "react-router-dom";
 import Main from "../main/main.jsx";
 
 class App extends PureComponent {
