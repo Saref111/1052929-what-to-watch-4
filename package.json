@@ -10,6 +10,9 @@
     "start": "webpack-dev-server",
     "test.jest": "jest"
   },
+  "jest": {
+    "setupFiles": ["<rootDir>src/setupTests.js"]
+  },
   "devDependencies": {
     "@babel/core": "7.10.2",
     "@babel/preset-env": "7.10.2",

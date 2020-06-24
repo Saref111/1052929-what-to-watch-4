@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import App from "./app.jsx";
+import FilmsList from "./films-list.jsx";
 
 const FILMS = [
   {
@@ -41,15 +41,13 @@ const FILMS = [
   },
 ];
 
-describe(`Test App`, () => {
-  it(`App snapshot`, () => {
+describe(`Testing FilmsList component`, () => {
+  test(`Snapshot test`, () => {
+    const onHeaderClickHandler = jest.fn();
     const tree = renderer.create(
-        <App
-          name={`The Benders`}
-          genre={`Robcore`}
-          year={3020}
-          onHeaderClickHandler={() => {}}
+        <FilmsList
           films={FILMS}
+          onHeaderClickHandler={onHeaderClickHandler}
         />
     );
 
