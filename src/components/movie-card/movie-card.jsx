@@ -6,14 +6,21 @@ class MovieCard extends PureComponent {
     super(props);
 
     this._onCardHoverHandler = this._onCardHoverHandler.bind(this);
+    this._onHeaderClickHandler = this._onHeaderClickHandler.bind(this);
   }
 
   _onCardHoverHandler() {
     this.props.onCardHoverHandler(this.props.movie);
   }
 
+  _onHeaderClickHandler(evt) {
+    evt.preventDefault();
+
+    this.props.onHeaderClickHandler(this.props.movie.id);
+  }
+
   render() {
-    const {movie, onHeaderClickHandler} = this.props;
+    const {movie} = this.props;
     const {title, src} = movie;
     return (
       <article
@@ -23,7 +30,7 @@ class MovieCard extends PureComponent {
           <img src={`${src}${title}`} alt={`${title}`} width="280" height="175" />
         </div>
         <h3 className="small-movie-card__title">
-          <a onClick={onHeaderClickHandler} className="small-movie-card__link" href="movie-page.html">{`${title}`}</a>
+          <a onClick={this._onHeaderClickHandler} className="small-movie-card__link" href="movie-page.html">{`${title}`}</a>
         </h3>
       </article>
     );
