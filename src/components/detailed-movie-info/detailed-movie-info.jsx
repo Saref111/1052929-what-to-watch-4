@@ -8,7 +8,8 @@ class DetailedMovieInfo extends PureComponent {
     super(props);
   }
   render() {
-    const {title, details} = this.props;
+    const {movie} = this.props;
+    const {title, details} = movie;
     const {bgPoster, cover, genre, year} = details;
     return (
       <section className="movie-card movie-card--full">
@@ -109,13 +110,17 @@ class DetailedMovieInfo extends PureComponent {
 }
 
 DetailedMovieInfo.propTypes = {
-  title: PropTypes.string.isRequired,
-  src: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
-  details: PropTypes.shape({
-    bgPoster: PropTypes.string.isRequired,
-    cover: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired, // one of genreList
-    year: PropTypes.number.isRequired,
+  movie: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    src: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    details: PropTypes.shape({
+      bgPoster: PropTypes.string.isRequired,
+      cover: PropTypes.string.isRequired,
+      genre: PropTypes.string.isRequired, // one of genreList
+      year: PropTypes.number.isRequired,
+    }),
   }),
 };
+
+export default DetailedMovieInfo;

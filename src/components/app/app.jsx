@@ -2,7 +2,7 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {Route, Switch, BrowserRouter} from "react-router-dom";
 import Main from "../main/main.jsx";
-
+import DetailedMovieInfo from "../detailed-movie-info/detailed-movie-info.jsx";
 
 class App extends PureComponent {
   constructor(props) {
@@ -42,8 +42,8 @@ class App extends PureComponent {
           <Route exact path="/">
             {this._renderApp()}
           </Route>
-          <Route exact path="/dev-component">
-            {/* <Component /> */}
+          <Route exact path="/dev-film">
+            <DetailedMovieInfo movie={this.props.films[0]} />
           </Route>
         </Switch>
       </BrowserRouter>
