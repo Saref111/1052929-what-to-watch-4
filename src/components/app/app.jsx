@@ -23,16 +23,25 @@ class App extends PureComponent {
 
   _renderApp() {
     const {name, genre, year, films} = this.props;
+    const {movieID} = this.state;
 
-    return (
-      <Main
-        name={name}
-        genre={genre}
-        year={year}
-        onHeaderClickHandler={this.onHeaderClickHandler}
-        films={films}
-      />
-    );
+    if (movieID === -1 || movieID >= films.length) {
+      return (
+        <Main
+          name={name}
+          genre={genre}
+          year={year}
+          onHeaderClickHandler={this.onHeaderClickHandler}
+          films={films}
+        />
+      );
+    } else {
+      return (
+        <DetailedMovieInfo movie={this.props.films[movieID]} />
+      );
+    }
+
+
   }
 
   render() {
