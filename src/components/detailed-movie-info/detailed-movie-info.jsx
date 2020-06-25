@@ -1,7 +1,50 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
+import {GENRES, RATINGS} from "../../const.js";
 
 const uppercaseFirstLetter = (string) => `${string.slice(0, 1).toUpperCase()}${string.slice(1, string.length)}`;
+
+const rateToString = (rate) => {
+  let rating = ``;
+
+  switch (Math.round(rate)) {
+    case 0:
+    case 1:
+    case 2:
+      rating = RATINGS[0];
+      break;
+    case 3:
+    case 4:
+      rating = RATINGS[1];
+      break;
+    case 5:
+    case 6:
+    case 7:
+      rating = RATINGS[2];
+      break;
+    case 8:
+    case 9:
+      rating = RATINGS[3];
+      break;
+    case 10:
+      rating = RATINGS[4];
+      break;
+    default:
+      rating = `something is going wrong with this rating=(`;
+  }
+
+  return uppercaseFirstLetter(rating);
+};
+
+const getActorsString = (array) => {
+  return array.reduce((acc, it, i) => {
+    if (i === array.length - 1) {
+      return `${acc}${it}`;
+    }
+
+    return `${acc}${it}, `;
+  }, ``);
+};
 
 class DetailedMovieInfo extends PureComponent {
   constructor(props) {
@@ -10,7 +53,7 @@ class DetailedMovieInfo extends PureComponent {
   render() {
     const {movie} = this.props;
     const {title, details} = movie;
-    const {bgPoster, cover, genre, year} = details;
+    const {bgPoster, cover, genre, year, rate, votes, director, actors, description} = details;
     return (
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
@@ -85,21 +128,21 @@ class DetailedMovieInfo extends PureComponent {
               </nav>
 
               <div className="movie-rating">
-                <div className="movie-rating__score">8,9</div>
+                <div className="movie-rating__score">{`${rate}`}</div>
                 <p className="movie-rating__meta">
-                  <span className="movie-rating__level">Very good</span>
-                  <span className="movie-rating__count">240 ratings</span>
+                  <span className="movie-rating__level">{rateToString(rate)}</span>
+                  <span className="movie-rating__count">{`${votes}`} ratings</span>
                 </p>
               </div>
 
               <div className="movie-card__text">
-                <p>In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave&apos;s friend and protege.</p>
+                <p>{`${description.prescription}`}</p>
 
-                <p>Gustave prides himself on providing first-class service to the hotel&apos;s guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave&apos;s lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.</p>
+                <p>{`${description.postscription}`}</p>
 
-                <p className="movie-card__director"><strong>Director: Wes Andreson</strong></p>
+                <p className="movie-card__director"><strong>Director: {`${director}`}</strong></p>
 
-                <p className="movie-card__starring"><strong>Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other</strong></p>
+                <p className="movie-card__starring"><strong>Starring: {`${getActorsString(actors)}`} and other.</strong></p>
               </div>
             </div>
           </div>
@@ -117,8 +160,16 @@ DetailedMovieInfo.propTypes = {
     details: PropTypes.shape({
       bgPoster: PropTypes.string.isRequired,
       cover: PropTypes.string.isRequired,
-      genre: PropTypes.string.isRequired, // one of genreList
+      director: PropTypes.string.isRequired,
+      genre: PropTypes.oneOf(GENRES).isRequired,
       year: PropTypes.number.isRequired,
+      rate: PropTypes.number.isRequired,
+      votes: PropTypes.number.isRequired,
+      actors: PropTypes.arrayOf(PropTypes.string),
+      description: PropTypes.shape({
+        prescription: PropTypes.string.isRequired,
+        postscription: PropTypes.string.isRequired,
+      }).isRequired,
     }),
   }),
 };
