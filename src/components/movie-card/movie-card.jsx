@@ -34,6 +34,13 @@ MovieCard.propTypes = {
   movie: PropTypes.shape({
     title: PropTypes.string.isRequired,
     src: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    details: PropTypes.shape({
+      bgPoster: PropTypes.string.isRequired,
+      cover: PropTypes.string.isRequired,
+      genre: PropTypes.string.isRequired, // one of genreList
+      year: PropTypes.number.isRequired,
+    }),
   }).isRequired,
   onCardHoverHandler: PropTypes.func.isRequired,
   onHeaderClickHandler: PropTypes.func.isRequired,

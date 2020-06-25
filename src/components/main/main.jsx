@@ -139,6 +139,7 @@ Main.propTypes = {
   films: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
     src: PropTypes.string.isRequired,
+    details: PropTypes.object.isRequired,
   })).isRequired,
 };
 

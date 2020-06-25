@@ -1,6 +1,6 @@
 const HREF = `http://dummyimage.com/280x175/D76E00&text=`;
-const BG_HREF= `http://dummyimage.com/&text=`;
-const POSTER_HREF= `http://dummyimage.com/218x327&text=`;
+const BG_HREF = `http://dummyimage.com/&text=`;
+const POSTER_HREF = `http://dummyimage.com/218x327&text=`;
 
 export default [
   {
