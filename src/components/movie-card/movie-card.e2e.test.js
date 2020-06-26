@@ -39,7 +39,12 @@ describe(`Test e2e MovieCard`, () => {
 
     const headerLink = MovieCardElement.find(`a.small-movie-card__link`);
 
-    headerLink.simulate(`click`);
+    const evt = {
+      preventDefault() {},
+      target: {value: `the-value`},
+    };
+
+    headerLink.simulate(`click`, evt);
 
     expect(onHeaderClickHandler).toHaveBeenCalledTimes(1);
   });
