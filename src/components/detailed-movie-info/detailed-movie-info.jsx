@@ -1,50 +1,8 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import {GENRES, RATINGS} from "../../const.js";
+import {GENRES} from "../../const.js";
+import {getActorsString, rateToString, uppercaseFirstLetter} from "../../helpers/helpers.js";
 
-const uppercaseFirstLetter = (string) => `${string.slice(0, 1).toUpperCase()}${string.slice(1, string.length)}`;
-
-const rateToString = (rate) => {
-  let rating = ``;
-
-  switch (Math.round(rate)) {
-    case 0:
-    case 1:
-    case 2:
-      rating = RATINGS[0];
-      break;
-    case 3:
-    case 4:
-      rating = RATINGS[1];
-      break;
-    case 5:
-    case 6:
-    case 7:
-      rating = RATINGS[2];
-      break;
-    case 8:
-    case 9:
-      rating = RATINGS[3];
-      break;
-    case 10:
-      rating = RATINGS[4];
-      break;
-    default:
-      rating = `something is going wrong with this rating=(`;
-  }
-
-  return uppercaseFirstLetter(rating);
-};
-
-const getActorsString = (array) => {
-  return array.reduce((acc, it, i) => {
-    if (i === array.length - 1) {
-      return `${acc}${it}`;
-    }
-
-    return `${acc}${it}, `;
-  }, ``);
-};
 
 class DetailedMovieInfo extends PureComponent {
   constructor(props) {

@@ -1,6 +1,7 @@
 import React from "react";
 import {shallow} from "enzyme";
 import MovieCard from "./movie-card.jsx";
+import DetailedMovieInfo from "../detailed-movie-info/detailed-movie-info.jsx";
 
 const details = {
   bgPoster: `BG_HREF`,
@@ -37,6 +38,12 @@ describe(`Test e2e MovieCard`, () => {
         />
     );
 
+    const DetailedMovieInfoElement = shallow(
+        <DetailedMovieInfo
+          movie={movie}
+        />
+    );
+
     const headerLink = MovieCardElement.find(`a.small-movie-card__link`);
 
     const evt = {
@@ -46,6 +53,7 @@ describe(`Test e2e MovieCard`, () => {
 
     headerLink.simulate(`click`, evt);
 
+    expect(MovieCardElement.matchesElement(DetailedMovieInfoElement));
     expect(onHeaderClickHandler).toHaveBeenCalledTimes(1);
   });
 
@@ -62,6 +70,7 @@ describe(`Test e2e MovieCard`, () => {
     );
 
     MovieCardElement.simulate(`mouseover`);
+
 
     expect(onCardHoverHandler).toHaveBeenCalledTimes(1);
     expect(onCardHoverHandler.mock.calls[0][0]).toMatchObject(movie);
