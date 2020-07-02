@@ -16,14 +16,15 @@ class MovieCard extends PureComponent {
   }
 
   _onCardHoverHandler() {
+    this.props.onCardHoverHandler(this.props.movie);
+
     this.setState((prevState) => {
       return {isHovered: !prevState.isHovered};
     });
 
     const handler = () => {
-      if (this.state.isHovered) {
-        this.props.onCardHoverHandler(this.props.movie);
 
+      if (this.state.isHovered) {
         this.setState((prevState) => {
           return {isVideo: !prevState.isVideo};
         });

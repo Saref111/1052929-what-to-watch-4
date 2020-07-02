@@ -27,6 +27,7 @@ describe(`Testing MovieCard component`, () => {
             id: 1,
             title: `title`,
             src: `src`,
+            preview: `preview`,
             details,
           }}
           onCardHoverHandler={onCardHoverHandler}
