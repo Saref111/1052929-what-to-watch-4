@@ -18,7 +18,7 @@ class VideoPlayer extends React.PureComponent {
     const {preview, poster} = this.props;
     const video = this._videoRef.current;
 
-    video.poster = poster;
+    video.poster = `${poster}MOVIE POSTER`;
     video.src = preview;
 
     video.oncanplaythrough = () => {
@@ -72,6 +72,7 @@ class VideoPlayer extends React.PureComponent {
       <video
         className="player__video"
         ref={this._videoRef}
+        muted={true}
       ></video>
     );
   }
@@ -80,6 +81,7 @@ class VideoPlayer extends React.PureComponent {
 VideoPlayer.propTypes = {
   isPlaying: PropTypes.bool.isRequired,
   preview: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
   poster: PropTypes.string.isRequired,
 };
+
+export default VideoPlayer;
