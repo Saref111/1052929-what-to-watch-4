@@ -22,8 +22,8 @@ class VideoPlayer extends React.PureComponent {
     video.src = preview;
 
     video.oncanplaythrough = () => {
-      this.setState((prevState) => {
-        return {isPlaying: !prevState.isPlaying};
+      this.setState(() => {
+        return {isLoading: false};
       });
     };
 
