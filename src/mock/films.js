@@ -14,6 +14,7 @@ export default [
     id: 0,
     title: `Джей и молчаливый Боб`,
     src: HREF,
+    preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     details: {
       bgPoster: BG_HREF,
       cover: POSTER_HREF,
@@ -30,6 +31,7 @@ export default [
     id: 1,
     title: `Карты, деньги, два ствола`,
     src: HREF,
+    preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     details: {
       bgPoster: BG_HREF,
       cover: POSTER_HREF,
@@ -46,6 +48,7 @@ export default [
     id: 2,
     title: `Зеленый слоник`,
     src: HREF,
+    preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     details: {
       bgPoster: BG_HREF,
       cover: POSTER_HREF,
@@ -62,6 +65,7 @@ export default [
     id: 3,
     title: `Матрица`,
     src: HREF,
+    preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     details: {
       bgPoster: BG_HREF,
       cover: POSTER_HREF,
@@ -78,6 +82,7 @@ export default [
     id: 4,
     title: `Законопослушный гражданин`,
     src: HREF,
+    preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     details: {
       bgPoster: BG_HREF,
       cover: POSTER_HREF,
@@ -94,6 +99,7 @@ export default [
     id: 5,
     title: `Человек с Земли`,
     src: HREF,
+    preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     details: {
       bgPoster: BG_HREF,
       cover: POSTER_HREF,
@@ -110,6 +116,7 @@ export default [
     id: 6,
     title: `Автострада 60: дорожные истории`,
     src: HREF,
+    preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     details: {
       bgPoster: BG_HREF,
       cover: POSTER_HREF,
@@ -126,6 +133,7 @@ export default [
     id: 7,
     title: `Appleman`,
     src: HREF,
+    preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     details: {
       bgPoster: BG_HREF,
       cover: POSTER_HREF,
