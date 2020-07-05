@@ -8,6 +8,14 @@ const description = {
   postscription,
 };
 const actors = [`Ivan Ivanov`, `Piotr Petrov`, `Alexandr Alexandrov`];
+const reviews = [
+  {
+    name: `Ivan Ivanov`,
+    rate: 8.9,
+    date: `December 24, 2018`,
+    text: `Lorem ipsum dolor sit amet. Eligendi non quis exercitationem culpa`,
+  },
+];
 
 export default [
   {
@@ -22,9 +30,11 @@ export default [
       year: 2001,
       rate: 8.8,
       votes: 666,
+      time: `1h 55m`,
       director: `Kevin Smith`,
       actors,
       description,
+      reviews,
     },
   },
   {
@@ -39,9 +49,11 @@ export default [
       year: 2001,
       rate: 8.8,
       votes: 666,
+      time: `1h 55m`,
       director: `Kevin Smith`,
       actors,
       description,
+      reviews,
     },
   },
   {
@@ -56,9 +68,11 @@ export default [
       year: 2001,
       rate: 8.8,
       votes: 666,
+      time: `1h 55m`,
       director: `Kevin Smith`,
       actors,
       description,
+      reviews,
     },
   },
   {
@@ -73,9 +87,11 @@ export default [
       year: 2001,
       rate: 8.8,
       votes: 666,
+      time: `1h 55m`,
       director: `Kevin Smith`,
       actors,
       description,
+      reviews,
     },
   },
   {
@@ -90,9 +106,11 @@ export default [
       year: 2001,
       rate: 8.8,
       votes: 666,
+      time: `1h 55m`,
       director: `Kevin Smith`,
       actors,
       description,
+      reviews,
     },
   },
   {
@@ -107,9 +125,11 @@ export default [
       year: 2001,
       rate: 8.8,
       votes: 666,
+      time: `1h 55m`,
       director: `Kevin Smith`,
       actors,
       description,
+      reviews,
     },
   },
   {
@@ -124,9 +144,11 @@ export default [
       year: 2001,
       rate: 8.8,
       votes: 666,
+      time: `1h 55m`,
       director: `Kevin Smith`,
       actors,
       description,
+      reviews,
     },
   },
   {
@@ -141,9 +163,11 @@ export default [
       year: 2001,
       rate: 8.8,
       votes: 666,
+      time: `1h 55m`,
       director: `Kevin Smith`,
       actors,
       description,
+      reviews,
     },
   },
 ];
