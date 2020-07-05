@@ -7,6 +7,7 @@ const details = {
   cover: `POSTER_HREF`,
   genre: `comedy`,
   year: 2001,
+  time: `1h 1m`,
   rate: 8.8,
   votes: 666,
   director: `Kevin Smith`,
@@ -15,6 +16,12 @@ const details = {
     prescription: `prescription`,
     postscription: `postscription`,
   },
+  reviews: [{
+    name: `Ivan Ivanov`,
+    rate: 8.9,
+    date: new Date(),
+    text: `Lorem ipsum dolor sit amet. Eligendi non quis exercitationem culpa`,
+  }],
 };
 
 const movie = {
