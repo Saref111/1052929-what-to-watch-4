@@ -1,3 +1,5 @@
+const CARD_MENU = [`Overview`, `Details`, `Reviews`];
+
 const GENRES = [
   `comedy`,
   `crime`,
@@ -12,4 +14,4 @@ const GENRES = [
 
 const RATINGS = [`bad`, `normal`, `good`, `very good`, `awesome`];
 
-export {GENRES, RATINGS};
+export {GENRES, RATINGS, CARD_MENU};

@@ -8,11 +8,23 @@ class MovieCard extends PureComponent {
 
     this._onCardHoverHandler = this._onCardHoverHandler.bind(this);
     this._onHeaderClickHandler = this._onHeaderClickHandler.bind(this);
+    this._handleMouseOut = this._handleMouseOut.bind(this);
+    this._handleIfIsHovered = this._handleIfIsHovered.bind(this);
 
     this.state = {
       isVideo: false,
       isHovered: false,
     };
+
+    this._isMounted = false;
+  }
+
+  _handleIfIsHovered() {
+    if (this.state.isHovered) {
+      this.setState((prevState) => {
+        return {isVideo: !prevState.isVideo};
+      });
+    }
   }
 
   _onCardHoverHandler() {
@@ -22,22 +34,27 @@ class MovieCard extends PureComponent {
       return {isHovered: !prevState.isHovered};
     });
 
-    const handler = () => {
-
-      if (this.state.isHovered) {
-        this.setState((prevState) => {
-          return {isVideo: !prevState.isVideo};
-        });
-      }
-    };
-
-    setTimeout(handler, 1000);
+    setTimeout(this._handleIfIsHovered, 1000);
   }
 
   _onHeaderClickHandler(evt) {
     evt.preventDefault();
 
     this.props.onHeaderClickHandler(this.props.movie.id);
+  }
+
+  _handleMouseOut() {
+    this.setState(() => {
+      return {isVideo: false, isHovered: false};
+    });
+  }
+
+  componentDidMount() {
+    this._isMounted = true;
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   render() {
@@ -48,11 +65,7 @@ class MovieCard extends PureComponent {
 
     return (
       <article
-        onMouseOut={() => {
-          this.setState(() => {
-            return {isVideo: false, isHovered: false};
-          });
-        }}
+        onMouseOut={this._handleMouseOut}
         onMouseOver={this._onCardHoverHandler}
         className="small-movie-card catalog__movies-card">
         <div className="small-movie-card__image">

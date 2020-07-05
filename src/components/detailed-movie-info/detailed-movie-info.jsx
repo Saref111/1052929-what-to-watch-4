@@ -1,17 +1,22 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
+import Tabs from "../tabs/tabs.jsx";
 import {GENRES} from "../../const.js";
-import {getActorsString, rateToString, uppercaseFirstLetter} from "../../helpers/helpers.js";
+import {uppercaseFirstLetter} from "../../helpers/helpers.js";
 
 
 class DetailedMovieInfo extends PureComponent {
   constructor(props) {
     super(props);
+
+    this.state = {
+      page: 0
+    };
   }
   render() {
     const {movie} = this.props;
     const {title, details} = movie;
-    const {bgPoster, cover, genre, year, rate, votes, director, actors, description} = details;
+    const {bgPoster, cover, genre, year} = details;
     return (
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
@@ -69,40 +74,7 @@ class DetailedMovieInfo extends PureComponent {
             <div className="movie-card__poster movie-card__poster--big">
               <img src={`${cover}${title}`} alt={`${title}`} width="218" height="327" />
             </div>
-
-            <div className="movie-card__desc">
-              <nav className="movie-nav movie-card__nav">
-                <ul className="movie-nav__list">
-                  <li className="movie-nav__item movie-nav__item--active">
-                    <a href="#" className="movie-nav__link">Overview</a>
-                  </li>
-                  <li className="movie-nav__item">
-                    <a href="#" className="movie-nav__link">Details</a>
-                  </li>
-                  <li className="movie-nav__item">
-                    <a href="#" className="movie-nav__link">Reviews</a>
-                  </li>
-                </ul>
-              </nav>
-
-              <div className="movie-rating">
-                <div className="movie-rating__score">{`${rate}`}</div>
-                <p className="movie-rating__meta">
-                  <span className="movie-rating__level">{rateToString(rate)}</span>
-                  <span className="movie-rating__count">{`${votes}`} ratings</span>
-                </p>
-              </div>
-
-              <div className="movie-card__text">
-                <p>{`${description.prescription}`}</p>
-
-                <p>{`${description.postscription}`}</p>
-
-                <p className="movie-card__director"><strong>Director: {`${director}`}</strong></p>
-
-                <p className="movie-card__starring"><strong>Starring: {`${getActorsString(actors)}`} and other.</strong></p>
-              </div>
-            </div>
+            <Tabs page={this.state.page} info={details}/>
           </div>
         </div>
       </section>
