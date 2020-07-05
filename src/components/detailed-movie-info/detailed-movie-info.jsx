@@ -91,7 +91,8 @@ class DetailedMovieInfo extends PureComponent {
                     {CARD_MENU.map((name, i) => {
                       return (
                         <li key={`${name}-${i}`} className={`movie-nav__item ${this.state.page === i ? `movie-nav__item--active` : ``}`}>
-                          <a href="#" className="movie-nav__link" onClick={() => {
+                          <a href="" className="movie-nav__link" onClick={(e) => {
+                            e.preventDefault();
                             this._handleClick(i);
                           }} id={i}>{name}</a>
                         </li>
@@ -179,11 +180,12 @@ DetailedMovieInfo.propTypes = {
       year: PropTypes.number.isRequired,
       rate: PropTypes.number.isRequired,
       votes: PropTypes.number.isRequired,
-      actors: PropTypes.arrayOf(PropTypes.string),
+      actors: PropTypes.arrayOf(PropTypes.string).isRequired,
       description: PropTypes.shape({
         prescription: PropTypes.string.isRequired,
         postscription: PropTypes.string.isRequired,
       }).isRequired,
+      reviews: PropTypes.array.isRequired,
     }),
   }),
 };

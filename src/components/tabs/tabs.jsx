@@ -1,12 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {GENRES} from "../../const.js";
-import {getActorsString, rateToString} from "../../helpers/helpers.js";
+import {getActorsString, rateToString, formatDate, stringifyDate} from "../../helpers/helpers.js";
 
 const Tabs = (props) => {
   const {page, info} = props;
-  const {rate, votes, director, actors, description, time, genre, year} = info;
+  const {rate, votes, director, actors, description, time, genre, year, reviews} = info;
   let tab = null;
+
 
   switch (page) {
     case 0:
@@ -73,7 +74,30 @@ const Tabs = (props) => {
       );
       break;
     case 2:
-      tab = (<h1/>);
+      tab = (
+        <div className="movie-card__reviews movie-card__row">
+          <div className="movie-card__reviews-col">
+            {reviews.map((review, i) => {
+              const {name, text, date, rate: userRate} = review;
+
+              return (
+                <div key={`${name}-${i}`} className="review">
+                  <blockquote className="review__quote">
+                    <p className="review__text">{text}</p>
+
+                    <footer className="review__details">
+                      <cite className="review__author">{name}</cite>
+                      <time className="review__date" dateTime={formatDate(date)}>{stringifyDate(date)}</time>
+                    </footer>
+                  </blockquote>
+
+                  <div className="review__rating">{userRate}</div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      );
       break;
   }
 
@@ -96,6 +120,12 @@ Tabs.propTypes = {
       prescription: PropTypes.string.isRequired,
       postscription: PropTypes.string.isRequired,
     }).isRequired,
+    reviews: PropTypes.arrayOf(PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      date: PropTypes.instanceOf(Date).isRequired,
+      text: PropTypes.string.isRequired,
+      rate: PropTypes.number.isRequired,
+    })).isRequired,
   }),
 };
 

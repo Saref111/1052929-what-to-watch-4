@@ -12,7 +12,19 @@ const reviews = [
   {
     name: `Ivan Ivanov`,
     rate: 8.9,
-    date: `December 24, 2018`,
+    date: new Date(),
+    text: `Lorem ipsum dolor sit amet. Eligendi non quis exercitationem culpa`,
+  },
+  {
+    name: `Ivan Ivanov`,
+    rate: 8.9,
+    date: new Date(),
+    text: `Lorem ipsum dolor sit amet. Eligendi non quis exercitationem culpa`,
+  },
+  {
+    name: `Ivan Ivanov`,
+    rate: 8.9,
+    date: new Date(),
     text: `Lorem ipsum dolor sit amet. Eligendi non quis exercitationem culpa`,
   },
 ];

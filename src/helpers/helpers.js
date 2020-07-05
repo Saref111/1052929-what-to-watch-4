@@ -1,5 +1,13 @@
 import {RATINGS} from "../const.js";
 
+const formatDate = (date) => {
+  return `11111`;
+};
+
+const stringifyDate = (date) => {
+  return `1111`;
+};
+
 const uppercaseFirstLetter = (string) => `${string.charAt(0).toUpperCase()}${string.slice(1)}`;
 
 const rateToString = (rate) => {
@@ -44,4 +52,4 @@ const getActorsString = (array) => {
   }, ``);
 };
 
-export {getActorsString, rateToString, uppercaseFirstLetter};
+export {getActorsString, rateToString, uppercaseFirstLetter, formatDate, stringifyDate};
