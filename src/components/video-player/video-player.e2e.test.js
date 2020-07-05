@@ -4,12 +4,14 @@ import VideoPlayer from "./video-player.jsx";
 
 test(`Videoplayer state test`, () => {
   const VideoPlayerComponent = mount(<VideoPlayer
+    muted={true}
     isPlaying={false}
     poster={`123345`}
     preview={`1234`}
   />);
 
   const VideoPlayerComponentIsPlaying = mount(<VideoPlayer
+    muted={true}
     isPlaying={true}
     poster={`123345`}
     preview={`1234`}

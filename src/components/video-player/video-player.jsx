@@ -14,6 +14,30 @@ class VideoPlayer extends React.PureComponent {
     };
   }
 
+  _handlePlay() {
+    this.setState(() => {
+      return {isPlaying: true};
+    });
+  }
+
+  _handlePause() {
+    this.setState(() => {
+      return {isPlaying: false};
+    });
+  }
+
+  _handleLoad() {
+    this.setState(() => {
+      return {isLoading: false};
+    });
+  }
+
+  _handleTimeUpdate(time) {
+    this.setState(() => {
+      return {progress: time};
+    });
+  }
+
   componentDidMount() {
     const {preview, poster} = this.props;
     const video = this._videoRef.current;
@@ -21,28 +45,14 @@ class VideoPlayer extends React.PureComponent {
     video.poster = `${poster}MOVIE POSTER`;
     video.src = preview;
 
-    video.oncanplaythrough = () => {
-      this.setState(() => {
-        return {isLoading: false};
-      });
-    };
+    video.oncanplaythrough = this._handleLoad;
 
-    video.onplay = () => {
-      this.setState(() => {
-        return {isPlaying: true};
-      });
-    };
+    video.onplay = this._handlePlay;
 
-    video.onpause = () => {
-      this.setState(() => {
-        return {isPlaying: false};
-      });
-    };
+    video.onpause = this._handlePause;
 
     video.ontimeupdate = () => {
-      this.setState(() => {
-        return {progress: video.currentTime};
-      });
+      this._handleTimeUpdate(video.currentTime);
     };
   }
 
@@ -68,17 +78,19 @@ class VideoPlayer extends React.PureComponent {
   }
 
   render() {
+    const {muted} = this.props;
     return (
       <video
         className="player__video"
         ref={this._videoRef}
-        muted={true}
+        muted={muted}
       ></video>
     );
   }
 }
 
 VideoPlayer.propTypes = {
+  muted: PropTypes.bool.isRequired,
   isPlaying: PropTypes.bool.isRequired,
   preview: PropTypes.string.isRequired,
   poster: PropTypes.string.isRequired,
