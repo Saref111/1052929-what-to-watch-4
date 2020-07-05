@@ -2,6 +2,7 @@ import React from "react";
 import {shallow} from "enzyme";
 import MovieCard from "./movie-card.jsx";
 import DetailedMovieInfo from "../detailed-movie-info/detailed-movie-info.jsx";
+import SameGenreMovies from "../same-genre-movies/same-genre-movies.jsx";
 
 const details = {
   bgPoster: `BG_HREF`,
@@ -33,6 +34,8 @@ const movie = {
   details,
 };
 
+const films = [movie, movie, movie, movie];
+
 describe(`Test e2e MovieCard`, () => {
   test(`Click on header`, () => {
     const onCardHoverHandler = jest.fn();
@@ -49,7 +52,9 @@ describe(`Test e2e MovieCard`, () => {
     const DetailedMovieInfoElement = shallow(
         <DetailedMovieInfo
           movie={movie}
-        />
+        >
+          <SameGenreMovies films={films} genre={`comedy`} onHeaderClickHandler={() => {}} onCardHoverHandler={() => {}} />
+        </DetailedMovieInfo>
     );
 
     const headerLink = MovieCardElement.find(`a.small-movie-card__link`);

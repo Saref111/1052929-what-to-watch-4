@@ -127,6 +127,7 @@ class DetailedMovieInfo extends PureComponent {
 }
 
 DetailedMovieInfo.propTypes = {
+  children: PropTypes.node.isRequired,
   movie: PropTypes.shape({
     title: PropTypes.string.isRequired,
     src: PropTypes.string.isRequired,

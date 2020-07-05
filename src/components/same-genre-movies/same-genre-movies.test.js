@@ -1,15 +1,14 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import DetailedMovieInfo from "./detailed-movie-info.jsx";
-import SameGenreMovies from "../same-genre-movies/same-genre-movies.jsx";
+import SameGenreMovies from "./same-genre-movies.jsx";
 
 const details = {
   bgPoster: `BG_HREF`,
   cover: `POSTER_HREF`,
   genre: `comedy`,
   year: 2001,
-  time: `1h 1m`,
   rate: 8.8,
+  time: `1h 1m`,
   votes: 666,
   director: `Kevin Smith`,
   actors: [`actor1`, `actor2`],
@@ -29,22 +28,19 @@ const movie = {
   id: 0,
   title: `title`,
   src: `src`,
-  preview: `asdasdasd`,
+  preview: `preview`,
   details,
 };
 
 const films = [movie, movie, movie, movie];
 
-describe(`Test DetailedMovieInfo`, () => {
-  it(`DetailedMovieInfo snapshot`, () => {
-    const tree = renderer.create(
-        <DetailedMovieInfo
-          movie={movie}
-        >
-          <SameGenreMovies films={films} genre={`comedy`} onHeaderClickHandler={() => {}} onCardHoverHandler={() => {}} />
-        </DetailedMovieInfo>
-    );
+test(`Snapshot SameGenreMovies`, () => {
+  const tree = renderer.create(<SameGenreMovies
+    films={films}
+    genre={`comedy`}
+    onHeaderClickHandler={() => {}}
+    onCardHoverHandler={() => {}}
+  />);
 
-    expect(tree).toMatchSnapshot();
-  });
+  expect(tree).toMatchSnapshot();
 });

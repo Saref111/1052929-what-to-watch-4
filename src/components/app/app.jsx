@@ -48,6 +48,9 @@ class App extends PureComponent {
   }
 
   render() {
+    const {films} = this.props;
+
+
     return (
       <BrowserRouter>
         <Switch>
@@ -55,7 +58,9 @@ class App extends PureComponent {
             {this._renderApp()}
           </Route>
           <Route exact path="/dev-film">
-            <DetailedMovieInfo movie={this.props.films[0]} />
+            <DetailedMovieInfo movie={this.props.films[0]}>
+              <SameGenreMovies genre={this.props.films[0].details.genre} films={films} onHeaderClickHandler={this.onHeaderClickHandler}/>
+            </DetailedMovieInfo>
           </Route>
         </Switch>
       </BrowserRouter>

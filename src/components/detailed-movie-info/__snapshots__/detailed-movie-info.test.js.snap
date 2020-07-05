@@ -269,14 +269,16 @@ Array [
       >
         <article
           className="small-movie-card catalog__movies-card"
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
         >
           <div
             className="small-movie-card__image"
           >
             <img
-              alt="Fantastic Beasts: The Crimes of Grindelwald"
+              alt="title"
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              src="srctitle"
               width="280"
             />
           </div>
@@ -286,21 +288,24 @@ Array [
             <a
               className="small-movie-card__link"
               href="movie-page.html"
+              onClick={[Function]}
             >
-              Fantastic Beasts: The Crimes of Grindelwald
+              title
             </a>
           </h3>
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
         >
           <div
             className="small-movie-card__image"
           >
             <img
-              alt="Bohemian Rhapsody"
+              alt="title"
               height="175"
-              src="img/bohemian-rhapsody.jpg"
+              src="srctitle"
               width="280"
             />
           </div>
@@ -310,21 +315,24 @@ Array [
             <a
               className="small-movie-card__link"
               href="movie-page.html"
+              onClick={[Function]}
             >
-              Bohemian Rhapsody
+              title
             </a>
           </h3>
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
         >
           <div
             className="small-movie-card__image"
           >
             <img
-              alt="Macbeth"
+              alt="title"
               height="175"
-              src="img/macbeth.jpg"
+              src="srctitle"
               width="280"
             />
           </div>
@@ -334,21 +342,24 @@ Array [
             <a
               className="small-movie-card__link"
               href="movie-page.html"
+              onClick={[Function]}
             >
-              Macbeth
+              title
             </a>
           </h3>
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
         >
           <div
             className="small-movie-card__image"
           >
             <img
-              alt="Aviator"
+              alt="title"
               height="175"
-              src="img/aviator.jpg"
+              src="srctitle"
               width="280"
             />
           </div>
@@ -358,8 +369,9 @@ Array [
             <a
               className="small-movie-card__link"
               href="movie-page.html"
+              onClick={[Function]}
             >
-              Aviator
+              title
             </a>
           </h3>
         </article>
