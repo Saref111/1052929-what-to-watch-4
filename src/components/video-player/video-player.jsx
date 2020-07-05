@@ -12,6 +12,11 @@ class VideoPlayer extends React.PureComponent {
       isLoading: true,
       isPlaying: props.isPlaying,
     };
+
+    this._handleLoad = this._handleLoad.bind(this);
+    this._handlePlay = this._handlePlay.bind(this);
+    this._handlePause = this._handlePause.bind(this);
+    this._handleTimeUpdate = this._handleTimeUpdate.bind(this);
   }
 
   _handlePlay() {
