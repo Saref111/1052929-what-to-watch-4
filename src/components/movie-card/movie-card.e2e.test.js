@@ -22,6 +22,7 @@ const movie = {
   id: 0,
   title: `title`,
   src: `src`,
+  preview: `preview`,
   details,
 };
 
@@ -49,6 +50,9 @@ describe(`Test e2e MovieCard`, () => {
     const evt = {
       preventDefault() {},
       target: {value: `the-value`},
+      createNodeMock: () => {
+        return {};
+      }
     };
 
     headerLink.simulate(`click`, evt);

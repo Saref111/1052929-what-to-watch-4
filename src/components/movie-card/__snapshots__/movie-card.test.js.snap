@@ -3,6 +3,7 @@
 exports[`Testing MovieCard component Snapshot test 1`] = `
 <article
   className="small-movie-card catalog__movies-card"
+  onMouseOut={[Function]}
   onMouseOver={[Function]}
 >
   <div
