@@ -23,6 +23,9 @@ describe(`Testing MovieCard component`, () => {
     const onHeaderClickHandler = jest.fn();
     const tree = renderer.create(
         <MovieCard
+          renderPlayer={() => {}}
+          isVideo={true}
+          handleMouseOut={() => {}}
           movie={{
             id: 1,
             title: `title`,

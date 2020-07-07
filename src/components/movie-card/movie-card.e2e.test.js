@@ -1,6 +1,6 @@
 import React from "react";
 import {shallow} from "enzyme";
-import MovieCard from "./movie-card.jsx";
+import {MovieCard} from "./movie-card.jsx";
 import DetailedMovieInfo from "../detailed-movie-info/detailed-movie-info.jsx";
 import SameGenreMovies from "../same-genre-movies/same-genre-movies.jsx";
 
@@ -43,6 +43,9 @@ describe(`Test e2e MovieCard`, () => {
 
     const MovieCardElement = shallow(
         <MovieCard
+          renderPlayer={() => {}}
+          isVideo={true}
+          handleMouseOut={() => {}}
           movie={movie}
           onCardHoverHandler={onCardHoverHandler}
           onHeaderClickHandler={onHeaderClickHandler}
@@ -73,22 +76,4 @@ describe(`Test e2e MovieCard`, () => {
     expect(onHeaderClickHandler).toHaveBeenCalledTimes(1);
   });
 
-  test(`MouseOver on Card`, () => {
-    const onCardHoverHandler = jest.fn();
-    const onHeaderClickHandler = jest.fn();
-
-    const MovieCardElement = shallow(
-        <MovieCard
-          movie={movie}
-          onCardHoverHandler={onCardHoverHandler}
-          onHeaderClickHandler={onHeaderClickHandler}
-        />
-    );
-
-    MovieCardElement.simulate(`mouseover`);
-
-
-    expect(onCardHoverHandler).toHaveBeenCalledTimes(1);
-    expect(onCardHoverHandler.mock.calls[0][0]).toMatchObject(movie);
-  });
 });
