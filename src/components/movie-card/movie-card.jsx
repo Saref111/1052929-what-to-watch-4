@@ -1,49 +1,15 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import VideoPlayer from "../video-player/video-player.jsx";
+import withVideoPlayer from "../../hocs/with-video-player.jsx";
 
 class MovieCard extends PureComponent {
   constructor(props) {
     super(props);
 
-    this._onCardHoverHandler = this._onCardHoverHandler.bind(this);
     this._onHeaderClickHandler = this._onHeaderClickHandler.bind(this);
-    this._handleMouseOut = this._handleMouseOut.bind(this);
-    this._handleIfIsHovered = this._handleIfIsHovered.bind(this);
-
-    this.state = {
-      isVideo: false,
-      isHovered: false,
-    };
 
     this._isMounted = false;
     this._timer = null;
-  }
-
-  _tryToKillTimer() {
-    if (this._timer) {
-      this._timer = clearTimeout(this._timer, 1000);
-    }
-  }
-
-  _handleIfIsHovered() {
-    if (this.state.isHovered) {
-      this.setState((prevState) => {
-        return {isVideo: !prevState.isVideo};
-      });
-    }
-  }
-
-  _onCardHoverHandler() {
-    this.props.onCardHoverHandler(this.props.movie);
-
-    this.setState((prevState) => {
-      return {isHovered: !prevState.isHovered};
-    });
-
-    this._tryToKillTimer();
-
-    this._timer = setTimeout(this._handleIfIsHovered, 1000);
   }
 
   _onHeaderClickHandler(evt) {
@@ -52,39 +18,25 @@ class MovieCard extends PureComponent {
     this.props.onHeaderClickHandler(this.props.movie.id);
   }
 
-  _handleMouseOut() {
-    this.setState(() => {
-      return {isVideo: false, isHovered: false};
-    });
-  }
-
-  componentDidMount() {
-    this._isMounted = true;
-  }
-
-  componentWillUnmount() {
-    this._isMounted = false;
-  }
-
   render() {
-    const {isVideo} = this.state;
-    const {movie} = this.props;
+    const {movie, renderPlayer, isVideo, handleMouseOut, onCardHoverHandler} = this.props;
     const {preview, title, src, details} = movie;
     const {cover} = details;
 
     return (
       <article
-        onMouseOut={this._handleMouseOut}
-        onMouseOver={this._onCardHoverHandler}
+        onMouseOut={handleMouseOut}
+        onMouseOver={onCardHoverHandler}
         className="small-movie-card catalog__movies-card">
         <div className="small-movie-card__image">
           {isVideo ?
-            <VideoPlayer
-              muted={true}
-              isPlaying={true}
-              preview={preview}
-              poster={cover}
-            /> :
+            // <VideoPlayer
+            //   muted={true}
+            //   isPlaying={true}
+            //   preview={preview}
+            //   poster={cover}
+            // />
+            renderPlayer(preview, cover, movie.id) :
             <img src={`${src}${title}`} alt={`${title}`} width="280" height="175" />
           }
         </div>
@@ -111,6 +63,11 @@ MovieCard.propTypes = {
   }).isRequired,
   onCardHoverHandler: PropTypes.func.isRequired,
   onHeaderClickHandler: PropTypes.func.isRequired,
+  renderPlayer: PropTypes.func.isRequired,
+  handleMouseOut: PropTypes.func.isRequired,
+  isVideo: PropTypes.bool.isRequired,
 };
 
-export default MovieCard;
+
+export {MovieCard};
+export default withVideoPlayer(MovieCard);
