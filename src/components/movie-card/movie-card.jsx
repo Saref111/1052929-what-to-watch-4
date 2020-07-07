@@ -17,6 +17,13 @@ class MovieCard extends PureComponent {
     };
 
     this._isMounted = false;
+    this._timer = null;
+  }
+
+  _tryToKillTimer() {
+    if (this._timer) {
+      this._timer = clearTimeout(this._timer, 1000);
+    }
   }
 
   _handleIfIsHovered() {
@@ -34,7 +41,9 @@ class MovieCard extends PureComponent {
       return {isHovered: !prevState.isHovered};
     });
 
-    setTimeout(this._handleIfIsHovered, 1000);
+    this._tryToKillTimer();
+
+    this._timer = setTimeout(this._handleIfIsHovered, 1000);
   }
 
   _onHeaderClickHandler(evt) {

@@ -76,7 +76,7 @@ class VideoPlayer extends React.PureComponent {
     const video = this._videoRef.current;
 
     if (this.props.isPlaying) {
-      video.play();
+      video.play().catch((err) => err);
     } else {
       video.pause();
     }
