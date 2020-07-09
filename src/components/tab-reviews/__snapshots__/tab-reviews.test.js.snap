@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot test for TabReviews 1`] = `
+<div
+  className="movie-card__reviews movie-card__row"
+>
+  <div
+    className="movie-card__reviews-col"
+  >
+    <div
+      className="review"
+    >
+      <blockquote
+        className="review__quote"
+      >
+        <p
+          className="review__text"
+        >
+          Lorem ipsum dolor sit amet. Eligendi non quis exercitationem culpa
+        </p>
+        <footer
+          className="review__details"
+        >
+          <cite
+            className="review__author"
+          >
+            Ivan Ivanov
+          </cite>
+          <time
+            className="review__date"
+            dateTime="20-06-9"
+          >
+            July 9, 2020
+          </time>
+        </footer>
+      </blockquote>
+      <div
+        className="review__rating"
+      >
+        8.9
+      </div>
+    </div>
+  </div>
+</div>
+`;
