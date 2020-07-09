@@ -4,7 +4,7 @@ import TabsNav from "./tabs-nav.jsx";
 
 const e = {
   preventDefault() {}
-}
+};
 
 test(`Click on tab menu item shoud call the func once`, () => {
   const handleClick = jest.fn();
@@ -13,7 +13,7 @@ test(`Click on tab menu item shoud call the func once`, () => {
     handleClick={handleClick}
   />);
 
-  const buttons = TabsNavElement.find(`.movie-nav__link`)
+  const buttons = TabsNavElement.find(`.movie-nav__link`);
   const button = buttons.first();
   button.simulate(`click`, e);
 
