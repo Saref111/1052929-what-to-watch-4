@@ -8,7 +8,6 @@ class MovieCard extends PureComponent {
 
     this._onHeaderClickHandler = this._onHeaderClickHandler.bind(this);
 
-    this._isMounted = false;
     this._timer = null;
   }
 

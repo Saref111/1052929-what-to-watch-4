@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {GENRES} from "../../const.js";
+import {GENRES, Tabs} from "../../const.js";
 import {getActorsString, rateToString, formatDate, stringifyDate} from "../../helpers/helpers.js";
 
 const Tabs = (props) => {
@@ -10,7 +10,7 @@ const Tabs = (props) => {
 
 
   switch (page) {
-    case 0:
+    case Tabs.OVERVIEW:
       tab = (
         <React.Fragment>
           <div className="movie-rating">
@@ -34,7 +34,7 @@ const Tabs = (props) => {
       );
       break;
 
-    case 1:
+    case Tabs.DETAILS:
       tab = (
         <div className="movie-card__text movie-card__row">
           <div className="movie-card__text-col">
@@ -73,7 +73,7 @@ const Tabs = (props) => {
         </div>
       );
       break;
-    case 2:
+    case Tabs.REVIEWS:
       tab = (
         <div className="movie-card__reviews movie-card__row">
           <div className="movie-card__reviews-col">
