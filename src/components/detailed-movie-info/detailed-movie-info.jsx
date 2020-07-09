@@ -1,7 +1,8 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import Tabs from "../tabs/tabs.jsx";
-import {GENRES, CARD_MENU} from "../../const.js";
+import TabsNav from "../tabs-nav/tabs-nav.jsx";
+import {GENRES} from "../../const.js";
 import {uppercaseFirstLetter} from "../../helpers/helpers.js";
 
 
@@ -13,12 +14,11 @@ class DetailedMovieInfo extends PureComponent {
       page: 0
     };
 
-    this._handleClick = this._handleClick.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  _handleClick(id) {
+  handleClick(id) {
     this.setState(() => {
-
       return {page: id};
     });
   }
@@ -86,21 +86,14 @@ class DetailedMovieInfo extends PureComponent {
                 <img src={`${cover}${title}`} alt={`${title}`} width="218" height="327" />
               </div>
               <div className="movie-card__desc">
-                <nav className="movie-nav movie-card__nav">
-                  <ul className="movie-nav__list">
-                    {CARD_MENU.map((name, i) => {
-                      return (
-                        <li key={`${name}-${i}`} className={`movie-nav__item ${this.state.page === i ? `movie-nav__item--active` : ``}`}>
-                          <a href="" className="movie-nav__link" onClick={(e) => {
-                            e.preventDefault();
-                            this._handleClick(i);
-                          }} id={i}>{name}</a>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </nav>
-                <Tabs page={this.state.page} info={details}/>
+                <TabsNav
+                  page={this.state.page}
+                  handleClick={this.handleClick}
+                />
+                <Tabs
+                  page={this.state.page}
+                  info={details}
+                />
               </div>
             </div>
           </div>
