@@ -16,10 +16,10 @@ const GENRES = [
 
 const RATINGS = [`bad`, `normal`, `good`, `very good`, `awesome`];
 
-const Tabs = {
+const TABS = {
   OVERVIEW: 0,
   DETAILS: 1,
   REVIEWS: 2,
 };
 
-export {GENRES, RATINGS, CARD_MENU, MONTHS, Tabs};
+export {GENRES, RATINGS, CARD_MENU, MONTHS, TABS};

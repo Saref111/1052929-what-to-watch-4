@@ -24,6 +24,10 @@ const withVideoPlayer = (Component) => {
       }
     }
 
+    componentWillUnmount() {
+      this._tryToKillTimer();
+    }
+
     _handleIfIsHovered() {
       if (this.state.isHovered) {
         this.setState((prevState) => {
