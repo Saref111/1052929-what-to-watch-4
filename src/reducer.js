@@ -27,4 +27,20 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
-export {reducer, Actions};
+const actionCreator = {
+  changeFilter: (filterType) => {
+    return {
+      type: Actions.CHANGE_FILTER,
+      payload: filterType,
+    };
+  },
+
+  getFilmsByType: (films) => {
+    return {
+      type: Actions.GET_FILMS_BY_GENRE,
+      payload: films,
+    };
+  },
+};
+
+export {reducer, Actions, actionCreator};
