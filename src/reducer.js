@@ -1,5 +1,5 @@
 import {extend} from "./helpers/helpers.js";
-import {FILMS} from "./mock/films.js";
+import FILMS from "./mock/films.js";
 
 const initialState = {
   filterGenre: `all`,
