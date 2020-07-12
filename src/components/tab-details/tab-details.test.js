@@ -10,5 +10,6 @@ test(`Snapshot test for TabDetails`, () => {
     director={`qweerttyu`}
     actors={[`11111`, `222222`]}
   />);
+
   expect(tree).toMatchSnapshot();
 });

@@ -52,4 +52,6 @@ const getActorsString = (array) => {
   }, ``);
 };
 
-export {getActorsString, rateToString, uppercaseFirstLetter, formatDate, stringifyDate};
+const extend = (a, b) => Object.assign({}, a, b);
+
+export {getActorsString, rateToString, uppercaseFirstLetter, formatDate, stringifyDate, extend};
