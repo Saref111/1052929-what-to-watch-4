@@ -11,7 +11,7 @@ class Main extends PureComponent {
   }
 
   render() {
-    const {name, genre, year, onHeaderClickHandler, films} = this.props;
+    const {name, genre, year, onHeaderClickHandler, films, filterGenre, onFilterChangeHandler} = this.props;
 
     return (
       <React.Fragment>
@@ -74,7 +74,12 @@ class Main extends PureComponent {
           <section className="catalog">
             <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-            <GenresList genresList={GENRES} currentGenre={} />
+            <GenresList
+              genresList={GENRES}
+              currentGenre={filterGenre}
+              films={films}
+              onFilterChangeHandler={onFilterChangeHandler}
+            />
 
             <FilmsList films={films} onHeaderClickHandler={onHeaderClickHandler}/>
 
@@ -103,6 +108,8 @@ class Main extends PureComponent {
 }
 
 Main.propTypes = {
+  onFilterChangeHandler: PropTypes.func.isRequired,
+  filterGenre: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   genre: PropTypes.string.isRequired,
   year: PropTypes.number.isRequired,

@@ -76,7 +76,7 @@ export default [
     details: {
       bgPoster: BG_HREF,
       cover: POSTER_HREF,
-      genre: `comedy`,
+      genre: `drama`,
       year: 2001,
       rate: 8.8,
       votes: 666,
