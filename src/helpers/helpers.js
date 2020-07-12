@@ -1,4 +1,12 @@
-import {RATINGS} from "../const.js";
+import {RATINGS, MONTHS} from "../const.js";
+
+const formatDate = (date) => {
+  return `${`${date.getFullYear()}`.slice(2, 4)}-${`${date.getMonth()}`.length === 2 ? date.getMonth() + 1 : `0${date.getMonth()}`}-${date.getDate()}`;
+};
+
+const stringifyDate = (date) => {
+  return `${MONTHS[Number(date.getMonth())]} ${date.getDate()}, ${`${date.getFullYear()}`}`;
+};
 
 const uppercaseFirstLetter = (string) => `${string.charAt(0).toUpperCase()}${string.slice(1)}`;
 
@@ -44,4 +52,4 @@ const getActorsString = (array) => {
   }, ``);
 };
 
-export {getActorsString, rateToString, uppercaseFirstLetter};
+export {getActorsString, rateToString, uppercaseFirstLetter, formatDate, stringifyDate};

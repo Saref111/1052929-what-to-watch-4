@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import {Route, Switch, BrowserRouter} from "react-router-dom";
 import Main from "../main/main.jsx";
 import DetailedMovieInfo from "../detailed-movie-info/detailed-movie-info.jsx";
+import SameGenreMovies from "../same-genre-movies/same-genre-movies.jsx";
 
 class App extends PureComponent {
   constructor(props) {
@@ -37,7 +38,9 @@ class App extends PureComponent {
       );
     } else {
       return (
-        <DetailedMovieInfo movie={this.props.films[movieID]} />
+        <DetailedMovieInfo movie={this.props.films[movieID]}>
+          <SameGenreMovies genre={this.props.films[movieID].details.genre} films={films} onHeaderClickHandler={this.onHeaderClickHandler}/>
+        </DetailedMovieInfo>
       );
     }
 
@@ -45,6 +48,9 @@ class App extends PureComponent {
   }
 
   render() {
+    const {films} = this.props;
+
+
     return (
       <BrowserRouter>
         <Switch>
@@ -52,7 +58,9 @@ class App extends PureComponent {
             {this._renderApp()}
           </Route>
           <Route exact path="/dev-film">
-            <DetailedMovieInfo movie={this.props.films[0]} />
+            <DetailedMovieInfo movie={this.props.films[0]}>
+              <SameGenreMovies genre={this.props.films[0].details.genre} films={films} onHeaderClickHandler={this.onHeaderClickHandler}/>
+            </DetailedMovieInfo>
           </Route>
         </Switch>
       </BrowserRouter>

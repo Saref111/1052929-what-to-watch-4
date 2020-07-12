@@ -1,0 +1,125 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot SameGenreMovies 1`] = `
+<section
+  className="catalog catalog--like-this"
+>
+  <h2
+    className="catalog__title"
+  >
+    More like this
+  </h2>
+  <div
+    className="catalog__movies-list"
+  >
+    <article
+      className="small-movie-card catalog__movies-card"
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
+    >
+      <div
+        className="small-movie-card__image"
+      >
+        <img
+          alt="title"
+          height="175"
+          src="srctitle"
+          width="280"
+        />
+      </div>
+      <h3
+        className="small-movie-card__title"
+      >
+        <a
+          className="small-movie-card__link"
+          href="movie-page.html"
+          onClick={[Function]}
+        >
+          title
+        </a>
+      </h3>
+    </article>
+    <article
+      className="small-movie-card catalog__movies-card"
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
+    >
+      <div
+        className="small-movie-card__image"
+      >
+        <img
+          alt="title"
+          height="175"
+          src="srctitle"
+          width="280"
+        />
+      </div>
+      <h3
+        className="small-movie-card__title"
+      >
+        <a
+          className="small-movie-card__link"
+          href="movie-page.html"
+          onClick={[Function]}
+        >
+          title
+        </a>
+      </h3>
+    </article>
+    <article
+      className="small-movie-card catalog__movies-card"
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
+    >
+      <div
+        className="small-movie-card__image"
+      >
+        <img
+          alt="title"
+          height="175"
+          src="srctitle"
+          width="280"
+        />
+      </div>
+      <h3
+        className="small-movie-card__title"
+      >
+        <a
+          className="small-movie-card__link"
+          href="movie-page.html"
+          onClick={[Function]}
+        >
+          title
+        </a>
+      </h3>
+    </article>
+    <article
+      className="small-movie-card catalog__movies-card"
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
+    >
+      <div
+        className="small-movie-card__image"
+      >
+        <img
+          alt="title"
+          height="175"
+          src="srctitle"
+          width="280"
+        />
+      </div>
+      <h3
+        className="small-movie-card__title"
+      >
+        <a
+          className="small-movie-card__link"
+          href="movie-page.html"
+          onClick={[Function]}
+        >
+          title
+        </a>
+      </h3>
+    </article>
+  </div>
+</section>
+`;

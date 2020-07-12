@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import MovieCard from "./movie-card.jsx";
+import {MovieCard} from "./movie-card.jsx";
 
 const details = {
   bgPoster: `BG_HREF`,
@@ -23,6 +23,9 @@ describe(`Testing MovieCard component`, () => {
     const onHeaderClickHandler = jest.fn();
     const tree = renderer.create(
         <MovieCard
+          renderPlayer={() => {}}
+          isVideo={true}
+          handleMouseOut={() => {}}
           movie={{
             id: 1,
             title: `title`,

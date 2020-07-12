@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot test for TabOverview 1`] = `
+Array [
+  <div
+    className="movie-rating"
+  >
+    <div
+      className="movie-rating__score"
+    >
+      2
+    </div>
+    <p
+      className="movie-rating__meta"
+    >
+      <span
+        className="movie-rating__level"
+      >
+        2
+      </span>
+      <span
+        className="movie-rating__count"
+      >
+        222
+         ratings
+      </span>
+    </p>
+  </div>,
+  <div
+    className="movie-card__text"
+  >
+    <p>
+      123qweasdxcv
+    </p>
+    <p>
+      123qweasdxcv
+    </p>
+    <p
+      className="movie-card__director"
+    >
+      <strong>
+        Director: 
+        qweerttyu
+      </strong>
+    </p>
+    <p
+      className="movie-card__starring"
+    >
+      <strong>
+        Starring: 
+        sdfghjk sdfsdf sdfsdf sdfsdfsdf
+         and other.
+      </strong>
+    </p>
+  </div>,
+]
+`;
