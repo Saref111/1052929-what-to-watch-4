@@ -28,9 +28,9 @@ exports[`Snapshot test for TabReviews 1`] = `
           </cite>
           <time
             className="review__date"
-            dateTime="20-06-9"
+            dateTime="20-06-14"
           >
-            July 9, 2020
+            July 14, 2020
           </time>
         </footer>
       </blockquote>

@@ -87,13 +87,16 @@ describe(`Test Main`, () => {
   it(`Main snapshot`, () => {
     const tree = renderer.create(
         <Main
+          genresList={[`1`, `2`, `3`, `4`]}
+          filterGenre={`1`}
+          onFilterChangeHandler={() => {}}
           name={`The Benders`}
           genre={`Robcore`}
           year={3020}
           onHeaderClickHandler={() => {}}
           films={FILMS}
         />
-    );
+    ).toJSON();
 
     expect(tree).toMatchSnapshot();
   });

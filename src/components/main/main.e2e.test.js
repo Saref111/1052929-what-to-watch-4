@@ -80,6 +80,8 @@ describe(`Main e2e test`, () => {
 
     const MainElement = shallow(
         <Main
+          onFilterChangeHandler={() => {}}
+          filterGenre={`1`}
           name={`The Benders`}
           genre={`Robcore`}
           year={3020}
