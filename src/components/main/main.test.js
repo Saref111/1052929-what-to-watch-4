@@ -95,6 +95,7 @@ describe(`Test Main`, () => {
           year={3020}
           onHeaderClickHandler={() => {}}
           films={FILMS}
+          allFilms={FILMS}
         />
     ).toJSON();
 

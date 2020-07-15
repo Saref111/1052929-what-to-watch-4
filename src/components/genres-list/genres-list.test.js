@@ -10,6 +10,7 @@ test(`Snapshot GenreList`, () => {
     currentGenre={`1`}
     onFilterChangeHandler={() => {}}
     films={[]}
+    allFilms={[]}
   />).toJSON();
 
   expect(tree).toMatchSnapshot();

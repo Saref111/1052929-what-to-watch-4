@@ -87,6 +87,7 @@ describe(`Main e2e test`, () => {
           year={3020}
           onHeaderClickHandler={onHeaderClickHandler}
           films={FILMS}
+          allFilms={FILMS}
         />
     );
 

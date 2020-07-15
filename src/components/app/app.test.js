@@ -95,6 +95,7 @@ const FILMS = [
 ];
 
 const store = mockStore({
+  allFilms: FILMS,
   films: FILMS,
   filterGenre: `1`,
   movieID: -1,

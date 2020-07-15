@@ -16,6 +16,7 @@ test(`Genres List click should call func once`, () => {
     currentGenre={`1`}
     onFilterChangeHandler={onFilterChange}
     films={[]}
+    allFilms={[]}
   />);
 
   const links = genresListElement.find(`.catalog__genres-link`);
