@@ -188,7 +188,7 @@ const FILMS = [
 ];
 
 // test(`Expect initialState`, () => {                            some bug
-//   expect(reducer(void 0, {})).toMatchArray({
+//   expect(reducer(void 0, {})).toStrictEqual({
 //     filterGenre: `all genres`,
 //     films: FILMS,
 //     movieID: -1,
