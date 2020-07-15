@@ -1,6 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import MovieCard from "../movie-card/movie-card.jsx";
+import ShowMoreButton from "../show-more-button/show-more-button.jsx";
 import {FILMS_COUNT} from "../../const.js";
 
 class FilmsList extends PureComponent {
@@ -13,11 +14,18 @@ class FilmsList extends PureComponent {
     };
 
     this.onCardHoverHandler = this.onCardHoverHandler.bind(this);
+    this.onShowMoreButtonClickHandler = this.onShowMoreButtonClickHandler.bind(this);
   }
 
   onCardHoverHandler(reply) {
     this.setState(() => {
       return {movie: reply};
+    });
+  }
+
+  onShowMoreButtonClickHandler() {
+    this.setState((prevState) => {
+      return {filmsCount: prevState.filmsCount + FILMS_COUNT};
     });
   }
 
@@ -30,15 +38,22 @@ class FilmsList extends PureComponent {
     const filmsToRender = this._getFilmsByCurrentCount(films);
 
     return (
-      <div className="catalog__movies-list">
-        {filmsToRender.map((movie, i) => (
-          <MovieCard
-            key={`${movie.src}-${i}`}
-            movie={movie}
-            onHeaderClickHandler={onHeaderClickHandler}
-            onCardHoverHandler={this.onCardHoverHandler} />
-        ))}
-      </div>
+      <React.Fragment>
+        <div className="catalog__movies-list">
+          {filmsToRender.map((movie, i) => (
+            <MovieCard
+              key={`${movie.src}-${i}`}
+              movie={movie}
+              onHeaderClickHandler={onHeaderClickHandler}
+              onCardHoverHandler={this.onCardHoverHandler} />
+          ))}
+        </div>
+        <ShowMoreButton
+          onShowMoreButtonClickHandler={this.onShowMoreButtonClickHandler}
+          isShown={this.state.filmsCount <= films.length}
+        />
+      </React.Fragment>
+
     );
   }
 }

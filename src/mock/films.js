@@ -183,7 +183,7 @@ export default [
     },
   },
   {
-    id: 0,
+    id: 8,
     title: `Джей и молчаливый Боб`,
     src: HREF,
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
@@ -202,7 +202,7 @@ export default [
     },
   },
   {
-    id: 1,
+    id: 9,
     title: `Карты, деньги, два ствола`,
     src: HREF,
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
@@ -221,7 +221,7 @@ export default [
     },
   },
   {
-    id: 2,
+    id: 10,
     title: `Зеленый слоник`,
     src: HREF,
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
@@ -240,7 +240,7 @@ export default [
     },
   },
   {
-    id: 3,
+    id: 11,
     title: `Матрица`,
     src: HREF,
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
@@ -259,7 +259,7 @@ export default [
     },
   },
   {
-    id: 4,
+    id: 12,
     title: `Законопослушный гражданин`,
     src: HREF,
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
@@ -278,7 +278,7 @@ export default [
     },
   },
   {
-    id: 5,
+    id: 13,
     title: `Человек с Земли`,
     src: HREF,
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
@@ -297,7 +297,7 @@ export default [
     },
   },
   {
-    id: 6,
+    id: 14,
     title: `Автострада 60: дорожные истории`,
     src: HREF,
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
@@ -316,7 +316,7 @@ export default [
     },
   },
   {
-    id: 7,
+    id: 15,
     title: `Appleman`,
     src: HREF,
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
@@ -335,7 +335,7 @@ export default [
     },
   },
   {
-    id: 7,
+    id: 16,
     title: `Appleman`,
     src: HREF,
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
@@ -354,7 +354,7 @@ export default [
     },
   },
   {
-    id: 7,
+    id: 17,
     title: `Appleman`,
     src: HREF,
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
@@ -373,7 +373,7 @@ export default [
     },
   },
   {
-    id: 7,
+    id: 18,
     title: `Appleman`,
     src: HREF,
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
@@ -392,7 +392,7 @@ export default [
     },
   },
   {
-    id: 7,
+    id: 19,
     title: `Appleman`,
     src: HREF,
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
@@ -411,7 +411,7 @@ export default [
     },
   },
   {
-    id: 7,
+    id: 20,
     title: `Appleman`,
     src: HREF,
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
