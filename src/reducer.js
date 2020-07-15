@@ -2,6 +2,7 @@ import {extend} from "./helpers/helpers.js";
 import FILMS from "./mock/films.js";
 
 const initialState = {
+  allFilms: FILMS,
   filterGenre: `all genres`,
   films: FILMS,
   movieID: -1,

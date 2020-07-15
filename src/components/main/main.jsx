@@ -11,7 +11,7 @@ class Main extends PureComponent {
   }
 
   render() {
-    const {name, genre, year, onHeaderClickHandler, films, filterGenre, onFilterChangeHandler} = this.props;
+    const {name, genre, year, onHeaderClickHandler, allFilms, films, filterGenre, onFilterChangeHandler} = this.props;
 
     return (
       <React.Fragment>
@@ -77,8 +77,8 @@ class Main extends PureComponent {
             <GenresList
               genresList={GENRES}
               currentGenre={filterGenre}
-              films={films}
               onFilterChangeHandler={onFilterChangeHandler}
+              allFilms={allFilms}
             />
 
             <FilmsList films={films} onHeaderClickHandler={onHeaderClickHandler}/>
@@ -115,6 +115,12 @@ Main.propTypes = {
   year: PropTypes.number.isRequired,
   onHeaderClickHandler: PropTypes.func.isRequired,
   films: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    src: PropTypes.string.isRequired,
+    details: PropTypes.object.isRequired,
+  })).isRequired,
+  allFilms: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     src: PropTypes.string.isRequired,

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {uppercaseFirstLetter} from "../../helpers/helpers.js";
 
 const GenresList = (props) => {
-  const {genresList, currentGenre, onFilterChangeHandler, films} = props;
+  const {genresList, currentGenre, onFilterChangeHandler, allFilms} = props;
 
   return (
     <ul className="catalog__genres-list">
@@ -15,7 +15,7 @@ const GenresList = (props) => {
               className="catalog__genres-link"
               id={genre}
               onClick={(e) => {
-                onFilterChangeHandler(genre, films);
+                onFilterChangeHandler(genre, allFilms);
                 e.preventDefault();
               }}
             >{uppercaseFirstLetter(genre)}</a>
@@ -30,7 +30,7 @@ GenresList.propTypes = {
   genresList: PropTypes.arrayOf(PropTypes.string).isRequired,
   currentGenre: PropTypes.string.isRequired,
   onFilterChangeHandler: PropTypes.func.isRequired,
-  films: PropTypes.array.isRequired,
+  allFilms: PropTypes.array.isRequired,
 };
 
 export default GenresList;
