@@ -27,6 +27,8 @@ class DetailedMovieInfo extends PureComponent {
     const {movie} = this.props;
     const {title, details} = movie;
     const {bgPoster, cover, genre, year} = details;
+    const {page} = this.state;
+
     return (
       <React.Fragment>
         <section className="movie-card movie-card--full">
@@ -87,11 +89,11 @@ class DetailedMovieInfo extends PureComponent {
               </div>
               <div className="movie-card__desc">
                 <TabsNav
-                  page={this.state.page}
+                  page={page}
                   handleClick={this.handleClick}
                 />
                 <Tabs
-                  page={this.state.page}
+                  page={page}
                   info={details}
                 />
               </div>

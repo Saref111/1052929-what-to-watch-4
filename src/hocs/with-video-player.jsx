@@ -20,7 +20,7 @@ const withVideoPlayer = (Component) => {
 
     _tryToKillTimer() {
       if (this._timer) {
-        this._timer = clearTimeout(this._timer, 1000);
+        this._timer = clearTimeout(this._handleIfIsHovered, 1000);
       }
     }
 

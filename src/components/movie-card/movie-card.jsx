@@ -7,8 +7,6 @@ class MovieCard extends PureComponent {
     super(props);
 
     this._onHeaderClickHandler = this._onHeaderClickHandler.bind(this);
-
-    this._timer = null;
   }
 
   _onHeaderClickHandler(evt) {
@@ -29,12 +27,6 @@ class MovieCard extends PureComponent {
         className="small-movie-card catalog__movies-card">
         <div className="small-movie-card__image">
           {isVideo ?
-            // <VideoPlayer
-            //   muted={true}
-            //   isPlaying={true}
-            //   preview={preview}
-            //   poster={cover}
-            // />
             renderPlayer(preview, cover, movie.id) :
             <img src={`${src}${title}`} alt={`${title}`} width="280" height="175" />
           }

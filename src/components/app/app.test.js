@@ -1,6 +1,10 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
 import App from "./app.jsx";
+
+const mockStore = configureStore([]);
 
 const details = {
   bgPoster: `BG_HREF`,
@@ -90,17 +94,26 @@ const FILMS = [
   },
 ];
 
+const store = mockStore({
+  allFilms: FILMS,
+  films: FILMS,
+  filterGenre: `1`,
+  movieID: -1,
+});
+
 describe(`Test App`, () => {
   it(`App snapshot`, () => {
     const tree = renderer.create(
-        <App
-          name={`The Benders`}
-          genre={`Robcore`}
-          year={3020}
-          onHeaderClickHandler={() => {}}
-          films={FILMS}
-        />
-    );
+        <Provider store={store}>
+
+          <App
+            name={`The Benders`}
+            genre={`Robcore`}
+            year={3020}
+            onHeaderClickHandler={() => {}}
+          />
+        </Provider>
+    ).toJSON();
 
     expect(tree).toMatchSnapshot();
   });

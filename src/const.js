@@ -3,6 +3,7 @@ const CARD_MENU = [`Overview`, `Details`, `Reviews`];
 const MONTHS = [`January`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`];
 
 const GENRES = [
+  `all genres`,
   `comedy`,
   `crime`,
   `documentary`,
@@ -22,4 +23,6 @@ const TABS = {
   REVIEWS: 2,
 };
 
-export {GENRES, RATINGS, CARD_MENU, MONTHS, TABS};
+const FILMS_COUNT = 8;
+
+export {GENRES, RATINGS, CARD_MENU, MONTHS, TABS, FILMS_COUNT};

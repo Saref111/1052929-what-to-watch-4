@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot GenreList 1`] = `
+<ul
+  className="catalog__genres-list"
+>
+  <li
+    className="catalog__genres-item catalog__genres-item--active"
+  >
+    <a
+      className="catalog__genres-link"
+      href="#"
+      id="1"
+      onClick={[Function]}
+    >
+      1
+    </a>
+  </li>
+  <li
+    className="catalog__genres-item "
+  >
+    <a
+      className="catalog__genres-link"
+      href="#"
+      id="2"
+      onClick={[Function]}
+    >
+      2
+    </a>
+  </li>
+  <li
+    className="catalog__genres-item "
+  >
+    <a
+      className="catalog__genres-link"
+      href="#"
+      id="3"
+      onClick={[Function]}
+    >
+      3
+    </a>
+  </li>
+  <li
+    className="catalog__genres-item "
+  >
+    <a
+      className="catalog__genres-link"
+      href="#"
+      id="4"
+      onClick={[Function]}
+    >
+      4
+    </a>
+  </li>
+</ul>
+`;
