@@ -2,6 +2,7 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import Tabs from "../tabs/tabs.jsx";
 import TabsNav from "../tabs-nav/tabs-nav.jsx";
+import withPageId from "../../hocs/with-page-id.jsx";
 import {GENRES} from "../../const.js";
 import {uppercaseFirstLetter} from "../../helpers/helpers.js";
 
@@ -9,25 +10,12 @@ import {uppercaseFirstLetter} from "../../helpers/helpers.js";
 class DetailedMovieInfo extends PureComponent {
   constructor(props) {
     super(props);
-
-    this.state = {
-      page: 0
-    };
-
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick(id) {
-    this.setState(() => {
-      return {page: id};
-    });
   }
 
   render() {
-    const {movie} = this.props;
+    const {movie, page, handleClick} = this.props;
     const {title, details} = movie;
     const {bgPoster, cover, genre, year} = details;
-    const {page} = this.state;
 
     return (
       <React.Fragment>
@@ -90,7 +78,7 @@ class DetailedMovieInfo extends PureComponent {
               <div className="movie-card__desc">
                 <TabsNav
                   page={page}
-                  handleClick={this.handleClick}
+                  handleClick={handleClick}
                 />
                 <Tabs
                   page={page}
@@ -123,6 +111,8 @@ class DetailedMovieInfo extends PureComponent {
 
 DetailedMovieInfo.propTypes = {
   children: PropTypes.node.isRequired,
+  page: PropTypes.number.isRequired,
+  handleClick: PropTypes.func.isRequired,
   movie: PropTypes.shape({
     title: PropTypes.string.isRequired,
     src: PropTypes.string.isRequired,
@@ -145,4 +135,5 @@ DetailedMovieInfo.propTypes = {
   }),
 };
 
-export default DetailedMovieInfo;
+export {DetailedMovieInfo};
+export default withPageId(DetailedMovieInfo);
