@@ -27,7 +27,7 @@ class MovieCard extends PureComponent {
         className="small-movie-card catalog__movies-card">
         <div className="small-movie-card__image">
           {isVideo ?
-            renderPlayer(preview, cover, movie.id) :
+            renderPlayer(preview, cover) :
             <img src={`${src}${title}`} alt={`${title}`} width="280" height="175" />
           }
         </div>

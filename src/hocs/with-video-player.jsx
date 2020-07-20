@@ -56,7 +56,6 @@ const withVideoPlayer = (Component) => {
     renderPlayer(preview, cover) {
       return (
         <VideoPlayer
-          muted={true}
           isPlaying={true}
           preview={preview}
           poster={cover}
