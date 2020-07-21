@@ -5,14 +5,17 @@ import TabsNav from "../tabs-nav/tabs-nav.jsx";
 import withPageId from "../../hocs/with-page-id.jsx";
 import {GENRES} from "../../const.js";
 import {uppercaseFirstLetter} from "../../helpers/helpers.js";
+import withMovieScreen from "../../hocs/with-movie-screen.jsx";
+import MovieScreen from "../movie-screen/movie-screen.jsx";
 
 
 const DetailedMovieInfo = (props) => {
-  const {movie, page, handleClick} = props;
-  const {title, details} = movie;
-  const {bgPoster, cover, genre, year} = details;
+  const {movie, page, handleClick, isShowingScreen, showMovieScreenHandler, renderMovieScreen} = props;
+  const {title, details, src} = movie;
+  const {bgPoster, cover, genre, year, time} = details;
 
-  return (
+  return (isShowingScreen ?
+    renderMovieScreen(time, cover, src) :
     <React.Fragment>
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
@@ -47,7 +50,7 @@ const DetailedMovieInfo = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
+                <button onClick={showMovieScreenHandler} className="btn btn--play movie-card__button" type="button">
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
@@ -105,6 +108,9 @@ const DetailedMovieInfo = (props) => {
 
 
 DetailedMovieInfo.propTypes = {
+  renderMovieScreen: PropTypes.func.isRequired,
+  showMovieScreenHandler: PropTypes.func.isRequired,
+  isShowingScreen: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
   page: PropTypes.number.isRequired,
   handleClick: PropTypes.func.isRequired,
@@ -118,6 +124,7 @@ DetailedMovieInfo.propTypes = {
       director: PropTypes.string.isRequired,
       genre: PropTypes.oneOf(GENRES).isRequired,
       year: PropTypes.number.isRequired,
+      time: PropTypes.number.isRequired,
       rate: PropTypes.number.isRequired,
       votes: PropTypes.number.isRequired,
       actors: PropTypes.arrayOf(PropTypes.string).isRequired,
@@ -131,4 +138,4 @@ DetailedMovieInfo.propTypes = {
 };
 
 export {DetailedMovieInfo};
-export default withPageId(DetailedMovieInfo);
+export default withMovieScreen(withPageId(DetailedMovieInfo));
