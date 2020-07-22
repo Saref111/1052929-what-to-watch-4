@@ -1,8 +1,7 @@
 import React from "react";
-import VideoPlayer from "../components/video-player/video-player.jsx";
 
-const withVideoPlayer = (Component) => {
-  class WithVideoPlayer extends React.PureComponent {
+const withHovered = (Component) => {
+  class WithHovered extends React.PureComponent {
     constructor(props) {
       super(props);
 
@@ -53,22 +52,11 @@ const withVideoPlayer = (Component) => {
       });
     }
 
-    renderPlayer(preview, cover) {
-      return (
-        <VideoPlayer
-          isPlaying={true}
-          preview={preview}
-          poster={cover}
-        />
-      );
-    }
-
     render() {
 
       return (
         <Component
           {...this.props}
-          renderPlayer={this.renderPlayer}
           isVideo={this.state.isVideo}
           handleMouseOut={this.handleMouseOut}
           onCardHoverHandler={this.onCardHoverHandler}
@@ -77,10 +65,10 @@ const withVideoPlayer = (Component) => {
     }
   }
 
-  WithVideoPlayer.propTypes = {};
+  WithHovered.propTypes = {};
 
-  return WithVideoPlayer;
+  return WithHovered;
 };
 
 
-export default withVideoPlayer;
+export default withHovered;

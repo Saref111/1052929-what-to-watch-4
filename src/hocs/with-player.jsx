@@ -84,6 +84,16 @@ const withPlayer = (Component) => {
       }
     }
 
+    // renderPlayer(preview, cover) {
+    //   return (
+    //     <VideoPlayer
+    //       isPlaying={true}
+    //       preview={preview}
+    //       poster={cover}
+    //     />
+    //   );
+    // }
+
     render() {
       return <Component
         {...this.props}
