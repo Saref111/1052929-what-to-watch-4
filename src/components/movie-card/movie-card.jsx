@@ -32,6 +32,7 @@ class MovieCard extends PureComponent {
               isPlaying={true}
               poster={cover}
               preview={preview}
+              isMuted={true}
             /> :
             <img src={`${src}${title}`} alt={`${title}`} width="280" height="175" />
           }

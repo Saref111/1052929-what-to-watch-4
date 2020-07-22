@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import VideoPlayer from "../video-player/video-player.jsx";
 import {stringifyCurrentTime} from "../../helpers/helpers.js";
 
 const MovieScreen = (props) => {
@@ -10,8 +11,11 @@ const MovieScreen = (props) => {
 
   return (
     <div className="player">
-      <video src={movieSrc} className="player__video" poster={poster}></video>
-
+      <VideoPlayer
+        isPlaying={isPlaying}
+        poster={poster}
+        preview={movieSrc}
+      />
       <button type="button" className="player__exit">Exit</button>
 
       <div className="player__controls">
@@ -24,8 +28,8 @@ const MovieScreen = (props) => {
         </div>
 
         <div className="player__controls-row">
-          {isPlaying ? <button type="button" className="player__play">
-            <svg viewBox="0 0 19 19" width="19" height="19">
+          {!isPlaying ? <button type="button" className="player__play">
+            <svg viewBox="0 0 19 19" width="19" height="19" fill="#FFFFFF">
               <use xlinkHref="#play-s"></use>
             </svg>
             <span>Play</span>
@@ -35,12 +39,6 @@ const MovieScreen = (props) => {
             </svg>
             <span>Pause</span>
           </button>}
-          <button type="button" className="player__play">
-            <svg viewBox="0 0 19 19" width="19" height="19">
-              <use xlinkHref="#play-s"></use>
-            </svg>
-            <span>Play</span>
-          </button>
           <div className="player__name">Transpotting</div>
 
           <button type="button" className="player__full-screen">

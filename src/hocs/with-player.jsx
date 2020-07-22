@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import MovieCard from "../components/movie-card/movie-card.jsx";
 
 const withPlayer = (Component) => {
   class WithPlayer extends React.PureComponent {
@@ -45,12 +46,13 @@ const withPlayer = (Component) => {
     }
 
     componentDidMount() {
-      const {preview, poster} = this.props;
+      const {preview, poster, isMuted} = this.props;
       const video = this._videoRef.current;
 
       video.poster = `${poster}MOVIE POSTER`;
       video.src = preview;
-      video.muted = true;
+      video.muted = isMuted;
+
 
       video.oncanplaythrough = this.handleLoad;
 
@@ -84,16 +86,6 @@ const withPlayer = (Component) => {
       }
     }
 
-    // renderPlayer(preview, cover) {
-    //   return (
-    //     <VideoPlayer
-    //       isPlaying={true}
-    //       preview={preview}
-    //       poster={cover}
-    //     />
-    //   );
-    // }
-
     render() {
       return <Component
         {...this.props}
@@ -108,6 +100,7 @@ const withPlayer = (Component) => {
 
   WithPlayer.propTypes = {
     isPlaying: PropTypes.bool.isRequired,
+    isMuted: PropTypes.bool.isRequired,
     preview: PropTypes.string.isRequired,
     poster: PropTypes.string.isRequired,
   };

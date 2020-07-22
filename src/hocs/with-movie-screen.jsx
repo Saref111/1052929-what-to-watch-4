@@ -9,7 +9,7 @@ const withMovieScreen = (Component) => {
       this.state = {
         progress: 0,
         isLoading: true,
-        isPlaying: false,
+        isPlaying: true,
         isFullscreen: false,
         isShowingScreen: false,
       };

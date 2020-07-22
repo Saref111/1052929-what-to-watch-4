@@ -6,16 +6,15 @@ import withPageId from "../../hocs/with-page-id.jsx";
 import {GENRES} from "../../const.js";
 import {uppercaseFirstLetter} from "../../helpers/helpers.js";
 import withMovieScreen from "../../hocs/with-movie-screen.jsx";
-import MovieScreen from "../movie-screen/movie-screen.jsx";
 
 
 const DetailedMovieInfo = (props) => {
   const {movie, page, handleClick, isShowingScreen, showMovieScreenHandler, renderMovieScreen} = props;
-  const {title, details, src} = movie;
+  const {title, details, preview} = movie;
   const {bgPoster, cover, genre, year, time} = details;
 
   return (isShowingScreen ?
-    renderMovieScreen(time, cover, src) :
+    renderMovieScreen(time, cover, preview) :
     <React.Fragment>
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
@@ -116,7 +115,7 @@ DetailedMovieInfo.propTypes = {
   handleClick: PropTypes.func.isRequired,
   movie: PropTypes.shape({
     title: PropTypes.string.isRequired,
-    src: PropTypes.string.isRequired,
+    preview: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
     details: PropTypes.shape({
       bgPoster: PropTypes.string.isRequired,
