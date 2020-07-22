@@ -15,12 +15,19 @@ const withMovieScreen = (Component) => {
       };
 
       this.renderScreen = this.renderScreen.bind(this);
-      this.showMovieScreen = this.showMovieScreen.bind(this);
+      this.toggleMovieScreen = this.toggleMovieScreen.bind(this);
+      this.handlePlayPause = this.handlePlayPause.bind(this);
     }
 
-    showMovieScreen() {
+    handlePlayPause() {
       this.setState((prevState) => {
-        return {isShowingScreen: !prevState.isShowingScreen}
+        return {isPlaying: !prevState.isPlaying};
+      });
+    }
+
+    toggleMovieScreen() {
+      this.setState((prevState) => {
+        return {isShowingScreen: !prevState.isShowingScreen};
       });
     }
 
@@ -28,6 +35,8 @@ const withMovieScreen = (Component) => {
       return (
         <MovieScreen
           {...this.props}
+          handlePlayPause={this.handlePlayPause}
+          toggleMovieScreenHandler={this.toggleMovieScreen}
           currentPosition={this.state.progress}
           isPlaying={this.state.isPlaying}
           isFullscreen={this.state.isFullscreen}
@@ -44,7 +53,7 @@ const withMovieScreen = (Component) => {
           {...this.props}
           renderMovieScreen={this.renderScreen}
           isShowingScreen={this.state.isShowingScreen}
-          showMovieScreenHandler={this.showMovieScreen}
+          toggleMovieScreenHandler={this.toggleMovieScreen}
         />
       );
     }

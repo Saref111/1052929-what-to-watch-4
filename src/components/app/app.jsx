@@ -13,14 +13,12 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {name, genre, year, films, movieID, filterGenre, onHeaderClickHandler, onFilterChangeHandler, allFilms} = this.props;
+    const {promo, films, movieID, filterGenre, onHeaderClickHandler, onFilterChangeHandler, allFilms} = this.props;
 
     if (movieID === -1 || movieID >= films.length) {
       return (
         <Main
-          name={name}
-          genre={genre}
-          year={year}
+          promo={promo}
 
           onHeaderClickHandler={onHeaderClickHandler}
           onFilterChangeHandler={onFilterChangeHandler}
@@ -62,9 +60,7 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  name: PropTypes.string.isRequired,
-  genre: PropTypes.string.isRequired,
-  year: PropTypes.number.isRequired,
+  promo: PropTypes.object.isRequired,
   films: PropTypes.array.isRequired,
   allFilms: PropTypes.array.isRequired,
   onHeaderClickHandler: PropTypes.func.isRequired,

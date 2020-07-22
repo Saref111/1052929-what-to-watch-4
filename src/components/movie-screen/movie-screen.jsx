@@ -4,7 +4,7 @@ import VideoPlayer from "../video-player/video-player.jsx";
 import {stringifyCurrentTime} from "../../helpers/helpers.js";
 
 const MovieScreen = (props) => {
-  const {currentPosition, movieLength, isPlaying, isFullscreen, movieSrc, poster} = props;
+  const {currentPosition, movieLength, isPlaying, movieSrc, poster, toggleMovieScreenHandler, handlePlayPause} = props;
   const style = {
     left: currentPosition + `%`,
   };
@@ -15,8 +15,9 @@ const MovieScreen = (props) => {
         isPlaying={isPlaying}
         poster={poster}
         preview={movieSrc}
+        isMuted={false}
       />
-      <button type="button" className="player__exit">Exit</button>
+      <button type="button" onClick={toggleMovieScreenHandler} className="player__exit">Exit</button>
 
       <div className="player__controls">
         <div className="player__controls-row">
@@ -28,12 +29,12 @@ const MovieScreen = (props) => {
         </div>
 
         <div className="player__controls-row">
-          {!isPlaying ? <button type="button" className="player__play">
+          {!isPlaying ? <button type="button" onClick={handlePlayPause} className="player__play">
             <svg viewBox="0 0 19 19" width="19" height="19" fill="#FFFFFF">
               <use xlinkHref="#play-s"></use>
             </svg>
             <span>Play</span>
-          </button> : <button type="button" className="player__play">
+          </button> : <button onClick={handlePlayPause} type="button" className="player__play">
             <svg viewBox="0 0 14 21" width="14" height="21">
               <use xlinkHref="#pause"></use>
             </svg>
@@ -54,6 +55,8 @@ const MovieScreen = (props) => {
 };
 
 MovieScreen.propTypes = {
+  handlePlayPause: PropTypes.func.isRequired,
+  toggleMovieScreenHandler: PropTypes.func.isRequired,
   currentPosition: PropTypes.number.isRequired,
   isPlaying: PropTypes.bool.isRequired,
   isFullscreen: PropTypes.bool.isRequired,

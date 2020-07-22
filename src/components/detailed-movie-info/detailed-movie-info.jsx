@@ -9,7 +9,7 @@ import withMovieScreen from "../../hocs/with-movie-screen.jsx";
 
 
 const DetailedMovieInfo = (props) => {
-  const {movie, page, handleClick, isShowingScreen, showMovieScreenHandler, renderMovieScreen} = props;
+  const {movie, page, handleClick, isShowingScreen, toggleMovieScreenHandler, renderMovieScreen} = props;
   const {title, details, preview} = movie;
   const {bgPoster, cover, genre, year, time} = details;
 
@@ -49,7 +49,7 @@ const DetailedMovieInfo = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button onClick={showMovieScreenHandler} className="btn btn--play movie-card__button" type="button">
+                <button onClick={toggleMovieScreenHandler} className="btn btn--play movie-card__button" type="button">
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
@@ -108,7 +108,7 @@ const DetailedMovieInfo = (props) => {
 
 DetailedMovieInfo.propTypes = {
   renderMovieScreen: PropTypes.func.isRequired,
-  showMovieScreenHandler: PropTypes.func.isRequired,
+  toggleMovieScreenHandler: PropTypes.func.isRequired,
   isShowingScreen: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
   page: PropTypes.number.isRequired,
