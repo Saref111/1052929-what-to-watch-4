@@ -14,8 +14,9 @@ class App extends PureComponent {
 
   _renderApp() {
     const {promo, films, movieID, filterGenre, onHeaderClickHandler, onFilterChangeHandler, allFilms} = this.props;
+    const film = this.props.films.find((it) => it.id === movieID);
 
-    if (movieID === -1 || movieID >= films.length) {
+    if (movieID === -1 || film === undefined) {
       return (
         <Main
           promo={promo}
@@ -29,8 +30,8 @@ class App extends PureComponent {
       );
     } else {
       return (
-        <DetailedMovieInfo movie={this.props.films[movieID]}>
-          <SameGenreMovies genre={this.props.films[movieID].details.genre} films={films} onHeaderClickHandler={onHeaderClickHandler}/>
+        <DetailedMovieInfo movie={film}>
+          <SameGenreMovies genre={film.details.genre} films={films} onHeaderClickHandler={onHeaderClickHandler}/>
         </DetailedMovieInfo>
       );
     }
