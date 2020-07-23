@@ -35,8 +35,12 @@ describe(`Testing MovieCard component`, () => {
           }}
           onCardHoverHandler={onCardHoverHandler}
           onHeaderClickHandler={onHeaderClickHandler}
-        />
-    );
+        />, {
+          createNodeMock: () => {
+            return {};
+          }
+        }
+    ).toJSON();
 
     expect(tree).toMatchSnapshot();
   });

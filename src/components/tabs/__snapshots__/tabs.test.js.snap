@@ -55,7 +55,7 @@ exports[`e2e tabs test 1`] = `
       <span
         className="movie-card__details-value"
       >
-        1h 1m
+        99
       </span>
     </p>
     <p

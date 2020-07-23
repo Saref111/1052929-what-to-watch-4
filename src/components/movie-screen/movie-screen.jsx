@@ -15,6 +15,7 @@ const MovieScreen = (props) => {
     handlePlayPause,
     isFullscreen,
     toggleFullScreen,
+    getProgress,
   } = props;
   const style = {
     left: currentPosition + `%`,
@@ -29,6 +30,7 @@ const MovieScreen = (props) => {
           poster={poster}
           preview={movieSrc}
           isMuted={false}
+          getProgress={getProgress}
         />
         <button type="button" onClick={toggleMovieScreenHandler} className="player__exit">Exit</button>
 
@@ -80,6 +82,7 @@ const MovieScreen = (props) => {
 };
 
 MovieScreen.propTypes = {
+  getProgress: PropTypes.func,
   toggleFullScreen: PropTypes.func.isRequired,
   handlePlayPause: PropTypes.func.isRequired,
   toggleMovieScreenHandler: PropTypes.func.isRequired,

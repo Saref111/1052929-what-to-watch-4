@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import MovieCard from "../components/movie-card/movie-card.jsx";
 
 const withPlayer = (Component) => {
   class WithPlayer extends React.PureComponent {
@@ -46,7 +45,7 @@ const withPlayer = (Component) => {
     }
 
     componentDidMount() {
-      const {preview, poster, isMuted} = this.props;
+      const {preview, poster, isMuted, getProgress} = this.props;
       const video = this._videoRef.current;
 
       video.poster = `${poster}MOVIE POSTER`;
@@ -62,6 +61,9 @@ const withPlayer = (Component) => {
 
       video.ontimeupdate = () => {
         this.handleTimeUpdate(Math.floor(video.currentTime));
+        if (getProgress) {
+          getProgress(Math.floor(video.currentTime));
+        }
       };
     }
 
@@ -103,6 +105,7 @@ const withPlayer = (Component) => {
     isMuted: PropTypes.bool.isRequired,
     preview: PropTypes.string.isRequired,
     poster: PropTypes.string.isRequired,
+    getProgress: PropTypes.func,
   };
 
   return WithPlayer;

@@ -6,7 +6,7 @@ const cover = `cover`;
 
 test(`Videoplayer snaptest`, () => {
   const tree = renderer.create(<VideoPlayer
-    muted={true}
+    isMuted={true}
     isPlaying={false}
     poster={cover}
     preview={`1234`}

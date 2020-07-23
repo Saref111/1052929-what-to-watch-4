@@ -18,6 +18,13 @@ const withMovieScreen = (Component) => {
       this.toggleMovieScreen = this.toggleMovieScreen.bind(this);
       this.handlePlayPause = this.handlePlayPause.bind(this);
       this.toggleFullScreen = this.toggleFullScreen.bind(this);
+      this.getProgress = this.getProgress.bind(this);
+    }
+
+    getProgress(progress) {
+      this.setState(() => {
+        return {progress};
+      });
     }
 
     toggleFullScreen() {
@@ -42,6 +49,7 @@ const withMovieScreen = (Component) => {
       return (
         <MovieScreen
           {...this.props}
+          getProgress={this.getProgress}
           handlePlayPause={this.handlePlayPause}
           toggleMovieScreenHandler={this.toggleMovieScreen}
           toggleFullScreen={this.toggleFullScreen}

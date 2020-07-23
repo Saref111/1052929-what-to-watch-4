@@ -54,8 +54,8 @@ const getActorsString = (array) => {
 
 const extend = (a, b) => Object.assign({}, a, b);
 
-const stringifyCurrentTime = (current, length) => {
-  return `1 : 50 : 3`;
+const stringifyCurrentTime = (current) => {
+  return `${Math.floor(current / 60)} : ${current % 60 < 10 ? `0${current % 60}` : current % 60}`;
 };
 
 export {getActorsString, rateToString, uppercaseFirstLetter, formatDate, stringifyDate, extend, stringifyCurrentTime};
