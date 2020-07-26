@@ -1,17 +1,13 @@
-import {extend} from "./helpers/helpers.js";
-import FILMS from "./mock/films.js";
+import extend from "../../helpers/helpers.js";
 
 const initialState = {
-  allFilms: FILMS,
   filterGenre: `all genres`,
-  films: FILMS,
-  movieID: -1,
+  films: [],
 };
 
 const Actions = {
   CHANGE_FILTER: `CHANGE_FILTER`,
   GET_FILMS_BY_GENRE: `GET_FILMS_BY_GENRE`,
-  SET_MOVIE_ID: `SET_MOVIE_ID`,
 };
 
 const filterMovies = (genre, films) => {
@@ -32,11 +28,6 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         films: action.payload
       });
-
-    case Actions.SET_MOVIE_ID:
-      return extend(state, {
-        movieID: action.payload
-      });
   }
 
   return state;
@@ -54,13 +45,6 @@ const ActionCreator = {
     return {
       type: Actions.GET_FILMS_BY_GENRE,
       payload: filterMovies(filter, films),
-    };
-  },
-
-  setMovieId: (id) => {
-    return {
-      type: Actions.SET_MOVIE_ID,
-      payload: id,
     };
   },
 };
