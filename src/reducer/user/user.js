@@ -1,4 +1,5 @@
 import {extend} from "../../helpers/helpers.js";
+import {Authorization} from "../../const.js";
 
 const initialState = {
   authorizationStatus: Authorization.NO_AUTH,
