@@ -1,10 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {createStore} from "redux";
+import {createStore, applyMiddleware} from "redux";
 import {reducer} from "./reducer.js";
 import {Provider} from "react-redux";
 import App from "./components/app/app.jsx";
+import thunk from "redux-thunk";
+import createApi from "./api.js";
 import FILMS from "./mock/films.js";
+import app from "./components/app/app.jsx";
 
 const MOCK_DATA = {
   id: 20,
@@ -23,7 +26,8 @@ const MOCK_DATA = {
   },
 };
 
-const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const api = createApi(() => {});
+const store = createStore(reducer, applyMiddleware(thunk.withExtraArgument(api)));
 
 ReactDOM.render(
     <Provider store={store}>
