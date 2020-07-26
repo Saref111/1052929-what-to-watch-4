@@ -54,4 +54,8 @@ const getActorsString = (array) => {
 
 const extend = (a, b) => Object.assign({}, a, b);
 
-export {getActorsString, rateToString, uppercaseFirstLetter, formatDate, stringifyDate, extend};
+const stringifyCurrentTime = (current) => {
+  return `${Math.floor(current / 60)} : ${current % 60 < 10 ? `0${current % 60}` : current % 60}`;
+};
+
+export {getActorsString, rateToString, uppercaseFirstLetter, formatDate, stringifyDate, extend, stringifyCurrentTime};

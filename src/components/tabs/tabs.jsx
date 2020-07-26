@@ -57,7 +57,7 @@ Tabs.propTypes = {
     director: PropTypes.string.isRequired,
     genre: PropTypes.oneOf(GENRES).isRequired,
     year: PropTypes.number.isRequired,
-    time: PropTypes.string.isRequired,
+    time: PropTypes.number.isRequired,
     rate: PropTypes.number.isRequired,
     votes: PropTypes.number.isRequired,
     actors: PropTypes.arrayOf(PropTypes.string).isRequired,

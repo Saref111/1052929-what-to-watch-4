@@ -15,8 +15,8 @@ const Actions = {
 };
 
 const filterMovies = (genre, films) => {
-  if (genre === initialState.filterGenre) {
-    return films;
+  if (genre === `all genres`) {
+    return initialState.allFilms;
   }
   return [...films.filter((film) => film.details.genre === genre)];
 };

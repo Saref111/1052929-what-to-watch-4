@@ -47,7 +47,7 @@ const TabDetails = (props) => {
 TabDetails.propTypes = {
   director: PropTypes.string.isRequired,
   actors: PropTypes.arrayOf(PropTypes.string).isRequired,
-  time: PropTypes.string.isRequired,
+  time: PropTypes.number.isRequired,
   genre: PropTypes.string.isRequired,
   year: PropTypes.number.isRequired,
 };

@@ -2,39 +2,21 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import MovieCard from "../movie-card/movie-card.jsx";
 import ShowMoreButton from "../show-more-button/show-more-button.jsx";
-import {FILMS_COUNT} from "../../const.js";
+import withFilms from "../../hocs/with-films.jsx";
 
 class FilmsList extends PureComponent {
   constructor(props) {
     super(props);
-
-    this.state = {
-      movie: null,
-      filmsCount: FILMS_COUNT,
-    };
-
-    this.onCardHoverHandler = this.onCardHoverHandler.bind(this);
-    this.onShowMoreButtonClickHandler = this.onShowMoreButtonClickHandler.bind(this);
-  }
-
-  onCardHoverHandler(reply) {
-    this.setState(() => {
-      return {movie: reply};
-    });
-  }
-
-  onShowMoreButtonClickHandler() {
-    this.setState((prevState) => {
-      return {filmsCount: prevState.filmsCount + FILMS_COUNT};
-    });
   }
 
   _getFilmsByCurrentCount(films) {
-    return films.slice(0, this.state.filmsCount);
+    const {filmsCount} = this.props;
+
+    return films.slice(0, filmsCount);
   }
 
   render() {
-    const {films, onHeaderClickHandler} = this.props;
+    const {films, onHeaderClickHandler, onCardHoverHandler, onShowMoreButtonClickHandler, filmsCount} = this.props;
     const filmsToRender = this._getFilmsByCurrentCount(films);
 
     return (
@@ -45,12 +27,12 @@ class FilmsList extends PureComponent {
               key={`${movie.src}-${i}`}
               movie={movie}
               onHeaderClickHandler={onHeaderClickHandler}
-              onCardHoverHandler={this.onCardHoverHandler} />
+              onCardHoverHandler={onCardHoverHandler} />
           ))}
         </div>
         <ShowMoreButton
-          onShowMoreButtonClickHandler={this.onShowMoreButtonClickHandler}
-          isShown={this.state.filmsCount <= films.length}
+          onShowMoreButtonClickHandler={onShowMoreButtonClickHandler}
+          isShown={filmsCount <= films.length}
         />
       </React.Fragment>
 
@@ -59,6 +41,9 @@ class FilmsList extends PureComponent {
 }
 
 FilmsList.propTypes = {
+  onShowMoreButtonClickHandler: PropTypes.func.isRequired,
+  onCardHoverHandler: PropTypes.func.isRequired,
+  filmsCount: PropTypes.number.isRequired,
   onHeaderClickHandler: PropTypes.func.isRequired,
   films: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
@@ -66,4 +51,5 @@ FilmsList.propTypes = {
   })).isRequired,
 };
 
-export default FilmsList;
+export {FilmsList};
+export default withFilms(FilmsList);

@@ -7,7 +7,7 @@ const details = {
   cover: `POSTER_HREF`,
   genre: `comedy`,
   year: 2001,
-  time: `1h 1m`,
+  time: 99,
   rate: 8.8,
   votes: 666,
   director: `Kevin Smith`,

@@ -83,6 +83,23 @@ const FILMS = [
   },
 ];
 
+const promo = {
+  id: 20,
+  title: `Appleman`,
+  src: `http://dummyimage.com/280x175/D76E00&text=`,
+  preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+  details: {
+    bgPoster: `http://dummyimage.com/1300/D76E00&text=`,
+    cover: `http://dummyimage.com/218x327&text=`,
+    genre: `crime`,
+    year: 2001,
+    rate: 8.8,
+    votes: 666,
+    time: 99,
+    director: `Kevin Smith`,
+  },
+};
+
 describe(`Test Main`, () => {
   it(`Main snapshot`, () => {
     const tree = renderer.create(
@@ -90,9 +107,7 @@ describe(`Test Main`, () => {
           genresList={[`1`, `2`, `3`, `4`]}
           filterGenre={`1`}
           onFilterChangeHandler={() => {}}
-          name={`The Benders`}
-          genre={`Robcore`}
-          year={3020}
+          promo={promo}
           onHeaderClickHandler={() => {}}
           films={FILMS}
           allFilms={FILMS}

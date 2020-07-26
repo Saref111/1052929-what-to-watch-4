@@ -1,104 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
+import withPlayer from "../../hocs/with-player.jsx";
 
-class VideoPlayer extends React.PureComponent {
-  constructor(props) {
-    super(props);
-
-    this._videoRef = React.createRef();
-
-    this.state = {
-      progress: 0,
-      isLoading: true,
-      isPlaying: props.isPlaying,
-    };
-
-    this._handleLoad = this._handleLoad.bind(this);
-    this._handlePlay = this._handlePlay.bind(this);
-    this._handlePause = this._handlePause.bind(this);
-    this._handleTimeUpdate = this._handleTimeUpdate.bind(this);
-  }
-
-  _handlePlay() {
-    this.setState(() => {
-      return {isPlaying: true};
-    });
-  }
-
-  _handlePause() {
-    this.setState(() => {
-      return {isPlaying: false};
-    });
-  }
-
-  _handleLoad() {
-    this.setState(() => {
-      return {isLoading: false};
-    });
-  }
-
-  _handleTimeUpdate(time) {
-    this.setState(() => {
-      return {progress: time};
-    });
-  }
-
-  componentDidMount() {
-    const {preview, poster} = this.props;
-    const video = this._videoRef.current;
-
-    video.poster = `${poster}MOVIE POSTER`;
-    video.src = preview;
-
-    video.oncanplaythrough = this._handleLoad;
-
-    video.onplay = this._handlePlay;
-
-    video.onpause = this._handlePause;
-
-    video.ontimeupdate = () => {
-      this._handleTimeUpdate(video.currentTime);
-    };
-  }
-
-  componentWillUnmount() {
-    const video = this._videoRef.current;
-
-    video.oncanplaythrough = null;
-    video.onpause = null;
-    video.onplay = null;
-    video.ontimeupdate = null;
-    video.poster = ``;
-    video.src = ``;
-  }
-
-  componentDidUpdate() {
-    const video = this._videoRef.current;
-
-    if (this.props.isPlaying) {
-      video.play().catch((err) => err);
-    } else {
-      video.pause();
-    }
-  }
-
-  render() {
-    const {muted} = this.props;
-    return (
-      <video
-        className="player__video"
-        ref={this._videoRef}
-        muted={muted}
-      ></video>
-    );
-  }
-}
-
-VideoPlayer.propTypes = {
-  muted: PropTypes.bool.isRequired,
-  isPlaying: PropTypes.bool.isRequired,
-  preview: PropTypes.string.isRequired,
-  poster: PropTypes.string.isRequired,
+const VideoPlayer = (props) => {
+  const {children} = props;
+  return (
+    <React.Fragment>
+      {children}
+    </React.Fragment>
+  );
 };
 
-export default VideoPlayer;
+VideoPlayer.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired,
+};
+
+export default withPlayer(VideoPlayer);

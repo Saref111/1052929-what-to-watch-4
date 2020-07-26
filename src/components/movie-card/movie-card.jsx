@@ -1,6 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import withVideoPlayer from "../../hocs/with-video-player.jsx";
+import VideoPlayer from "../video-player/video-player.jsx";
+import withHovered from "../../hocs/with-hovered.jsx";
 
 class MovieCard extends PureComponent {
   constructor(props) {
@@ -16,7 +17,7 @@ class MovieCard extends PureComponent {
   }
 
   render() {
-    const {movie, renderPlayer, isVideo, handleMouseOut, onCardHoverHandler} = this.props;
+    const {movie, isVideo, handleMouseOut, onCardHoverHandler} = this.props;
     const {preview, title, src, details} = movie;
     const {cover} = details;
 
@@ -27,7 +28,12 @@ class MovieCard extends PureComponent {
         className="small-movie-card catalog__movies-card">
         <div className="small-movie-card__image">
           {isVideo ?
-            renderPlayer(preview, cover, movie.id) :
+            <VideoPlayer
+              isPlaying={true}
+              poster={cover}
+              preview={preview}
+              isMuted={true}
+            /> :
             <img src={`${src}${title}`} alt={`${title}`} width="280" height="175" />
           }
         </div>
@@ -54,11 +60,10 @@ MovieCard.propTypes = {
   }).isRequired,
   onCardHoverHandler: PropTypes.func.isRequired,
   onHeaderClickHandler: PropTypes.func.isRequired,
-  renderPlayer: PropTypes.func.isRequired,
   handleMouseOut: PropTypes.func.isRequired,
   isVideo: PropTypes.bool.isRequired,
 };
 
 
 export {MovieCard};
-export default withVideoPlayer(MovieCard);
+export default withHovered(MovieCard);

@@ -1,5 +1,5 @@
 import React from "react";
-import renderer from "react-test-renderer";
+import {mount} from "enzyme";
 import DetailedMovieInfo from "./detailed-movie-info.jsx";
 import SameGenreMovies from "../same-genre-movies/same-genre-movies.jsx";
 
@@ -33,18 +33,28 @@ const movie = {
   details,
 };
 
-const films = [movie, movie, movie, movie];
+const films = [movie, movie, movie];
 
-describe(`Test DetailedMovieInfo`, () => {
-  it(`DetailedMovieInfo snapshot`, () => {
-    const tree = renderer.create(
+describe(`DetailedMovieInfo e2e tests`, () => {
+  test(`should call toggleMovieScreenHandler`, () => {
+    const toggleMovieScreenHandler = jest.fn();
+
+    const DetailedMovieInfoElement = mount(
         <DetailedMovieInfo
           movie={movie}
+          renderMovieScreen={() => {}}
+          toggleMovieScreenHandler={toggleMovieScreenHandler}
+          isShowingScreen={true}
+          page={0}
+          handleClick={() => {}}
         >
           <SameGenreMovies films={films} genre={`comedy`} onHeaderClickHandler={() => {}} onCardHoverHandler={() => {}} />
         </DetailedMovieInfo>
     );
 
-    expect(tree).toMatchSnapshot();
+
+    expect(DetailedMovieInfoElement.find(`.movie-card__button.btn--play`).exists()).toBe(true);
+    DetailedMovieInfoElement.find(`.movie-card__button.btn--play`).simulate(`click`, {});
+    // expect(toggleMovieScreenHandler).toHaveBeenCalledTimes(1);
   });
 });

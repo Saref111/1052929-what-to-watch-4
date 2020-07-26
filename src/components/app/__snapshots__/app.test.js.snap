@@ -9,8 +9,8 @@ Array [
       className="movie-card__bg"
     >
       <img
-        alt="The Grand Budapest Hotel"
-        src="img/bg-the-grand-budapest-hotel.jpg"
+        alt="Appleman"
+        src="http://dummyimage.com/1300/D76E00&text="
       />
     </div>
     <h1
@@ -81,7 +81,7 @@ Array [
           <h2
             className="movie-card__title"
           >
-            The Benders
+            Appleman
           </h2>
           <p
             className="movie-card__meta"
@@ -89,12 +89,12 @@ Array [
             <span
               className="movie-card__genre"
             >
-              Robcore
+              Crime
             </span>
             <span
               className="movie-card__year"
             >
-              3020
+              2001
             </span>
           </p>
           <div
@@ -102,6 +102,7 @@ Array [
           >
             <button
               className="btn btn--play movie-card__button"
+              onClick={[Function]}
               type="button"
             >
               <svg
