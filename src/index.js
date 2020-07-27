@@ -1,9 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {createStore} from "redux";
-import {reducer} from "./reducer.js";
+import {createStore, applyMiddleware, compose} from "redux";
+import {reducer, ActionCreator} from "./reducer.js";
 import {Provider} from "react-redux";
 import App from "./components/app/app.jsx";
+import thunk from "redux-thunk";
+import createApi from "./api.js";
 import FILMS from "./mock/films.js";
 
 const MOCK_DATA = {
@@ -23,7 +25,14 @@ const MOCK_DATA = {
   },
 };
 
-const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const onUnauthorized = () => {
+  store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.UN_AUTH));
+};
+const api = createApi(onUnauthorized);
+const store = createStore(
+    reducer,
+    compose(applyMiddleware(thunk.withExtraArgument(api)))
+);
 
 ReactDOM.render(
     <Provider store={store}>

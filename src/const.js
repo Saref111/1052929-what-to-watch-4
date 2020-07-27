@@ -25,4 +25,8 @@ const TABS = {
 
 const FILMS_COUNT = 8;
 
-export {GENRES, RATINGS, CARD_MENU, MONTHS, TABS, FILMS_COUNT};
+const Authorization = {
+  NO_AUTH: 401,
+}
+
+export {GENRES, RATINGS, CARD_MENU, MONTHS, TABS, FILMS_COUNT, Authorization};
