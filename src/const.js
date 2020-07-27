@@ -26,7 +26,8 @@ const TABS = {
 const FILMS_COUNT = 8;
 
 const Authorization = {
-  NO_AUTH: 401,
+  NO_AUTH: `NO_AUTH`,
+  AUTH: `AUTH`,
 }
 
 export {GENRES, RATINGS, CARD_MENU, MONTHS, TABS, FILMS_COUNT, Authorization};

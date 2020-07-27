@@ -12,6 +12,7 @@ const Actions = {
   LOAD_FILMS: `LOAD_FILMS`,
 };
 
+
 const actionCreator = {
   loadFilms: (films) => {
     return {
@@ -33,6 +34,14 @@ const actionCreator = {
       payload: filterMovies(filter, films),
     };
   },
+};
+
+const Operation = {
+  loadFilms: () => (dispatch, api) => {
+    return api.get(`/films`).then((response) => {
+      dispatch(actionCreator.loadFilms(response));
+    }).catch((err) => console.log(err));
+  }
 };
 
 const filterMovies = (genre, films) => {
@@ -63,4 +72,4 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
-export {reducer, Actions, actionCreator};
+export {reducer, Actions, actionCreator, Operation};
