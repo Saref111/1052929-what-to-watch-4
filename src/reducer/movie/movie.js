@@ -19,7 +19,7 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
-const ActionCreator = {
+const actionCreator = {
   setMovieId: (id) => {
     return {
       type: Actions.SET_MOVIE_ID,
@@ -28,4 +28,4 @@ const ActionCreator = {
   },
 };
 
-export {reducer, Actions, ActionCreator};
+export {reducer, Actions, actionCreator};

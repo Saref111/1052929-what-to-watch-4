@@ -4,7 +4,12 @@ import {Route, Switch, BrowserRouter} from "react-router-dom";
 import Main from "../main/main.jsx";
 import DetailedMovieInfo from "../detailed-movie-info/detailed-movie-info.jsx";
 import SameGenreMovies from "../same-genre-movies/same-genre-movies.jsx";
-import {ActionCreator} from "../../reducer.js";
+import {actionCreator as dataActionCreator} from "../../reducer/data/data.js";
+import {actionCreator as movieActionCreator} from "../../reducer/movie/movie.js";
+import {getMovieId} from "../../reducer/movie/selectors.js";
+import {getAllFilms, getCurrentFilter, getFilteredFilms} from "../../reducer/data/selectors.js";
+import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
+import {Operation as UserOperation} from "../../reducer/user/user.js";
 import {connect} from "react-redux";
 
 class App extends PureComponent {
@@ -13,8 +18,18 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {promo, films, movieID, filterGenre, onHeaderClickHandler, onFilterChangeHandler, allFilms} = this.props;
-    const film = this.props.films.find((it) => it.id === movieID);
+    const {
+      promo,
+      films,
+      movieID,
+      filterGenre,
+      onHeaderClickHandler,
+      onFilterChangeHandler,
+      allFilms,
+      login,
+      authorizationStatus,
+    } = this.props;
+    const film = films.find((it) => it.id === movieID);
 
     if (movieID === -1 || film === undefined) {
       return (
@@ -42,7 +57,6 @@ class App extends PureComponent {
   render() {
     const {films, onHeaderClickHandler} = this.props;
 
-
     return (
       <BrowserRouter>
         <Switch>
@@ -61,6 +75,8 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
+  authorizationStatus: PropTypes.string.isRequired,
+  login: PropTypes.func.isRequired,
   promo: PropTypes.object.isRequired,
   films: PropTypes.array.isRequired,
   allFilms: PropTypes.array.isRequired,
@@ -72,21 +88,26 @@ App.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    allFilms: state.allFilms,
-    filterGenre: state.filterGenre,
-    films: state.films,
-    movieID: state.movieID,
+    allFilms: getAllFilms(state),
+    filterGenre: getCurrentFilter(state),
+    films: getFilteredFilms(state),
+    movieID: getMovieId(state),
+    authorizationStatus: getAuthorizationStatus(state),
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
   onHeaderClickHandler(id) {
-    dispatch(ActionCreator.setMovieId(id));
+    dispatch(movieActionCreator.setMovieId(id));
   },
 
   onFilterChangeHandler(filter, films) {
-    dispatch(ActionCreator.changeFilter(filter));
-    dispatch(ActionCreator.getFilmsByType(films, filter));
+    dispatch(dataActionCreator.changeFilter(filter));
+    dispatch(dataActionCreator.getFilmsByType(films, filter));
+  },
+
+  login(authData) {
+    dispatch(UserOperation.login(authData));
   },
 });
 

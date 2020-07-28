@@ -33,7 +33,7 @@ const Operation = {
       email: authData.email,
       password: authData.password,
     }).then(() => {
-      dispatch(actionCreator.requiredAuthorization(Actions.AUTH));
+      dispatch(actionCreator.requiredAuthorization(Authorization.AUTH));
     }).catch((err) => {
       throw err;
     });
@@ -41,6 +41,7 @@ const Operation = {
 };
 
 const reducer = (state = initialState, action) => {
+  // console.log(action.type);
   switch (action.type) {
     case Actions.REQUIRED_AUTHORIZATION:
       return extend(state, {

@@ -1,4 +1,4 @@
-import extend from "../../helpers/helpers.js";
+import {extend} from "../../helpers/helpers.js";
 
 const initialState = {
   allFilms: [],
@@ -37,9 +37,9 @@ const actionCreator = {
 };
 
 const Operation = {
-  loadFilms: () => (dispatch, api) => {
+  loadFilms: () => (dispatch, getState, api) => {
     return api.get(`/films`).then((response) => {
-      dispatch(actionCreator.loadFilms(response));
+      dispatch(actionCreator.loadFilms(response.data));
     }).catch((err) => console.log(err));
   }
 };
@@ -54,6 +54,7 @@ const filterMovies = (genre, films) => {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case Actions.LOAD_FILMS:
+      console.log(111);
       return extend(state, {
         allFilms: action.payload,
       });
