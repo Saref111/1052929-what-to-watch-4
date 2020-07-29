@@ -1,15 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 import MovieCard from "../movie-card/movie-card.jsx";
-import {GENRES} from "../../const.js";
 
 const SameGenreMovies = (props) => {
-  const {films, genre, onHeaderClickHandler} = props;
-  let filteredMovies = films.filter((it) => it.details.genre === genre);
+  const {films, genre, onHeaderClickHandler, currentID} = props;
+  let filteredMovies = films.filter((it) => it.details.genre === genre && it.id !== currentID);
 
 
   if (filteredMovies.length > 4) {
     filteredMovies = filteredMovies.slice(0, 4);
+  } else if (filteredMovies.length <= 0) {
+    return ``;
   }
 
   return (
@@ -34,7 +35,8 @@ const SameGenreMovies = (props) => {
 };
 
 SameGenreMovies.propTypes = {
-  genre: PropTypes.oneOf(GENRES).isRequired,
+  genre: PropTypes.string.isRequired,
+  currentID: PropTypes.number.isRequired,
   films: PropTypes.arrayOf(PropTypes.object).isRequired,
   onHeaderClickHandler: PropTypes.func.isRequired,
 };

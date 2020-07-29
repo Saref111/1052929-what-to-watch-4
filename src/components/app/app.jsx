@@ -36,7 +36,7 @@ class App extends PureComponent {
       );
     } else {
       return (
-        <DetailedMovieInfo onHeaderClickHandler={onHeaderClickHandler}/>
+        <DetailedMovieInfo movieID={movieID} onHeaderClickHandler={onHeaderClickHandler}/>
       );
     }
 
