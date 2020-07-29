@@ -4,7 +4,10 @@ import FilmsList from "../films-list/films-list.jsx";
 import GenresList from "../genres-list/genres-list.jsx";
 import {GENRES} from "../../const.js";
 import withMovieScreen from "../../hocs/with-movie-screen.jsx";
+import {actionCreator as dataActionCreator} from "../../reducer/data/data.js";
+import {getAllFilms, getFilteredFilms} from "../../reducer/data/selectors.js";
 import {uppercaseFirstLetter} from "../../helpers/helpers.js";
+import {connect} from "react-redux";
 
 const Main = (props) => {
 
@@ -23,7 +26,7 @@ const Main = (props) => {
   const {details, preview, title} = promo;
   const {time, cover, year, genre, bgPoster} = details;
 
-  return (isShowingScreen ? renderMovieScreen(time, cover, preview) :
+  return (isShowingScreen ? renderMovieScreen(time, cover, preview) : // change preview to movie link
     <React.Fragment>
       <section className="movie-card">
         <div className="movie-card__bg">
@@ -135,4 +138,20 @@ Main.propTypes = {
   })).isRequired,
 };
 
-export default withMovieScreen(Main);
+const mapStateToProps = (state) => {
+  return {
+    allFilms: getAllFilms(state),
+    films: getFilteredFilms(state),
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onFilterChangeHandler(filter, films) {
+      dispatch(dataActionCreator.changeFilter(filter));
+      dispatch(dataActionCreator.getFilmsByType(films, filter));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withMovieScreen(Main));
