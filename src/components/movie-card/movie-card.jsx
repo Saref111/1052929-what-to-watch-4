@@ -19,8 +19,8 @@ class MovieCard extends PureComponent {
   render() {
     const {movie, isVideo, handleMouseOut, onCardHoverHandler} = this.props;
     const {preview, title, src, details} = movie;
-    const {cover, bgPoster} = details;
-    console.log(movie);
+    const {cover} = details;
+
     return (
       <article
         onMouseOut={handleMouseOut}

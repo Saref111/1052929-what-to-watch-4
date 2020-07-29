@@ -3,7 +3,7 @@ import {filmsAdapter} from "./adapters.js";
 
 const initialState = {
   allFilms: [],
-  filterGenre: `all genres`,
+  filterGenre: `All genres`,
   films: [],
 };
 
@@ -32,7 +32,7 @@ const actionCreator = {
   getFilmsByType: (films, filter) => {
     return {
       type: Actions.GET_FILMS_BY_GENRE,
-      payload: filterMovies(filter, films),
+      payload: filterMovies(films, filter),
     };
   },
 };
@@ -40,20 +40,22 @@ const actionCreator = {
 const Operation = {
   loadFilms: () => (dispatch, getState, api) => {
     return api.get(`/films`).then((response) => {
-      dispatch(actionCreator.loadFilms(filmsAdapter(response.data)));
+      const films = filmsAdapter(response.data);
+      dispatch(actionCreator.loadFilms(films));
+      dispatch(actionCreator.getFilmsByType(films, `All genres`));
     }).catch((err) => {
       throw err;
     });
   }
 };
 
-const filterMovies = (genre, films) => {
-  if (genre === `all genres`) {
-    return initialState.allFilms;
+const filterMovies = (films, genre) => {
+  if (genre === `All genres`) {
+    return films;
   }
 
   const rep = [...films.filter((film) => film.details.genre === genre)];
-  films.forEach(({details}) => console.log(details.genre));
+
   return rep;
 };
 

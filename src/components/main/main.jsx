@@ -22,7 +22,7 @@ const Main = (props) => {
     toggleMovieScreenHandler,
     renderMovieScreen
   } = props;
-  console.log(props);
+
   const {details, preview, title} = promo;
   const {time, cover, year, genre, bgPoster} = details;
 
@@ -93,7 +93,7 @@ const Main = (props) => {
             onFilterChangeHandler={onFilterChangeHandler}
             allFilms={allFilms}
           />
-          <FilmsList films={allFilms} onHeaderClickHandler={onHeaderClickHandler}/>
+          <FilmsList films={films} onHeaderClickHandler={onHeaderClickHandler}/>
         </section>
 
         <footer className="page-footer">

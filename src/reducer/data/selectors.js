@@ -12,5 +12,10 @@ export const getCurrentFilter = (state) => {
 export const getFilteredFilms = createSelector(
     getAllFilms,
     getCurrentFilter,
-    (films, genre) => films.filter((film) => film.details.genre === genre)
+    (films, genre) => {
+      if (genre === `All genres`) {
+        return films;
+      }
+      return films.filter((film) => film.details.genre === genre);
+    }
 );
