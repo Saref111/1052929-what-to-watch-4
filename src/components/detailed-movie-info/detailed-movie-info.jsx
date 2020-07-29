@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Tabs from "../tabs/tabs.jsx";
 import TabsNav from "../tabs-nav/tabs-nav.jsx";
+import SameGenreMovies from "../same-genre-movies/same-genre-movies.jsx";
 import withPageId from "../../hocs/with-page-id.jsx";
 import {GENRES} from "../../const.js";
 import {uppercaseFirstLetter} from "../../helpers/helpers.js";
@@ -86,7 +87,9 @@ const DetailedMovieInfo = (props) => {
         </div>
       </section>
       <div className="page-content">
-        {props.children}
+        <SameGenreMovies
+          onHeaderClickHandler={onHeaderClickHandler}
+        />
         <footer className="page-footer">
           <div className="logo">
             <a href="main.html" className="logo__link logo__link--light">
@@ -110,7 +113,7 @@ DetailedMovieInfo.propTypes = {
   renderMovieScreen: PropTypes.func.isRequired,
   toggleMovieScreenHandler: PropTypes.func.isRequired,
   isShowingScreen: PropTypes.bool.isRequired,
-  children: PropTypes.node.isRequired,
+  onHeaderClickHandler: PropTypes.func.isRequired,
   page: PropTypes.number.isRequired,
   handleClick: PropTypes.func.isRequired,
   movie: PropTypes.shape({

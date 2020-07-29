@@ -9,7 +9,6 @@ import {createApi} from "./api.js";
 import {Authorization} from "./const.js";
 import {Operation as DataOperation} from "./reducer/data/data.js";
 import {Operation as UserOperation, actionCreator} from "./reducer/user/user.js";
-import FILMS from "./mock/films.js";
 
 const MOCK_DATA = {
   id: 20,
@@ -28,11 +27,13 @@ const MOCK_DATA = {
   },
 };
 
-const onUnauthorized = () => {
+const onUnauthorized = (store) => {
   store.dispatch(actionCreator.requireAuthorization(Authorization.UN_AUTH));
 };
 
-const api = createApi(onUnauthorized);
+const api = createApi(() => {
+  onUnauthorized(store);
+});
 const store = createStore(
     reducer,
     compose(applyMiddleware(

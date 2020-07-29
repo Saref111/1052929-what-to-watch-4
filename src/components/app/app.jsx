@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import {Route, Switch, BrowserRouter} from "react-router-dom";
 import Main from "../main/main.jsx";
 import DetailedMovieInfo from "../detailed-movie-info/detailed-movie-info.jsx";
-import SameGenreMovies from "../same-genre-movies/same-genre-movies.jsx";
 import {actionCreator as movieActionCreator} from "../../reducer/movie/movie.js";
 import {getMovieId} from "../../reducer/movie/selectors.js";
 import {getCurrentFilter} from "../../reducer/data/selectors.js";
@@ -19,11 +18,9 @@ class App extends PureComponent {
   _renderApp() {
     const {
       promo,
-      films,
       movieID,
       filterGenre,
       onHeaderClickHandler,
-      onFilterChangeHandler,
       login,
       authorizationStatus,
     } = this.props;

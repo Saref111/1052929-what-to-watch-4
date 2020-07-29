@@ -48,7 +48,7 @@ const withPlayer = (Component) => {
       const {preview, poster, isMuted, getProgress} = this.props;
       const video = this._videoRef.current;
 
-      video.poster = `${poster}MOVIE POSTER`;
+      video.poster = `${poster}`;
       video.src = preview;
       video.muted = isMuted;
 

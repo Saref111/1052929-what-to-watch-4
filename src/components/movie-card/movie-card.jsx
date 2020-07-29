@@ -19,8 +19,8 @@ class MovieCard extends PureComponent {
   render() {
     const {movie, isVideo, handleMouseOut, onCardHoverHandler} = this.props;
     const {preview, title, src, details} = movie;
-    const {cover} = details;
-
+    const {cover, bgPoster} = details;
+    console.log(movie);
     return (
       <article
         onMouseOut={handleMouseOut}
@@ -34,7 +34,7 @@ class MovieCard extends PureComponent {
               preview={preview}
               isMuted={true}
             /> :
-            <img src={`${src}${title}`} alt={`${title}`} width="280" height="175" />
+            <img src={`${src}`} alt={`${title}`} width="280" height="175" />
           }
         </div>
         <h3 className="small-movie-card__title">

@@ -3,16 +3,16 @@ const CARD_MENU = [`Overview`, `Details`, `Reviews`];
 const MONTHS = [`January`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`];
 
 const GENRES = [
-  `all genres`,
-  `comedy`,
-  `crime`,
-  `documentary`,
-  `drama`,
-  `horror`,
-  `kids & family`,
-  `romance`,
-  `sci-fi`,
-  `thriller`,
+  `All genres`,
+  `Comedy`,
+  `Crime`,
+  `Documentary`,
+  `Drama`,
+  `Horror`,
+  `Kids & Family`,
+  `Romance`,
+  `Sci-fi`,
+  `Thriller`,
 ];
 
 const RATINGS = [`bad`, `normal`, `good`, `very good`, `awesome`];

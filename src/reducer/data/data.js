@@ -51,7 +51,10 @@ const filterMovies = (genre, films) => {
   if (genre === `all genres`) {
     return initialState.allFilms;
   }
-  return [...films.filter((film) => film.details.genre === genre)];
+
+  const rep = [...films.filter((film) => film.details.genre === genre)];
+  films.forEach(({details}) => console.log(details.genre));
+  return rep;
 };
 
 const reducer = (state = initialState, action) => {

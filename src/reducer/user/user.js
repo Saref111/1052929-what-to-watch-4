@@ -21,7 +21,6 @@ const actionCreator = {
 const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
     return api.get(`/login`).then((response) => {
-      console.log(response);
       dispatch(actionCreator.requiredAuthorization(Authorization.AUTH));
     }).catch((err) => {
       throw err;
@@ -41,7 +40,6 @@ const Operation = {
 };
 
 const reducer = (state = initialState, action) => {
-  // console.log(action.type);
   switch (action.type) {
     case Actions.REQUIRED_AUTHORIZATION:
       return extend(state, {
