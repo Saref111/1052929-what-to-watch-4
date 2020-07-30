@@ -30,7 +30,7 @@ Array [
     className="movie-card__text"
   >
     <p>
-      [object Object]
+      11111
     </p>
     <p
       className="movie-card__director"

@@ -1,18 +1,12 @@
-import {reducer, Actions} from "./reducer.js";
+import {reducer, Actions} from "./data.js";
 
 const HREF = `http://dummyimage.com/280x175/D76E00&text=`;
 const BG_HREF = `http://dummyimage.com/1300/D76E00&text=`;
 const POSTER_HREF = `http://dummyimage.com/218x327&text=`;
-const prescription = `Lorem ipsum dolor sit amet. Eligendi non quis exercitationem culpa nesciunt nihil aut nostrum explicabo reprehenderit optio amet ab temporibus asperiores quasi cupiditate.`;
-const postscription = `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi non quis exercitationem culpa nesciunt nihil aut nostrum explicabo reprehenderit optio amet ab temporibus asperiores quasi cupiditate. Voluptatum ducimus voluptates voluptas?`;
-const description = {
-  prescription,
-  postscription,
-};
+const description = `11111`;
 const actors = [`Ivan Ivanov`, `Piotr Petrov`, `Alexandr Alexandrov`];
 
-const reviews = [
-  {
+const reviews = [{
     name: `Ivan Ivanov`,
     rate: 8.9,
     date: new Date(`22:14`),
@@ -32,8 +26,7 @@ const reviews = [
   },
 ];
 
-const FILMS = [
-  {
+const FILMS = [{
     id: 0,
     title: `Джей и молчаливый Боб`,
     src: HREF,
@@ -187,13 +180,14 @@ const FILMS = [
   },
 ];
 
-// test(`Expect initialState`, () => {                            some bug
-//   expect(reducer(void 0, {})).toStrictEqual({
-//     filterGenre: `all genres`,
-//     films: FILMS,
-//     movieID: -1,
-//   });
-// });
+test(`Expect initialState`, () => {
+  const initialState = reducer(void 0, {});
+  expect(initialState).toStrictEqual({
+    filterGenre: `All genres`,
+    films: [],
+    allFilms: [],
+  });
+});
 
 test(`Expect new filter`, () => {
   expect(reducer({
@@ -224,20 +218,5 @@ test(`Expect new films`, () => {
     filterGenre: `1`,
     films: halvedFilms,
     movieID: -1,
-  });
-});
-
-test(`Expect new movieID`, () => {
-  expect(reducer({
-    filterGenre: `1`,
-    films: FILMS,
-    movieID: -1,
-  }, {
-    type: Actions.SET_MOVIE_ID,
-    payload: 1,
-  })).toStrictEqual({
-    filterGenre: `1`,
-    films: FILMS,
-    movieID: 1,
   });
 });

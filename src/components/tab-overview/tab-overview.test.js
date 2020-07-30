@@ -7,10 +7,7 @@ test(`Snapshot test for TabOverview`, () => {
     rate={2}
     rateString={`2`}
     votes={222}
-    description={{
-      prescription: `123qweasdxcv`,
-      postscription: `123qweasdxcv`
-    }}
+    description={`11111`}
     director={`qweerttyu`}
     actors={`sdfghjk sdfsdf sdfsdf sdfsdfsdf`}
   />);

@@ -160,7 +160,7 @@ Array [
           <a
             className="catalog__genres-link"
             href="#"
-            id="all genres"
+            id="All genres"
             onClick={[Function]}
           >
             All genres
@@ -172,7 +172,7 @@ Array [
           <a
             className="catalog__genres-link"
             href="#"
-            id="comedy"
+            id="Comedy"
             onClick={[Function]}
           >
             Comedy
@@ -184,7 +184,7 @@ Array [
           <a
             className="catalog__genres-link"
             href="#"
-            id="crime"
+            id="Crime"
             onClick={[Function]}
           >
             Crime
@@ -196,7 +196,7 @@ Array [
           <a
             className="catalog__genres-link"
             href="#"
-            id="documentary"
+            id="Documentary"
             onClick={[Function]}
           >
             Documentary
@@ -208,7 +208,7 @@ Array [
           <a
             className="catalog__genres-link"
             href="#"
-            id="drama"
+            id="Drama"
             onClick={[Function]}
           >
             Drama
@@ -220,7 +220,7 @@ Array [
           <a
             className="catalog__genres-link"
             href="#"
-            id="horror"
+            id="Horror"
             onClick={[Function]}
           >
             Horror
@@ -232,10 +232,10 @@ Array [
           <a
             className="catalog__genres-link"
             href="#"
-            id="kids & family"
+            id="Kids & Family"
             onClick={[Function]}
           >
-            Kids & family
+            Kids & Family
           </a>
         </li>
         <li
@@ -244,7 +244,7 @@ Array [
           <a
             className="catalog__genres-link"
             href="#"
-            id="romance"
+            id="Romance"
             onClick={[Function]}
           >
             Romance
@@ -256,7 +256,7 @@ Array [
           <a
             className="catalog__genres-link"
             href="#"
-            id="sci-fi"
+            id="Sci-fi"
             onClick={[Function]}
           >
             Sci-fi
@@ -268,7 +268,7 @@ Array [
           <a
             className="catalog__genres-link"
             href="#"
-            id="thriller"
+            id="Thriller"
             onClick={[Function]}
           >
             Thriller
@@ -277,235 +277,8 @@ Array [
       </ul>
       <div
         className="catalog__movies-list"
-      >
-        <article
-          className="small-movie-card catalog__movies-card"
-          onMouseOut={[Function]}
-          onMouseOver={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="title"
-              height="175"
-              src="srctitle"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-              onClick={[Function]}
-            >
-              title
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onMouseOut={[Function]}
-          onMouseOver={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="title"
-              height="175"
-              src="srctitle"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-              onClick={[Function]}
-            >
-              title
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onMouseOut={[Function]}
-          onMouseOver={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="title"
-              height="175"
-              src="srctitle"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-              onClick={[Function]}
-            >
-              title
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onMouseOut={[Function]}
-          onMouseOver={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="title"
-              height="175"
-              src="srctitle"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-              onClick={[Function]}
-            >
-              title
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onMouseOut={[Function]}
-          onMouseOver={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="title"
-              height="175"
-              src="srctitle"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-              onClick={[Function]}
-            >
-              title
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onMouseOut={[Function]}
-          onMouseOver={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="title"
-              height="175"
-              src="srctitle"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-              onClick={[Function]}
-            >
-              title
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onMouseOut={[Function]}
-          onMouseOver={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="title"
-              height="175"
-              src="srctitle"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-              onClick={[Function]}
-            >
-              title
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onMouseOut={[Function]}
-          onMouseOver={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="title"
-              height="175"
-              src="srctitle"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-              onClick={[Function]}
-            >
-              title
-            </a>
-          </h3>
-        </article>
-      </div>
-      <div
-        className="catalog__more"
-      >
-        <button
-          className="catalog__button"
-          onClick={[Function]}
-          type="button"
-        >
-          Show more
-        </button>
-      </div>
+      />
+      
     </section>
     <footer
       className="page-footer"
