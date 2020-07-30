@@ -135,5 +135,5 @@ const mapStateToProps = (state) => {
   return {films: getAllFilms(state)};
 };
 
-export {DetailedMovieInfo};
+export const DetailedMovieInfoTest = withMovieScreen(withPageId(DetailedMovieInfo));
 export default connect(mapStateToProps)(withMovieScreen(withPageId(DetailedMovieInfo)));

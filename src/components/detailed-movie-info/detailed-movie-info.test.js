@@ -1,7 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import DetailedMovieInfo from "./detailed-movie-info.jsx";
-import SameGenreMovies from "../same-genre-movies/same-genre-movies.jsx";
+import {DetailedMovieInfoTest} from "./detailed-movie-info.jsx";
 
 const details = {
   bgPoster: `BG_HREF`,
@@ -13,20 +12,11 @@ const details = {
   votes: 666,
   director: `Kevin Smith`,
   actors: [`actor1`, `actor2`],
-  description: {
-    prescription: `prescription`,
-    postscription: `postscription`,
-  },
-  reviews: [{
-    name: `Ivan Ivanov`,
-    rate: 8.9,
-    date: new Date(),
-    text: `Lorem ipsum dolor sit amet. Eligendi non quis exercitationem culpa`,
-  }],
+  description: `11111`,
 };
 
 const movie = {
-  id: 0,
+  id: 1,
   title: `title`,
   src: `src`,
   preview: `asdasdasd`,
@@ -38,11 +28,11 @@ const films = [movie, movie, movie, movie];
 describe(`Test DetailedMovieInfo`, () => {
   it(`DetailedMovieInfo snapshot`, () => {
     const tree = renderer.create(
-        <DetailedMovieInfo
-          movie={movie}
-        >
-          <SameGenreMovies films={films} genre={`comedy`} onHeaderClickHandler={() => {}} onCardHoverHandler={() => {}} />
-        </DetailedMovieInfo>
+        <DetailedMovieInfoTest
+          films={films}
+          movieID={1}
+          onHeaderClickHandler={() => {}}
+        />
     );
 
     expect(tree).toMatchSnapshot();

@@ -1,7 +1,6 @@
 import React from "react";
 import {mount} from "enzyme";
-import DetailedMovieInfo from "./detailed-movie-info.jsx";
-import SameGenreMovies from "../same-genre-movies/same-genre-movies.jsx";
+import {DetailedMovieInfoTest} from "./detailed-movie-info.jsx";
 
 const details = {
   bgPoster: `BG_HREF`,
@@ -13,10 +12,7 @@ const details = {
   votes: 666,
   director: `Kevin Smith`,
   actors: [`actor1`, `actor2`],
-  description: {
-    prescription: `prescription`,
-    postscription: `postscription`,
-  },
+  description: `111`,
   reviews: [{
     name: `Ivan Ivanov`,
     rate: 8.9,
@@ -26,7 +22,7 @@ const details = {
 };
 
 const movie = {
-  id: 0,
+  id: 1,
   title: `title`,
   src: `src`,
   preview: `asdasdasd`,
@@ -40,16 +36,16 @@ describe(`DetailedMovieInfo e2e tests`, () => {
     const toggleMovieScreenHandler = jest.fn();
 
     const DetailedMovieInfoElement = mount(
-        <DetailedMovieInfo
-          movie={movie}
+        <DetailedMovieInfoTest
+          films={films}
+          onHeaderClickHandler={() => {}}
           renderMovieScreen={() => {}}
           toggleMovieScreenHandler={toggleMovieScreenHandler}
           isShowingScreen={true}
           page={0}
           handleClick={() => {}}
-        >
-          <SameGenreMovies films={films} genre={`comedy`} onHeaderClickHandler={() => {}} onCardHoverHandler={() => {}} />
-        </DetailedMovieInfo>
+          movieID={1}
+        />
     );
 
 

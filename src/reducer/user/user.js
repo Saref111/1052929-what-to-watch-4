@@ -20,7 +20,7 @@ const actionCreator = {
 
 const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
-    return api.get(`/login`).then((response) => {
+    return api.get(`/login`).then(() => {
       dispatch(actionCreator.requiredAuthorization(Authorization.AUTH));
     }).catch((err) => {
       throw err;

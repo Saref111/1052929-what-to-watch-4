@@ -11,6 +11,7 @@ exports[`Testing MovieCard component Snapshot test 1`] = `
   >
     <video
       className="player__video"
+      crossOrigin="anonymous"
     />
   </div>
   <h3

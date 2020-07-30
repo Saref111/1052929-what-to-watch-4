@@ -21,8 +21,8 @@ class App extends PureComponent {
       movieID,
       filterGenre,
       onHeaderClickHandler,
-      login,
-      authorizationStatus,
+      // login,
+      // authorizationStatus,
     } = this.props;
 
     if (movieID < 0) {

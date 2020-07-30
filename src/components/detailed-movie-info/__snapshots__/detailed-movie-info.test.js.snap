@@ -13,7 +13,7 @@ Array [
       >
         <img
           alt="title"
-          src="BG_HREFtitle"
+          src="BG_HREF"
         />
       </div>
       <h1
@@ -80,7 +80,7 @@ Array [
             <span
               className="movie-card__genre"
             >
-              Comedy
+              comedy
             </span>
             <span
               className="movie-card__year"
@@ -148,7 +148,7 @@ Array [
           <img
             alt="title"
             height="327"
-            src="POSTER_HREFtitle"
+            src="POSTER_HREF"
             width="218"
           />
         </div>
@@ -227,10 +227,7 @@ Array [
             className="movie-card__text"
           >
             <p>
-              prescription
-            </p>
-            <p>
-              postscription
+              11111
             </p>
             <p
               className="movie-card__director"
@@ -257,127 +254,7 @@ Array [
   <div
     className="page-content"
   >
-    <section
-      className="catalog catalog--like-this"
-    >
-      <h2
-        className="catalog__title"
-      >
-        More like this
-      </h2>
-      <div
-        className="catalog__movies-list"
-      >
-        <article
-          className="small-movie-card catalog__movies-card"
-          onMouseOut={[Function]}
-          onMouseOver={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="title"
-              height="175"
-              src="srctitle"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-              onClick={[Function]}
-            >
-              title
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onMouseOut={[Function]}
-          onMouseOver={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="title"
-              height="175"
-              src="srctitle"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-              onClick={[Function]}
-            >
-              title
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onMouseOut={[Function]}
-          onMouseOver={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="title"
-              height="175"
-              src="srctitle"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-              onClick={[Function]}
-            >
-              title
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onMouseOut={[Function]}
-          onMouseOver={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="title"
-              height="175"
-              src="srctitle"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-              onClick={[Function]}
-            >
-              title
-            </a>
-          </h3>
-        </article>
-      </div>
-    </section>
+    
     <footer
       className="page-footer"
     >

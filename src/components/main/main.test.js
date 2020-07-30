@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Main from "./main.jsx";
+import {MainTest} from "./main.jsx";
 
 const details = {
   bgPoster: `BG_HREF`,
@@ -103,7 +103,7 @@ const promo = {
 describe(`Test Main`, () => {
   it(`Main snapshot`, () => {
     const tree = renderer.create(
-        <Main
+        <MainTest
           genresList={[`1`, `2`, `3`, `4`]}
           filterGenre={`1`}
           onFilterChangeHandler={() => {}}
@@ -117,3 +117,4 @@ describe(`Test Main`, () => {
     expect(tree).toMatchSnapshot();
   });
 });
+

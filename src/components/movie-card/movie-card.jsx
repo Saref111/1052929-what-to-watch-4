@@ -64,6 +64,4 @@ MovieCard.propTypes = {
   isVideo: PropTypes.bool.isRequired,
 };
 
-
-export {MovieCard};
 export default withHovered(MovieCard);

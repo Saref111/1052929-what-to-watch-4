@@ -153,4 +153,5 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
+export const MainTest = withMovieScreen(Main);
 export default connect(mapStateToProps, mapDispatchToProps)(withMovieScreen(Main));

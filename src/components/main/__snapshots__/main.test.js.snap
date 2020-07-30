@@ -160,7 +160,7 @@ Array [
           <a
             className="catalog__genres-link"
             href="#"
-            id="all genres"
+            id="All genres"
             onClick={[Function]}
           >
             All genres
@@ -172,7 +172,7 @@ Array [
           <a
             className="catalog__genres-link"
             href="#"
-            id="comedy"
+            id="Comedy"
             onClick={[Function]}
           >
             Comedy
@@ -184,7 +184,7 @@ Array [
           <a
             className="catalog__genres-link"
             href="#"
-            id="crime"
+            id="Crime"
             onClick={[Function]}
           >
             Crime
@@ -196,7 +196,7 @@ Array [
           <a
             className="catalog__genres-link"
             href="#"
-            id="documentary"
+            id="Documentary"
             onClick={[Function]}
           >
             Documentary
@@ -208,7 +208,7 @@ Array [
           <a
             className="catalog__genres-link"
             href="#"
-            id="drama"
+            id="Drama"
             onClick={[Function]}
           >
             Drama
@@ -220,7 +220,7 @@ Array [
           <a
             className="catalog__genres-link"
             href="#"
-            id="horror"
+            id="Horror"
             onClick={[Function]}
           >
             Horror
@@ -232,10 +232,10 @@ Array [
           <a
             className="catalog__genres-link"
             href="#"
-            id="kids & family"
+            id="Kids & Family"
             onClick={[Function]}
           >
-            Kids & family
+            Kids & Family
           </a>
         </li>
         <li
@@ -244,7 +244,7 @@ Array [
           <a
             className="catalog__genres-link"
             href="#"
-            id="romance"
+            id="Romance"
             onClick={[Function]}
           >
             Romance
@@ -256,7 +256,7 @@ Array [
           <a
             className="catalog__genres-link"
             href="#"
-            id="sci-fi"
+            id="Sci-fi"
             onClick={[Function]}
           >
             Sci-fi
@@ -268,7 +268,7 @@ Array [
           <a
             className="catalog__genres-link"
             href="#"
-            id="thriller"
+            id="Thriller"
             onClick={[Function]}
           >
             Thriller
@@ -289,7 +289,7 @@ Array [
             <img
               alt="title"
               height="175"
-              src="srctitle"
+              src="src"
               width="280"
             />
           </div>
@@ -316,7 +316,7 @@ Array [
             <img
               alt="title"
               height="175"
-              src="srctitle"
+              src="src"
               width="280"
             />
           </div>
@@ -343,7 +343,7 @@ Array [
             <img
               alt="title"
               height="175"
-              src="srctitle"
+              src="src"
               width="280"
             />
           </div>
@@ -370,7 +370,7 @@ Array [
             <img
               alt="title"
               height="175"
-              src="srctitle"
+              src="src"
               width="280"
             />
           </div>
@@ -397,7 +397,7 @@ Array [
             <img
               alt="title"
               height="175"
-              src="srctitle"
+              src="src"
               width="280"
             />
           </div>
@@ -424,7 +424,7 @@ Array [
             <img
               alt="title"
               height="175"
-              src="srctitle"
+              src="src"
               width="280"
             />
           </div>
@@ -451,7 +451,7 @@ Array [
             <img
               alt="title"
               height="175"
-              src="srctitle"
+              src="src"
               width="280"
             />
           </div>
@@ -478,7 +478,7 @@ Array [
             <img
               alt="title"
               height="175"
-              src="srctitle"
+              src="src"
               width="280"
             />
           </div>
