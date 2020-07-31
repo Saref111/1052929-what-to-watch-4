@@ -2,6 +2,7 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {Route, Switch, BrowserRouter} from "react-router-dom";
 import Main from "../main/main.jsx";
+import SignIn from "../sign-in/sign-in.jsx";
 import DetailedMovieInfo from "../detailed-movie-info/detailed-movie-info.jsx";
 import {actionCreator as movieActionCreator} from "../../reducer/movie/movie.js";
 import {getMovieId} from "../../reducer/movie/selectors.js";
@@ -23,9 +24,14 @@ class App extends PureComponent {
       onHeaderClickHandler,
       // login,
       // authorizationStatus,
+      isSigningIn,
     } = this.props;
 
-    if (movieID < 0) {
+    if (isSigningIn) {
+      return (
+        <SignIn />
+      );
+    } else if (movieID < 0) {
       return (
         <Main
           promo={promo}

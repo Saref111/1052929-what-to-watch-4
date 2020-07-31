@@ -2,11 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import FilmsList from "../films-list/films-list.jsx";
 import GenresList from "../genres-list/genres-list.jsx";
-import {GENRES} from "../../const.js";
+import {GENRES, Authorization} from "../../const.js";
 import withMovieScreen from "../../hocs/with-movie-screen.jsx";
 import {actionCreator as dataActionCreator} from "../../reducer/data/data.js";
 import {getAllFilms, getFilteredFilms} from "../../reducer/data/selectors.js";
 import {uppercaseFirstLetter} from "../../helpers/helpers.js";
+import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
 import {connect} from "react-redux";
 
 const Main = (props) => {
@@ -20,7 +21,8 @@ const Main = (props) => {
     onFilterChangeHandler,
     isShowingScreen,
     toggleMovieScreenHandler,
-    renderMovieScreen
+    renderMovieScreen,
+    authorizationStatus,
   } = props;
 
   const {details, preview, title} = promo;
@@ -45,9 +47,9 @@ const Main = (props) => {
           </div>
 
           <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
+            {authorizationStatus === Authorization.AUTH ?
+              <div className="user-block__avatar"><img src="img/avatar.jpg" alt="User avatar" width="63" height="63" /></div>
+              : <a href="sign-in.html" className="user-block__link">Sign in</a>}
           </div>
         </header>
 
@@ -88,7 +90,7 @@ const Main = (props) => {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
           <GenresList
-            genresList={GENRES}
+            genresList={GENRES} // should get then from server
             currentGenre={filterGenre}
             onFilterChangeHandler={onFilterChangeHandler}
             allFilms={allFilms}
@@ -116,6 +118,7 @@ const Main = (props) => {
 
 
 Main.propTypes = {
+  authorizationStatus: PropTypes.string.isRequired,
   isShowingScreen: PropTypes.bool.isRequired,
   renderMovieScreen: PropTypes.func.isRequired,
   toggleMovieScreenHandler: PropTypes.func.isRequired,
@@ -141,6 +144,7 @@ const mapStateToProps = (state) => {
   return {
     allFilms: getAllFilms(state),
     films: getFilteredFilms(state),
+    authorizationStatus: getAuthorizationStatus(state),
   };
 };
 
