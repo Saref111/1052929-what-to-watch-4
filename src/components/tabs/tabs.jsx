@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import TabOverview from "../tab-overview/tab-overview.jsx";
 import TabDetails from "../tab-details/tab-details.jsx";
 import TabReviews from "../tab-reviews/tab-reviews.jsx";
-import {GENRES, TABS} from "../../const.js";
+import {TABS} from "../../const.js";
 import {getActorsString, rateToString} from "../../helpers/helpers.js";
 
 const Tabs = (props) => {
@@ -55,22 +55,13 @@ Tabs.propTypes = {
     bgPoster: PropTypes.string.isRequired,
     cover: PropTypes.string.isRequired,
     director: PropTypes.string.isRequired,
-    genre: PropTypes.oneOf(GENRES).isRequired,
+    genre: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired,
     time: PropTypes.number.isRequired,
     rate: PropTypes.number.isRequired,
     votes: PropTypes.number.isRequired,
     actors: PropTypes.arrayOf(PropTypes.string).isRequired,
-    description: PropTypes.shape({
-      prescription: PropTypes.string.isRequired,
-      postscription: PropTypes.string.isRequired,
-    }).isRequired,
-    reviews: PropTypes.arrayOf(PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      date: PropTypes.instanceOf(Date).isRequired,
-      text: PropTypes.string.isRequired,
-      rate: PropTypes.number.isRequired,
-    })).isRequired,
+    description: PropTypes.string.isRequired,
   }),
 };
 

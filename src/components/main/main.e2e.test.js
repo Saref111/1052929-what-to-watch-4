@@ -1,6 +1,6 @@
 import React from "react";
 import {shallow} from "enzyme";
-import Main from "./main.jsx";
+import {MainTest} from "./main.jsx";
 
 const details = {
   bgPoster: `BG_HREF`,
@@ -96,7 +96,7 @@ describe(`Main e2e test`, () => {
     const onHeaderClickHandler = jest.fn();
 
     const MainElement = shallow(
-        <Main
+        <MainTest
           onFilterChangeHandler={() => {}}
           filterGenre={`1`}
           promo={promo}

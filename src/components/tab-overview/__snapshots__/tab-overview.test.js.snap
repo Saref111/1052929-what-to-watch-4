@@ -30,10 +30,7 @@ Array [
     className="movie-card__text"
   >
     <p>
-      123qweasdxcv
-    </p>
-    <p>
-      123qweasdxcv
+      11111
     </p>
     <p
       className="movie-card__director"

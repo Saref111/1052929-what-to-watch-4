@@ -1,10 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {createStore} from "redux";
-import {reducer} from "./reducer.js";
+import {createStore, applyMiddleware, compose} from "redux";
+import reducer from "./reducer/reducer.js";
 import {Provider} from "react-redux";
 import App from "./components/app/app.jsx";
-import FILMS from "./mock/films.js";
+import thunk from "redux-thunk";
+import {createApi} from "./api.js";
+import {Authorization} from "./const.js";
+import {Operation as DataOperation} from "./reducer/data/data.js";
+import {Operation as UserOperation, actionCreator} from "./reducer/user/user.js";
 
 const MOCK_DATA = {
   id: 20,
@@ -23,13 +27,27 @@ const MOCK_DATA = {
   },
 };
 
-const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const onUnauthorized = (store) => {
+  store.dispatch(actionCreator.requireAuthorization(Authorization.UN_AUTH));
+};
+
+const api = createApi(() => {
+  onUnauthorized(store);
+});
+const store = createStore(
+    reducer,
+    compose(applyMiddleware(
+        thunk.withExtraArgument(api)),
+    window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f)
+);
+
+store.dispatch(DataOperation.loadFilms());
+store.dispatch(UserOperation.checkAuth());
 
 ReactDOM.render(
     <Provider store={store}>
       <App
         promo={MOCK_DATA}
-        films={FILMS}
       />
     </Provider>,
     document.querySelector(`#root`)

@@ -12,10 +12,7 @@ const details = {
   votes: 666,
   director: `Kevin Smith`,
   actors: [`actor1`, `actor2`],
-  description: {
-    prescription: `prescription`,
-    postscription: `postscription`,
-  },
+  description: `111`,
   reviews: [{
     name: `Ivan Ivanov`,
     rate: 8.9,
@@ -36,6 +33,7 @@ const films = [movie, movie, movie, movie];
 
 test(`Snapshot SameGenreMovies`, () => {
   const tree = renderer.create(<SameGenreMovies
+    currentID={1}
     films={films}
     genre={`comedy`}
     onHeaderClickHandler={() => {}}

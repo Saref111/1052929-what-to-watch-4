@@ -1,8 +1,7 @@
 import React from "react";
 import {shallow} from "enzyme";
-import {MovieCard} from "./movie-card.jsx";
-import DetailedMovieInfo from "../detailed-movie-info/detailed-movie-info.jsx";
-import SameGenreMovies from "../same-genre-movies/same-genre-movies.jsx";
+import MovieCard from "./movie-card.jsx";
+import {DetailedMovieInfoTest} from "../detailed-movie-info/detailed-movie-info.jsx";
 
 const details = {
   bgPoster: `BG_HREF`,
@@ -27,7 +26,7 @@ const details = {
 };
 
 const movie = {
-  id: 0,
+  id: 1,
   title: `title`,
   src: `src`,
   preview: `preview`,
@@ -44,30 +43,35 @@ describe(`Test e2e MovieCard`, () => {
     const MovieCardElement = shallow(
         <MovieCard
           renderPlayer={() => {}}
-          isVideo={true}
+          isVideo={false}
           handleMouseOut={() => {}}
           movie={movie}
           onCardHoverHandler={onCardHoverHandler}
           onHeaderClickHandler={onHeaderClickHandler}
-        />
+        />, {
+          createNodeMock: () => {
+            return {};
+          }
+        }
     );
 
     const DetailedMovieInfoElement = shallow(
-        <DetailedMovieInfo
-          movie={movie}
-        >
-          <SameGenreMovies films={films} genre={`comedy`} onHeaderClickHandler={() => {}} onCardHoverHandler={() => {}} />
-        </DetailedMovieInfo>
+        <DetailedMovieInfoTest
+          films={films}
+          movieID={1}
+          onHeaderClickHandler={onHeaderClickHandler}
+        />, {
+          createNodeMock: () => {
+            return {};
+          }
+        }
     );
 
-    const headerLink = MovieCardElement.find(`a.small-movie-card__link`);
+    const headerLink = MovieCardElement.dive().find(`.small-movie-card__link`);
 
     const evt = {
       preventDefault() {},
       target: {value: `the-value`},
-      createNodeMock: () => {
-        return {};
-      }
     };
 
     headerLink.simulate(`click`, evt);

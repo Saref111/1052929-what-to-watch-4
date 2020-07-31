@@ -34,7 +34,7 @@ class MovieCard extends PureComponent {
               preview={preview}
               isMuted={true}
             /> :
-            <img src={`${src}${title}`} alt={`${title}`} width="280" height="175" />
+            <img src={`${src}`} alt={`${title}`} width="280" height="175" />
           }
         </div>
         <h3 className="small-movie-card__title">
@@ -64,6 +64,4 @@ MovieCard.propTypes = {
   isVideo: PropTypes.bool.isRequired,
 };
 
-
-export {MovieCard};
 export default withHovered(MovieCard);

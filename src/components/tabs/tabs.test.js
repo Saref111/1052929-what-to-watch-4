@@ -12,10 +12,7 @@ const details = {
   votes: 666,
   director: `Kevin Smith`,
   actors: [`actor1`, `actor2`],
-  description: {
-    prescription: `prescription`,
-    postscription: `postscription`,
-  },
+  description: `1111`,
   reviews: [{
     name: `Ivan Ivanov`,
     rate: 8.9,

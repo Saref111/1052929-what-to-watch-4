@@ -2,14 +2,18 @@ import React from "react";
 import PropTypes from "prop-types";
 import Tabs from "../tabs/tabs.jsx";
 import TabsNav from "../tabs-nav/tabs-nav.jsx";
+import SameGenreMovies from "../same-genre-movies/same-genre-movies.jsx";
 import withPageId from "../../hocs/with-page-id.jsx";
-import {GENRES} from "../../const.js";
-import {uppercaseFirstLetter} from "../../helpers/helpers.js";
 import withMovieScreen from "../../hocs/with-movie-screen.jsx";
+import {connect} from "react-redux";
+import {getAllFilms} from "../../reducer/data/selectors.js";
 
 
 const DetailedMovieInfo = (props) => {
-  const {movie, page, handleClick, isShowingScreen, toggleMovieScreenHandler, renderMovieScreen} = props;
+  const {films, page, handleClick, isShowingScreen, toggleMovieScreenHandler, renderMovieScreen, movieID, onHeaderClickHandler} = props;
+  const movie = films.find((it) => {
+    return it.id === movieID;
+  });
   const {title, details, preview} = movie;
   const {bgPoster, cover, genre, year, time} = details;
 
@@ -19,7 +23,7 @@ const DetailedMovieInfo = (props) => {
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
           <div className="movie-card__bg">
-            <img src={`${bgPoster}${title}`} alt={`${title}`} />
+            <img src={`${bgPoster}`} alt={`${title}`} />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -44,7 +48,7 @@ const DetailedMovieInfo = (props) => {
             <div className="movie-card__desc">
               <h2 className="movie-card__title">{`${title}`}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{`${uppercaseFirstLetter(genre)}`}</span>
+                <span className="movie-card__genre">{`${genre}`}</span>
                 <span className="movie-card__year">{`${year}`}</span>
               </p>
 
@@ -70,7 +74,7 @@ const DetailedMovieInfo = (props) => {
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
-              <img src={`${cover}${title}`} alt={`${title}`} width="218" height="327" />
+              <img src={`${cover}`} alt={`${title}`} width="218" height="327" />
             </div>
             <div className="movie-card__desc">
               <TabsNav
@@ -86,7 +90,12 @@ const DetailedMovieInfo = (props) => {
         </div>
       </section>
       <div className="page-content">
-        {props.children}
+        <SameGenreMovies
+          currentID={movieID}
+          onHeaderClickHandler={onHeaderClickHandler}
+          genre={genre}
+          films={films}
+        />
         <footer className="page-footer">
           <div className="logo">
             <a href="main.html" className="logo__link logo__link--light">
@@ -107,34 +116,24 @@ const DetailedMovieInfo = (props) => {
 
 
 DetailedMovieInfo.propTypes = {
+  movieID: PropTypes.number.isRequired,
   renderMovieScreen: PropTypes.func.isRequired,
   toggleMovieScreenHandler: PropTypes.func.isRequired,
   isShowingScreen: PropTypes.bool.isRequired,
-  children: PropTypes.node.isRequired,
+  onHeaderClickHandler: PropTypes.func.isRequired,
   page: PropTypes.number.isRequired,
   handleClick: PropTypes.func.isRequired,
-  movie: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    preview: PropTypes.string.isRequired,
+  films: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
-    details: PropTypes.shape({
-      bgPoster: PropTypes.string.isRequired,
-      cover: PropTypes.string.isRequired,
-      director: PropTypes.string.isRequired,
-      genre: PropTypes.oneOf(GENRES).isRequired,
-      year: PropTypes.number.isRequired,
-      time: PropTypes.number.isRequired,
-      rate: PropTypes.number.isRequired,
-      votes: PropTypes.number.isRequired,
-      actors: PropTypes.arrayOf(PropTypes.string).isRequired,
-      description: PropTypes.shape({
-        prescription: PropTypes.string.isRequired,
-        postscription: PropTypes.string.isRequired,
-      }).isRequired,
-      reviews: PropTypes.array.isRequired,
-    }),
-  }),
+    title: PropTypes.string.isRequired,
+    src: PropTypes.string.isRequired,
+    details: PropTypes.object.isRequired,
+  })).isRequired,
 };
 
-export {DetailedMovieInfo};
-export default withMovieScreen(withPageId(DetailedMovieInfo));
+const mapStateToProps = (state) => {
+  return {films: getAllFilms(state)};
+};
+
+export const DetailedMovieInfoTest = withMovieScreen(withPageId(DetailedMovieInfo));
+export default connect(mapStateToProps)(withMovieScreen(withPageId(DetailedMovieInfo)));

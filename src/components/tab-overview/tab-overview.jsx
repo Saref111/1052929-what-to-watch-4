@@ -15,9 +15,7 @@ const TabOverview = (props) => {
       </div>
 
       <div className="movie-card__text">
-        <p>{`${description.prescription}`}</p>
-
-        <p>{`${description.postscription}`}</p>
+        <p>{`${description}`}</p>
 
         <p className="movie-card__director"><strong>Director: {`${director}`}</strong></p>
 
@@ -31,10 +29,7 @@ TabOverview.propTypes = {
   rate: PropTypes.number.isRequired,
   rateString: PropTypes.string.isRequired,
   votes: PropTypes.number.isRequired,
-  description: PropTypes.shape({
-    prescription: PropTypes.string.isRequired,
-    postscription: PropTypes.string.isRequired,
-  }).isRequired,
+  description: PropTypes.string.isRequired,
   director: PropTypes.string.isRequired,
   actors: PropTypes.string.isRequired,
 };

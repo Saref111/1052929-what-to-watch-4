@@ -9,6 +9,7 @@ exports[`MovieScreen snaptests Snapshot MovieScreen test 1`] = `
   >
     <video
       className="player__video"
+      crossOrigin="anonymous"
     />
     <button
       className="player__exit"
@@ -107,6 +108,7 @@ exports[`MovieScreen snaptests Snapshot MovieScreen test fullscreen mode 1`] = `
   >
     <video
       className="player__video"
+      crossOrigin="anonymous"
     />
     <button
       className="player__exit"

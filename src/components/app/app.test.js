@@ -95,10 +95,18 @@ const FILMS = [
 ];
 
 const store = mockStore({
-  allFilms: FILMS,
-  films: FILMS,
-  filterGenre: `1`,
-  movieID: -1,
+  DATA: {
+    allFilms: FILMS,
+    films: FILMS,
+    filterGenre: `1`,
+  },
+  MOVIE: {
+    movieID: -1,
+  },
+  USER: {
+    authorizationStatus: `NO_AUTH`,
+    login: `111`
+  }
 });
 
 const promo = {

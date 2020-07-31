@@ -3,5 +3,6 @@
 exports[`Videoplayer snaptest 1`] = `
 <video
   className="player__video"
+  crossOrigin="anonymous"
 />
 `;

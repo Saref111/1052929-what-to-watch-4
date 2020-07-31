@@ -3,8 +3,11 @@ import PropTypes from "prop-types";
 import {Route, Switch, BrowserRouter} from "react-router-dom";
 import Main from "../main/main.jsx";
 import DetailedMovieInfo from "../detailed-movie-info/detailed-movie-info.jsx";
-import SameGenreMovies from "../same-genre-movies/same-genre-movies.jsx";
-import {ActionCreator} from "../../reducer.js";
+import {actionCreator as movieActionCreator} from "../../reducer/movie/movie.js";
+import {getMovieId} from "../../reducer/movie/selectors.js";
+import {getCurrentFilter} from "../../reducer/data/selectors.js";
+import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
+import {Operation as UserOperation} from "../../reducer/user/user.js";
 import {connect} from "react-redux";
 
 class App extends PureComponent {
@@ -13,26 +16,27 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {promo, films, movieID, filterGenre, onHeaderClickHandler, onFilterChangeHandler, allFilms} = this.props;
-    const film = this.props.films.find((it) => it.id === movieID);
+    const {
+      promo,
+      movieID,
+      filterGenre,
+      onHeaderClickHandler,
+      // login,
+      // authorizationStatus,
+    } = this.props;
 
-    if (movieID === -1 || film === undefined) {
+    if (movieID < 0) {
       return (
         <Main
           promo={promo}
 
           onHeaderClickHandler={onHeaderClickHandler}
-          onFilterChangeHandler={onFilterChangeHandler}
-          films={films}
           filterGenre={filterGenre}
-          allFilms={allFilms}
         />
       );
     } else {
       return (
-        <DetailedMovieInfo movie={film}>
-          <SameGenreMovies genre={film.details.genre} films={films} onHeaderClickHandler={onHeaderClickHandler}/>
-        </DetailedMovieInfo>
+        <DetailedMovieInfo movieID={movieID} onHeaderClickHandler={onHeaderClickHandler}/>
       );
     }
 
@@ -40,8 +44,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const {films, onHeaderClickHandler} = this.props;
-
+    const {onHeaderClickHandler} = this.props;
 
     return (
       <BrowserRouter>
@@ -50,9 +53,7 @@ class App extends PureComponent {
             {this._renderApp()}
           </Route>
           <Route exact path="/dev-film">
-            <DetailedMovieInfo movie={this.props.films[0]}>
-              <SameGenreMovies genre={this.props.films[0].details.genre} films={films} onHeaderClickHandler={onHeaderClickHandler}/>
-            </DetailedMovieInfo>
+            <DetailedMovieInfo onHeaderClickHandler={onHeaderClickHandler}/>
           </Route>
         </Switch>
       </BrowserRouter>
@@ -61,32 +62,29 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
+  authorizationStatus: PropTypes.string.isRequired,
+  login: PropTypes.func.isRequired,
   promo: PropTypes.object.isRequired,
-  films: PropTypes.array.isRequired,
-  allFilms: PropTypes.array.isRequired,
   onHeaderClickHandler: PropTypes.func.isRequired,
   movieID: PropTypes.number.isRequired,
   filterGenre: PropTypes.string.isRequired,
-  onFilterChangeHandler: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
   return {
-    allFilms: state.allFilms,
-    filterGenre: state.filterGenre,
-    films: state.films,
-    movieID: state.movieID,
+    filterGenre: getCurrentFilter(state),
+    movieID: getMovieId(state),
+    authorizationStatus: getAuthorizationStatus(state),
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
   onHeaderClickHandler(id) {
-    dispatch(ActionCreator.setMovieId(id));
+    dispatch(movieActionCreator.setMovieId(id));
   },
 
-  onFilterChangeHandler(filter, films) {
-    dispatch(ActionCreator.changeFilter(filter));
-    dispatch(ActionCreator.getFilmsByType(films, filter));
+  login(authData) {
+    dispatch(UserOperation.login(authData));
   },
 });
 

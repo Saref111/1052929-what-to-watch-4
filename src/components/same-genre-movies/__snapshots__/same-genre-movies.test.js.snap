@@ -23,7 +23,7 @@ exports[`Snapshot SameGenreMovies 1`] = `
         <img
           alt="title"
           height="175"
-          src="srctitle"
+          src="src"
           width="280"
         />
       </div>
@@ -50,7 +50,7 @@ exports[`Snapshot SameGenreMovies 1`] = `
         <img
           alt="title"
           height="175"
-          src="srctitle"
+          src="src"
           width="280"
         />
       </div>
@@ -77,7 +77,7 @@ exports[`Snapshot SameGenreMovies 1`] = `
         <img
           alt="title"
           height="175"
-          src="srctitle"
+          src="src"
           width="280"
         />
       </div>
@@ -104,7 +104,7 @@ exports[`Snapshot SameGenreMovies 1`] = `
         <img
           alt="title"
           height="175"
-          src="srctitle"
+          src="src"
           width="280"
         />
       </div>
