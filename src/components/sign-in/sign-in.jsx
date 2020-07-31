@@ -1,5 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {getValidityStatus, getIsWrongStatus} from "reducer/user/selectors";
+import {actionCreator} from "reducer/user/user.js";
+import { connect } from "react-redux";
 
 class SignIn extends React.PureComponent {
   constructor(props) {
@@ -11,7 +14,7 @@ class SignIn extends React.PureComponent {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  _validateFormData(login, password) {
+  _validateFormData(login) {
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     return re.test(String(login).toLowerCase());
@@ -20,19 +23,19 @@ class SignIn extends React.PureComponent {
   handleSubmit(evt) {
     evt.preventDefault();
 
-    const {submitAuthFormHandler} = this.props;
+    const {setValidity, submitAuthFormHandler} = this.props;
     const login = this.loginRef.current.value;
     const password = this.passwordRef.current.value;
 
     if (this._validateFormData(login)) {
       submitAuthFormHandler({login, password});
     } else {
-
+      setValidity(false);
     }
   }
 
   render() {
-    const {cancelAuthorizationHandler, setValidity, isValid, isWrong} = this.props;
+    const {cancelAuthorizationHandler, isValid, isWrong} = this.props;
 
     return (
       <div className="user-page">
@@ -72,4 +75,24 @@ class SignIn extends React.PureComponent {
       </div>
     );
   }
+}
+
+
+SignIn.propTypes = {
+  submitAuthFormHandler: PropTypes.func.isRequired,
+  cancelAuthorizationHandler: PropTypes.func.isRequired,
+  setValidity: PropTypes.func.isRequired,
+  isValid: PropTypes.bool.isRequired,
+  isWrong: PropTypes.bool.isRequired,
 };
+
+const mapStateToProps = (state) => ({
+  isValid: getValidityStatus(state),
+  isWrong: getIsWrongStatus(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  cancelAuthorizationHandler() {}
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
