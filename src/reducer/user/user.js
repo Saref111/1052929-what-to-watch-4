@@ -1,5 +1,6 @@
-import {extend} from "../../helpers/helpers.js";
+import {extend} from "@helpers/helpers.js";
 import {Authorization} from "../../const.js";
+import {userDataAdapter} from "./adapters.js";
 
 const initialState = {
   authorizationStatus: Authorization.NO_AUTH,
@@ -43,11 +44,9 @@ const actionCreator = {
     };
   },
   setUserData(data) {
-    const formatData = extend(data, {avatar: data.avatar_url});
-    delete data.avatar_url;
     return {
       type: Actions.SET_USER_DATA,
-      payload: formatData,
+      payload: userDataAdapter(data),
     };
   },
 };
