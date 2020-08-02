@@ -1,14 +1,16 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {Route, Switch, BrowserRouter} from "react-router-dom";
-import Main from "../main/main.jsx";
-import DetailedMovieInfo from "../detailed-movie-info/detailed-movie-info.jsx";
-import {actionCreator as movieActionCreator} from "../../reducer/movie/movie.js";
-import {getMovieId} from "../../reducer/movie/selectors.js";
-import {getCurrentFilter} from "../../reducer/data/selectors.js";
-import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
-import {Operation as UserOperation} from "../../reducer/user/user.js";
+import Main from "components/main/main.jsx";
+import SignIn from "components/sign-in/sign-in.jsx";
+import DetailedMovieInfo from "components/detailed-movie-info/detailed-movie-info.jsx";
+import {actionCreator as movieActionCreator} from "reducer/movie/movie.js";
+import {getMovieId} from "reducer/movie/selectors.js";
+import {getCurrentFilter} from "reducer/data/selectors.js";
+import {getAuthorizationStatus} from "reducer/user/selectors.js";
+import {Operation as UserOperation} from "reducer/user/user.js";
 import {connect} from "react-redux";
+import {getSigningInStatus} from "reducer/user/selectors";
 
 class App extends PureComponent {
   constructor(props) {
@@ -23,9 +25,14 @@ class App extends PureComponent {
       onHeaderClickHandler,
       // login,
       // authorizationStatus,
+      isSigningIn,
     } = this.props;
 
-    if (movieID < 0) {
+    if (isSigningIn) {
+      return (
+        <SignIn />
+      );
+    } else if (movieID < 0) {
       return (
         <Main
           promo={promo}
@@ -68,6 +75,7 @@ App.propTypes = {
   onHeaderClickHandler: PropTypes.func.isRequired,
   movieID: PropTypes.number.isRequired,
   filterGenre: PropTypes.string.isRequired,
+  isSigningIn: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -75,6 +83,7 @@ const mapStateToProps = (state) => {
     filterGenre: getCurrentFilter(state),
     movieID: getMovieId(state),
     authorizationStatus: getAuthorizationStatus(state),
+    isSigningIn: getSigningInStatus(state)
   };
 };
 
