@@ -13,7 +13,13 @@
   "jest": {
     "setupFiles": [
       "<rootDir>src/setupTests.js"
-    ]
+    ],
+    "moduleNameMapper" : {
+      "^@components(.*)$": "<rootDir>/src/components$1",
+      "^@reducer(.*)$": "<rootDir>/src/reducer$1",
+      "^@hocs(.*)$": "<rootDir>/src/hocs$1",
+      "^@helpers(.*)$": "<rootDir>/src/helpers$1"
+    }
   },
   "devDependencies": {
     "@babel/core": "7.10.2",

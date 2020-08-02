@@ -1,14 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import FilmsList from "components/films-list/films-list.jsx";
-import GenresList from "components/genres-list/genres-list.jsx";
+import FilmsList from "@components/films-list/films-list.jsx";
+import GenresList from "@components/genres-list/genres-list.jsx";
 import {GENRES, Authorization} from "../../const.js";
-import withMovieScreen from "hocs/with-movie-screen.jsx";
-import {actionCreator as dataActionCreator} from "reducer/data/data.js";
-import {actionCreator as userActionCreator} from "reducer/user/user.js";
-import {getAllFilms, getFilteredFilms} from "reducer/data/selectors.js";
-import {uppercaseFirstLetter} from "helpers/helpers.js";
-import {getAuthorizationStatus, getUserData} from "reducer/user/selectors.js";
+import withMovieScreen from "@hocs/with-movie-screen.jsx";
+import {actionCreator as dataActionCreator} from "@reducer/data/data.js";
+import {actionCreator as userActionCreator} from "@reducer/user/user.js";
+import {getAllFilms, getFilteredFilms} from "@reducer/data/selectors.js";
+import {uppercaseFirstLetter} from "@helpers/helpers.js";
+import {getAuthorizationStatus, getUserData} from "@reducer/user/selectors.js";
 import {connect} from "react-redux";
 
 const Main = (props) => {
@@ -28,7 +28,6 @@ const Main = (props) => {
     userData,
   } = props;
 
-  const {avatar} = userData;
   const {details, preview, title} = promo;
   const {time, cover, year, genre, bgPoster} = details;
 
@@ -52,7 +51,7 @@ const Main = (props) => {
 
           <div className="user-block">
             {authorizationStatus === Authorization.AUTH ?
-              <div className="user-block__avatar"><img src={`https://4.react.pages.academy${avatar}`} alt="User avatar" width="63" height="63" /></div>
+              <div className="user-block__avatar"><img src={`https://4.react.pages.academy${userData.avatar}`} alt="User avatar" width="63" height="63" /></div>
               : <a href="#" onClick={startAuthorizationHandler} className="user-block__link">Sign in</a>}
           </div>
         </header>
@@ -128,6 +127,7 @@ Main.propTypes = {
     name: PropTypes.string,
     avatar: PropTypes.string,
   }),
+  startAuthorizationHandler: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   isShowingScreen: PropTypes.bool.isRequired,
   renderMovieScreen: PropTypes.func.isRequired,

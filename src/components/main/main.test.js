@@ -111,6 +111,9 @@ describe(`Test Main`, () => {
           onHeaderClickHandler={() => {}}
           films={FILMS}
           allFilms={FILMS}
+          userData={{}}
+          startAuthorizationHandler={() => {}}
+          authorizationStatus={`NO_AUTH`}
         />
     ).toJSON();
 

@@ -1,16 +1,16 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {Route, Switch, BrowserRouter} from "react-router-dom";
-import Main from "components/main/main.jsx";
-import SignIn from "components/sign-in/sign-in.jsx";
-import DetailedMovieInfo from "components/detailed-movie-info/detailed-movie-info.jsx";
-import {actionCreator as movieActionCreator} from "reducer/movie/movie.js";
-import {getMovieId} from "reducer/movie/selectors.js";
-import {getCurrentFilter} from "reducer/data/selectors.js";
-import {getAuthorizationStatus} from "reducer/user/selectors.js";
-import {Operation as UserOperation} from "reducer/user/user.js";
+import Main from "@components/main/main.jsx";
+import SignIn from "@components/sign-in/sign-in.jsx";
+import DetailedMovieInfo from "@components/detailed-movie-info/detailed-movie-info.jsx";
+import {actionCreator as movieActionCreator} from "@reducer/movie/movie.js";
+import {getMovieId} from "@reducer/movie/selectors.js";
+import {getCurrentFilter} from "@reducer/data/selectors.js";
+import {getAuthorizationStatus} from "@reducer/user/selectors.js";
+import {Operation as UserOperation} from "@reducer/user/user.js";
 import {connect} from "react-redux";
-import {getSigningInStatus} from "reducer/user/selectors";
+import {getSigningInStatus} from "@reducer/user/selectors";
 
 class App extends PureComponent {
   constructor(props) {

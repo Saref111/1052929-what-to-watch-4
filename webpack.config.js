@@ -26,10 +26,10 @@ module.exports = {
   resolve: {
     extensions: [`.js`, `.jsx`],
     alias: {
-      'components': path.resolve(__dirname, `src/components`),
-      'hocs': path.resolve(__dirname, `src/hocs`),
-      'helpers': path.resolve(__dirname, `src/helpers`),
-      'reducer': path.resolve(__dirname, `src/reducer`),
+      '@components': path.resolve(__dirname, `src/components`),
+      '@hocs': path.resolve(__dirname, `src/hocs`),
+      '@helpers': path.resolve(__dirname, `src/helpers`),
+      '@reducer': path.resolve(__dirname, `src/reducer`),
     },
   },
   devtool: `source-map`,

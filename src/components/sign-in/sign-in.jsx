@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {getValidityStatus, getIsWrongStatus, getUserData} from "reducer/user/selectors";
-import {actionCreator, Operation} from "reducer/user/user.js";
-import { connect } from "react-redux";
+import {getValidityStatus, getIsWrongStatus, getUserData} from "@reducer/user/selectors";
+import {actionCreator, Operation} from "@reducer/user/user.js";
+import {connect} from "react-redux";
 
 class SignIn extends React.PureComponent {
   constructor(props) {
