@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {getValidityStatus, getIsWrongStatus} from "reducer/user/selectors";
-import {actionCreator} from "reducer/user/user.js";
+import {getValidityStatus, getIsWrongStatus, getUserData} from "reducer/user/selectors";
+import {actionCreator, Operation} from "reducer/user/user.js";
 import { connect } from "react-redux";
 
 class SignIn extends React.PureComponent {
@@ -28,7 +28,8 @@ class SignIn extends React.PureComponent {
     const password = this.passwordRef.current.value;
 
     if (this._validateFormData(login)) {
-      submitAuthFormHandler({login, password});
+      setValidity(true);
+      submitAuthFormHandler({email: login, password});
     } else {
       setValidity(false);
     }
@@ -89,10 +90,19 @@ SignIn.propTypes = {
 const mapStateToProps = (state) => ({
   isValid: getValidityStatus(state),
   isWrong: getIsWrongStatus(state),
+  userData: getUserData(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  cancelAuthorizationHandler() {}
+  cancelAuthorizationHandler() {
+    dispatch(actionCreator.setSigningInStatus(false));
+  },
+  setValidity(status) {
+    dispatch(actionCreator.setValidityStatus(status));
+  },
+  submitAuthFormHandler(data) {
+    dispatch(Operation.login(data));
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

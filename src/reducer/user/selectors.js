@@ -16,3 +16,7 @@ export const getSigningInStatus = (state) => {
   return state[NameSpace.USER].isSigningIn;
 };
 
+export const getUserData = (state) => {
+  return state[NameSpace.USER].userData;
+};
+

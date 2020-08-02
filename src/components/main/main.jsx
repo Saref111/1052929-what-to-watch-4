@@ -1,13 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import FilmsList from "../films-list/films-list.jsx";
-import GenresList from "../genres-list/genres-list.jsx";
+import FilmsList from "components/films-list/films-list.jsx";
+import GenresList from "components/genres-list/genres-list.jsx";
 import {GENRES, Authorization} from "../../const.js";
-import withMovieScreen from "../../hocs/with-movie-screen.jsx";
-import {actionCreator as dataActionCreator} from "../../reducer/data/data.js";
-import {getAllFilms, getFilteredFilms} from "../../reducer/data/selectors.js";
-import {uppercaseFirstLetter} from "../../helpers/helpers.js";
-import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
+import withMovieScreen from "hocs/with-movie-screen.jsx";
+import {actionCreator as dataActionCreator} from "reducer/data/data.js";
+import {actionCreator as userActionCreator} from "reducer/user/user.js";
+import {getAllFilms, getFilteredFilms} from "reducer/data/selectors.js";
+import {uppercaseFirstLetter} from "helpers/helpers.js";
+import {getAuthorizationStatus, getUserData} from "reducer/user/selectors.js";
 import {connect} from "react-redux";
 
 const Main = (props) => {
@@ -23,8 +24,11 @@ const Main = (props) => {
     toggleMovieScreenHandler,
     renderMovieScreen,
     authorizationStatus,
+    startAuthorizationHandler,
+    userData,
   } = props;
 
+  const {avatar} = userData;
   const {details, preview, title} = promo;
   const {time, cover, year, genre, bgPoster} = details;
 
@@ -48,8 +52,8 @@ const Main = (props) => {
 
           <div className="user-block">
             {authorizationStatus === Authorization.AUTH ?
-              <div className="user-block__avatar"><img src="img/avatar.jpg" alt="User avatar" width="63" height="63" /></div>
-              : <a href="sign-in.html" className="user-block__link">Sign in</a>}
+              <div className="user-block__avatar"><img src={`https://4.react.pages.academy${avatar}`} alt="User avatar" width="63" height="63" /></div>
+              : <a href="#" onClick={startAuthorizationHandler} className="user-block__link">Sign in</a>}
           </div>
         </header>
 
@@ -118,6 +122,12 @@ const Main = (props) => {
 
 
 Main.propTypes = {
+  userData: PropTypes.shape({
+    id: PropTypes.number,
+    email: PropTypes.string,
+    name: PropTypes.string,
+    avatar: PropTypes.string,
+  }),
   authorizationStatus: PropTypes.string.isRequired,
   isShowingScreen: PropTypes.bool.isRequired,
   renderMovieScreen: PropTypes.func.isRequired,
@@ -145,6 +155,7 @@ const mapStateToProps = (state) => {
     allFilms: getAllFilms(state),
     films: getFilteredFilms(state),
     authorizationStatus: getAuthorizationStatus(state),
+    userData: getUserData(state),
   };
 };
 
@@ -154,6 +165,9 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(dataActionCreator.changeFilter(filter));
       dispatch(dataActionCreator.getFilmsByType(films, filter));
     },
+    startAuthorizationHandler() {
+      dispatch(userActionCreator.setSigningInStatus(true));
+    }
   };
 };
 
