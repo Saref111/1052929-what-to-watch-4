@@ -72,7 +72,13 @@ const Operation = {
     }).catch((err) => {
       throw err;
     });
-  }
+  },
+
+  sendReview: (data, id) => (dispatch, getState, api) => {
+    return api.post(`/comments/${id}`, data).then((resp) => {
+      // console.log(resp);
+    });
+  },
 };
 
 const reducer = (state = initialState, action) => {

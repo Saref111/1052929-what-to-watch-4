@@ -1,25 +1,47 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {connect} from "redux";
+import {getMovieId} from "@reducer/movie/selectors.js";
+import {getAllFilms} from "@reducer/data/selectors.js";
+import {getUserData} from "@reducer/user/selectors.js";
+import {Operation as userOperation} from "@reducer/user/user.js";
+import {connect} from "react-redux";
 
 const NewReviewPage = (props) => {
-  const {userData, movie, sendNewReview} = props;
+  const {userData, movieID, allFilms, sendNewReview} = props;
+  if (allFilms.length < 1) {
+    return ``;
+  }
+
+  const currentMovie = allFilms.find(({id}) => {
+    return id === movieID;
+  });
+
+  const {src, details} = currentMovie;
 
   const formRef = React.createRef();
 
   const checkValidity = (data) => {
+    if (!data) {
+      return false;
+    }
     return data.length >= 50 && data.length <= 400;
-  }
+  };
 
   const submitFormHandler = (evt) => {
-    evt.preventDefault(); // disable form
+    evt.preventDefault();
+
     const reviewText = new FormData(formRef.current).get(`review-text`);
     const reviewStars = new FormData(formRef.current).get(`rating`);
 
 
     if (checkValidity(reviewText)) {
-      sendNewReview();
-      //enable form
+      formRef.current.querySelectorAll(`form input, form select, form textarea, form button`)
+        .forEach((it) => it.setAttribute(`disabled`, `disabled`));
+
+      sendNewReview({comment: reviewText, rating: reviewStars}, movieID).then(() => {
+        formRef.current.querySelectorAll(`form input, form select, form textarea, form button`)
+        .forEach((it) => it.removeAttribute(`disabled`));
+      });
     }
   };
 
@@ -54,7 +76,7 @@ const NewReviewPage = (props) => {
 
           <div className="user-block">
             <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+              <img src={`https://4.react.pages.academy${userData.avatar}`} alt="User avatar" width="63" height="63" />
             </div>
           </div>
         </header>
@@ -99,6 +121,38 @@ const NewReviewPage = (props) => {
   );
 };
 
+NewReviewPage.propTypes = {
+  userData: PropTypes.shape({
+    id: PropTypes.number,
+    email: PropTypes.string,
+    name: PropTypes.string,
+    avatar: PropTypes.string,
+  }),
+  allFilms: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    src: PropTypes.string.isRequired,
+    details: PropTypes.object.isRequired,
+  })).isRequired,
+  sendNewReview: PropTypes.func.isRequired,
+  movieID: PropTypes.number.isRequired,
+};
 
-export default NewReviewPage;
+const mapStateToProps = (state) => {
+  return {
+    movieID: getMovieId(state),
+    allFilms: getAllFilms(state),
+    userData: getUserData(state),
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    sendNewReview(data, id) {
+      return dispatch(userOperation.sendReview(data, id));
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewReviewPage);
 
