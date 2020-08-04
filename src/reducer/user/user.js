@@ -75,7 +75,7 @@ const Operation = {
   },
 
   sendReview: (data, id) => (dispatch, getState, api) => {
-    return api.post(`/comments/${id}`, data).then((resp) => {
+    return api.post(`/comments/${id}`, data).then(() => {
       // console.log(resp);
     });
   },

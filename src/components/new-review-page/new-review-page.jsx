@@ -16,7 +16,7 @@ const NewReviewPage = (props) => {
     return id === movieID;
   });
 
-  const {src, details} = currentMovie;
+  const {src, title} = currentMovie;
 
   const formRef = React.createRef();
 
@@ -49,7 +49,7 @@ const NewReviewPage = (props) => {
     <section className="movie-card movie-card--full">
       <div className="movie-card__header">
         <div className="movie-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <img src={src} alt={title} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -66,7 +66,7 @@ const NewReviewPage = (props) => {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <a href="movie-page.html" className="breadcrumbs__link">The Grand Budapest Hotel</a>
+                <a href="movie-page.html" className="breadcrumbs__link">{title}</a>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>
@@ -154,5 +154,6 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
+export {NewReviewPage};
 export default connect(mapStateToProps, mapDispatchToProps)(NewReviewPage);
 
