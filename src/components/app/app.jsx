@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import {Route, Switch, BrowserRouter} from "react-router-dom";
+import {Route, Switch, Router} from "react-router-dom";
 import Main from "@components/main/main.jsx";
 import SignIn from "@components/sign-in/sign-in.jsx";
 import DetailedMovieInfo from "@components/detailed-movie-info/detailed-movie-info.jsx";
@@ -12,8 +12,8 @@ import {Operation as UserOperation} from "@reducer/user/user.js";
 import {connect} from "react-redux";
 import {getSigningInStatus} from "@reducer/user/selectors";
 import history from "../../history.js";
-import NewReviewPage from "@components/new-review-page/new-review-page";
-import { Routes } from "../../const.js";
+// import NewReviewPage from "@components/new-review-page/new-review-page";
+import {Routes} from "../../const.js";
 
 class App extends PureComponent {
   constructor(props) {
@@ -54,10 +54,9 @@ class App extends PureComponent {
   }
 
   render() {
-    const {onHeaderClickHandler} = this.props;
 
     return (
-      <BrowserRouter
+      <Router
         history={history}
       >
         <Switch>
@@ -67,8 +66,11 @@ class App extends PureComponent {
           <Route exact path={Routes.LOGIN}>
             <SignIn/>
           </Route>
+          <Route exact path={Routes.FAVORITES}>
+            
+          </Route>
         </Switch>
-      </BrowserRouter>
+      </Router>
     );
   }
 }
