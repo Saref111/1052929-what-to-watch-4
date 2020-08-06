@@ -13,6 +13,7 @@ import {connect} from "react-redux";
 import {getSigningInStatus} from "@reducer/user/selectors";
 import history from "../../history.js";
 import NewReviewPage from "@components/new-review-page/new-review-page";
+import { Routes } from "../../const.js";
 
 class App extends PureComponent {
   constructor(props) {
@@ -60,10 +61,11 @@ class App extends PureComponent {
         history={history}
       >
         <Switch>
-          <Route exact path="/">
+          <Route exact path={Routes.ROOT}>
             {this._renderApp()}
           </Route>
-          <Route exact path="/">
+          <Route exact path={Routes.LOGIN}>
+            <SignIn/>
           </Route>
         </Switch>
       </BrowserRouter>

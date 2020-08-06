@@ -30,4 +30,9 @@ const Authorization = {
   AUTH: `AUTH`,
 };
 
-export {GENRES, RATINGS, CARD_MENU, MONTHS, TABS, FILMS_COUNT, Authorization};
+const Routes = {
+  LOGIN: `/login`,
+  ROOT: `/`,
+}
+
+export {Routes, GENRES, RATINGS, CARD_MENU, MONTHS, TABS, FILMS_COUNT, Authorization};
