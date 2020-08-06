@@ -1,12 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import FilmsList from "../films-list/films-list.jsx";
-import GenresList from "../genres-list/genres-list.jsx";
-import {GENRES} from "../../const.js";
-import withMovieScreen from "../../hocs/with-movie-screen.jsx";
-import {actionCreator as dataActionCreator} from "../../reducer/data/data.js";
-import {getAllFilms, getFilteredFilms} from "../../reducer/data/selectors.js";
-import {uppercaseFirstLetter} from "../../helpers/helpers.js";
+import FilmsList from "@components/films-list/films-list.jsx";
+import GenresList from "@components/genres-list/genres-list.jsx";
+import {GENRES, Authorization} from "../../const.js";
+import withMovieScreen from "@hocs/with-movie-screen.jsx";
+import {actionCreator as dataActionCreator} from "@reducer/data/data.js";
+import {actionCreator as userActionCreator} from "@reducer/user/user.js";
+import {getAllFilms, getFilteredFilms} from "@reducer/data/selectors.js";
+import {uppercaseFirstLetter} from "@helpers/helpers.js";
+import {getAuthorizationStatus, getUserData} from "@reducer/user/selectors.js";
 import {connect} from "react-redux";
 
 const Main = (props) => {
@@ -20,7 +22,10 @@ const Main = (props) => {
     onFilterChangeHandler,
     isShowingScreen,
     toggleMovieScreenHandler,
-    renderMovieScreen
+    renderMovieScreen,
+    authorizationStatus,
+    startAuthorizationHandler,
+    userData,
   } = props;
 
   const {details, preview, title} = promo;
@@ -45,9 +50,9 @@ const Main = (props) => {
           </div>
 
           <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
+            {authorizationStatus === Authorization.AUTH ?
+              <div className="user-block__avatar"><img src={`https://4.react.pages.academy${userData.avatar}`} alt="User avatar" width="63" height="63" /></div>
+              : <a href="#" onClick={startAuthorizationHandler} className="user-block__link">Sign in</a>}
           </div>
         </header>
 
@@ -88,7 +93,7 @@ const Main = (props) => {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
           <GenresList
-            genresList={GENRES}
+            genresList={GENRES} // should get then from server
             currentGenre={filterGenre}
             onFilterChangeHandler={onFilterChangeHandler}
             allFilms={allFilms}
@@ -116,6 +121,14 @@ const Main = (props) => {
 
 
 Main.propTypes = {
+  userData: PropTypes.shape({
+    id: PropTypes.number,
+    email: PropTypes.string,
+    name: PropTypes.string,
+    avatar: PropTypes.string,
+  }),
+  startAuthorizationHandler: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
   isShowingScreen: PropTypes.bool.isRequired,
   renderMovieScreen: PropTypes.func.isRequired,
   toggleMovieScreenHandler: PropTypes.func.isRequired,
@@ -141,6 +154,8 @@ const mapStateToProps = (state) => {
   return {
     allFilms: getAllFilms(state),
     films: getFilteredFilms(state),
+    authorizationStatus: getAuthorizationStatus(state),
+    userData: getUserData(state),
   };
 };
 
@@ -150,6 +165,9 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(dataActionCreator.changeFilter(filter));
       dispatch(dataActionCreator.getFilmsByType(films, filter));
     },
+    startAuthorizationHandler() {
+      dispatch(userActionCreator.setSigningInStatus(true));
+    }
   };
 };
 

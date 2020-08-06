@@ -103,6 +103,8 @@ describe(`Main e2e test`, () => {
           onHeaderClickHandler={onHeaderClickHandler}
           films={FILMS}
           allFilms={FILMS}
+          startAuthorizationHandler={() => {}}
+          authorizationStatus={`NO_AUTH`}
         />
     );
 

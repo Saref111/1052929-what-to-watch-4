@@ -8,7 +8,7 @@ import thunk from "redux-thunk";
 import {createApi} from "./api.js";
 import {Authorization} from "./const.js";
 import {Operation as DataOperation} from "./reducer/data/data.js";
-import {Operation as UserOperation, actionCreator} from "./reducer/user/user.js";
+import {Operation as UserOperation, actionCreator as userActionCreator} from "./reducer/user/user.js";
 
 const MOCK_DATA = {
   id: 20,
@@ -28,7 +28,7 @@ const MOCK_DATA = {
 };
 
 const onUnauthorized = (store) => {
-  store.dispatch(actionCreator.requireAuthorization(Authorization.UN_AUTH));
+  store.dispatch(userActionCreator.requiredAuthorization(Authorization.NO_AUTH));
 };
 
 const api = createApi(() => {

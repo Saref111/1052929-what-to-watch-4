@@ -1,7 +1,7 @@
 import {extend} from "../../helpers/helpers.js";
 
 const initialState = {
-  movieID: -1,
+  movieID: 1,
 };
 
 const Actions = {

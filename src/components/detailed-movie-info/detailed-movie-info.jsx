@@ -1,19 +1,33 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Tabs from "../tabs/tabs.jsx";
-import TabsNav from "../tabs-nav/tabs-nav.jsx";
-import SameGenreMovies from "../same-genre-movies/same-genre-movies.jsx";
-import withPageId from "../../hocs/with-page-id.jsx";
-import withMovieScreen from "../../hocs/with-movie-screen.jsx";
+import Tabs from "@components/tabs/tabs.jsx";
+import TabsNav from "@components/tabs-nav/tabs-nav.jsx";
+import SameGenreMovies from "@components/same-genre-movies/same-genre-movies.jsx";
+import withPageId from "@hocs/with-page-id.jsx";
+import withMovieScreen from "@hocs/with-movie-screen.jsx";
 import {connect} from "react-redux";
-import {getAllFilms} from "../../reducer/data/selectors.js";
+import {getAllFilms} from "@reducer/data/selectors.js";
+import {Authorization} from "../../const.js";
+import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
 
 
 const DetailedMovieInfo = (props) => {
-  const {films, page, handleClick, isShowingScreen, toggleMovieScreenHandler, renderMovieScreen, movieID, onHeaderClickHandler} = props;
+  const {
+    films,
+    page,
+    handleClick,
+    isShowingScreen,
+    toggleMovieScreenHandler,
+    renderMovieScreen,
+    movieID,
+    onHeaderClickHandler,
+    authorizationStatus,
+  } = props;
+
   const movie = films.find((it) => {
     return it.id === movieID;
   });
+
   const {title, details, preview} = movie;
   const {bgPoster, cover, genre, year, time} = details;
 
@@ -65,7 +79,8 @@ const DetailedMovieInfo = (props) => {
                   </svg>
                   <span>My list</span>
                 </button>
-                <a href="add-review.html" className="btn movie-card__button">Add review</a>
+                {authorizationStatus === Authorization.AUTH ?
+                  <a href="add-review.html" className="btn movie-card__button">Add review</a> : ``}
               </div>
             </div>
           </div>
@@ -116,6 +131,7 @@ const DetailedMovieInfo = (props) => {
 
 
 DetailedMovieInfo.propTypes = {
+  authorizationStatus: PropTypes.string.isRequired,
   movieID: PropTypes.number.isRequired,
   renderMovieScreen: PropTypes.func.isRequired,
   toggleMovieScreenHandler: PropTypes.func.isRequired,
@@ -132,7 +148,10 @@ DetailedMovieInfo.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  return {films: getAllFilms(state)};
+  return {
+    films: getAllFilms(state),
+    authorizationStatus: getAuthorizationStatus(state),
+  };
 };
 
 export const DetailedMovieInfoTest = withMovieScreen(withPageId(DetailedMovieInfo));

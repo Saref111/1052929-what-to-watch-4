@@ -105,7 +105,8 @@ const store = mockStore({
   },
   USER: {
     authorizationStatus: `NO_AUTH`,
-    login: `111`
+    login: `111`,
+    isSigningIn: false
   }
 });
 
