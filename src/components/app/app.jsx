@@ -11,6 +11,7 @@ import {getAuthorizationStatus} from "@reducer/user/selectors.js";
 import {Operation as UserOperation} from "@reducer/user/user.js";
 import {connect} from "react-redux";
 import {getSigningInStatus} from "@reducer/user/selectors";
+import history from "../../history.js";
 import NewReviewPage from "@components/new-review-page/new-review-page";
 
 class App extends PureComponent {
@@ -55,16 +56,14 @@ class App extends PureComponent {
     const {onHeaderClickHandler} = this.props;
 
     return (
-      <BrowserRouter>
+      <BrowserRouter
+        history={history}
+      >
         <Switch>
           <Route exact path="/">
             {this._renderApp()}
           </Route>
-          <Route exact path="/dev-film">
-            <DetailedMovieInfo onHeaderClickHandler={onHeaderClickHandler}/>
-          </Route>
-          <Route exact path="/dev-review">
-            <NewReviewPage/>
+          <Route exact path="/">
           </Route>
         </Switch>
       </BrowserRouter>
