@@ -16,13 +16,13 @@ export const createApi = (onUnauthorized) => {
   const onFail = (err) => {
     const {response} = err;
 
-    if (response.status === Error.UNAUTHORIZED) {
+    if (response.status === Error.UNAUTHORIZED && response.config.url !== `/login`) {
       onUnauthorized();
 
-      throw err;
+      return err;
     }
 
-    throw err;
+    return err;
   };
 
   api.interceptors.response.use(onSuccess, onFail);

@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import {Route, Switch, Router} from "react-router-dom";
+import {Route, Switch, BrowserRouter} from "react-router-dom";
 import Main from "@components/main/main.jsx";
 import SignIn from "@components/sign-in/sign-in.jsx";
 import DetailedMovieInfo from "@components/detailed-movie-info/detailed-movie-info.jsx";
@@ -56,21 +56,19 @@ class App extends PureComponent {
   render() {
 
     return (
-      <Router
-        history={history}
-      >
+      <BrowserRouter>
         <Switch>
           <Route exact path={Routes.ROOT}>
             {this._renderApp()}
           </Route>
-          <Route exact path={Routes.LOGIN}>
-            <SignIn/>
-          </Route>
+          <Route exact path={Routes.LOGIN} render={(props) => {
+            return <SignIn {...props} />;
+          }} />
           <Route exact path={Routes.FAVORITES}>
-            
+
           </Route>
         </Switch>
-      </Router>
+      </BrowserRouter>
     );
   }
 }
