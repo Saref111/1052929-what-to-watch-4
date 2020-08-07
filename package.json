@@ -14,7 +14,7 @@
     "setupFiles": [
       "<rootDir>src/setupTests.js"
     ],
-    "moduleNameMapper" : {
+    "moduleNameMapper": {
       "^@components(.*)$": "<rootDir>/src/components$1",
       "^@reducer(.*)$": "<rootDir>/src/reducer$1",
       "^@hocs(.*)$": "<rootDir>/src/hocs$1",
@@ -45,6 +45,7 @@
   },
   "dependencies": {
     "axios": "0.19.2",
+    "history": "5.0.0",
     "prop-types": "15.7.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",

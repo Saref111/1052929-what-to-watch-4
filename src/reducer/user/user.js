@@ -54,11 +54,9 @@ const actionCreator = {
 const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
     return api.get(`/login`).then((res) => {
-      dispatch(actionCreator.setUserData(res.data));
-      dispatch(actionCreator.requiredAuthorization(Authorization.AUTH));
-    }).catch((err) => {
-      throw err;
-    });
+      dispatch(actionCreator.setUserData(res.data ? res.data : {}));
+      dispatch(actionCreator.requiredAuthorization(res.data ? Authorization.AUTH : Authorization.NO_AUTH));
+    }).catch((err) => err);
   },
 
   login: (authData) => (dispatch, getState, api) => {
