@@ -7,13 +7,14 @@ import withPageId from "@hocs/with-page-id.jsx";
 import withMovieScreen from "@hocs/with-movie-screen.jsx";
 import {connect} from "react-redux";
 import {getAllFilms} from "@reducer/data/selectors.js";
-import {Authorization} from "../../const.js";
+import {actionCreator as userActionCreator} from "@reducer/user/user.js";
+import {Authorization, Routes} from "../../const.js";
 import {getAuthorizationStatus} from "@reducer/user/selectors.js";
 import {getMovieId} from "@reducer/movie/selectors.js";
+import {Link} from "react-router-dom";
 
 
 const DetailedMovieInfo = (props) => {
-  console.log(props);
   if (props.films.length < 1) {
     return `LOADING`;
   }
@@ -27,9 +28,10 @@ const DetailedMovieInfo = (props) => {
     movieID,
     onHeaderClickHandler,
     authorizationStatus,
+    startAuthorizationHandler,
     match,
   } = props;
-  const {params} = match;
+  const {params, url} = match;
 
   const movie = films.find((it) => {
     return String(it.id) === params.id;
@@ -38,7 +40,7 @@ const DetailedMovieInfo = (props) => {
   const {title, details, preview} = movie;
   const {bgPoster, cover, genre, year, time} = details;
 
-  return (isShowingScreen ?
+  return (isShowingScreen || url.endsWith(`player`) ?
     renderMovieScreen(time, cover, preview) :
     <React.Fragment>
       <section className="movie-card movie-card--full">
@@ -51,17 +53,19 @@ const DetailedMovieInfo = (props) => {
 
           <header className="page-header movie-card__head">
             <div className="logo">
-              <a href="main.html" className="logo__link">
+              <Link to={Routes.ROOT} onClick={() => {
+                onHeaderClickHandler(-1);
+              }} href="" className="logo__link">
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
-              </a>
+              </Link>
             </div>
 
             <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
+              {authorizationStatus === Authorization.AUTH ?
+                <div className="user-block__avatar"><Link to={Routes.FAVORITES} onClick={renderFavoritesHandler}><img src={`https://4.react.pages.academy${userData.avatar}`} alt="User avatar" width="63" height="63" /></Link></div>
+                : <Link to={Routes.LOGIN} href="#" onClick={startAuthorizationHandler} className="user-block__link">Sign in</Link>}
             </div>
           </header>
 
@@ -74,12 +78,12 @@ const DetailedMovieInfo = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button onClick={toggleMovieScreenHandler} className="btn btn--play movie-card__button" type="button">
+                <Link to={Routes.PLAYER.replace(`:id`, String(params.id))} onClick={toggleMovieScreenHandler} className="btn btn--play movie-card__button" type="button">
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
-                </button>
+                </Link>
                 <button className="btn btn--list movie-card__button" type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
@@ -138,6 +142,7 @@ const DetailedMovieInfo = (props) => {
 
 
 DetailedMovieInfo.propTypes = {
+  startAuthorizationHandler: PropTypes.func.isRequired,
   match: PropTypes.shape({
     params: PropTypes.object.isRequired,
   }),
@@ -165,5 +170,13 @@ const mapStateToProps = (state) => {
   };
 };
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    startAuthorizationHandler() {
+      dispatch(userActionCreator.setSigningInStatus(true));
+    }
+  };
+};
+
 export const DetailedMovieInfoTest = withMovieScreen(withPageId(DetailedMovieInfo));
-export default connect(mapStateToProps)(withMovieScreen(withPageId(DetailedMovieInfo)));
+export default connect(mapStateToProps, mapDispatchToProps)(withMovieScreen(withPageId(DetailedMovieInfo)));

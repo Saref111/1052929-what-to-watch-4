@@ -12,8 +12,12 @@ import {Operation as UserOperation} from "@reducer/user/user.js";
 import {connect} from "react-redux";
 import {getSigningInStatus} from "@reducer/user/selectors";
 import history from "../../history.js";
+import MovieScreen from "@components/movie-screen/movie-screen.jsx";
+import withMovieScreen from "../../hocs/with-movie-screen.jsx";
 // import NewReviewPage from "@components/new-review-page/new-review-page";
 import {Routes} from "../../const.js";
+
+const WrapperScreen = withMovieScreen(MovieScreen);
 
 class App extends PureComponent {
   constructor(props) {
@@ -31,16 +35,14 @@ class App extends PureComponent {
       // isSigningIn,
     } = this.props;
 
-    if (movieID < 0) {
-      return (
-        <Main
-          promo={promo}
+    return (
+      <Main
+        promo={promo}
 
-          onHeaderClickHandler={onHeaderClickHandler}
-          filterGenre={filterGenre}
-        />
-      );
-    }
+        onHeaderClickHandler={onHeaderClickHandler}
+        filterGenre={filterGenre}
+      />
+    );
   }
 
   render() {
@@ -58,15 +60,11 @@ class App extends PureComponent {
           <Route exact path={Routes.MOVIE} render={(props) => {
             return <DetailedMovieInfo {...props} onHeaderClickHandler={onHeaderClickHandler}/>;
           }}/>
-          <Route exact path={Routes.FAVORITES}>
-
-          </Route>
-          <Route exact path={Routes.REVIEW}>
-
-          </Route>
-          <Route exact path={Routes.PLAYER}>
-
-          </Route>
+          <Route exact path={Routes.FAVORITES}/>
+          <Route exact path={Routes.REVIEW}/>
+          <Route exact path={Routes.PLAYER} render={(props) => {
+            return <DetailedMovieInfo {...props} onHeaderClickHandler={onHeaderClickHandler}/>;
+          }}/>
         </Switch>
       </BrowserRouter>
     );
