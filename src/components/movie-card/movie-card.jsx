@@ -1,7 +1,9 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import VideoPlayer from "../video-player/video-player.jsx";
-import withHovered from "../../hocs/with-hovered.jsx";
+import VideoPlayer from "@components/video-player/video-player.jsx";
+import withHovered from "@hocs/with-hovered.jsx";
+import {Link} from "react-router-dom";
+import {Routes} from "../../const.js";
 
 class MovieCard extends PureComponent {
   constructor(props) {
@@ -10,15 +12,13 @@ class MovieCard extends PureComponent {
     this._onHeaderClickHandler = this._onHeaderClickHandler.bind(this);
   }
 
-  _onHeaderClickHandler(evt) {
-    evt.preventDefault();
-
+  _onHeaderClickHandler() {
     this.props.onHeaderClickHandler(this.props.movie.id);
   }
 
   render() {
     const {movie, isVideo, handleMouseOut, onCardHoverHandler} = this.props;
-    const {preview, title, src, details} = movie;
+    const {preview, title, src, details, id} = movie;
     const {cover} = details;
 
     return (
@@ -38,7 +38,12 @@ class MovieCard extends PureComponent {
           }
         </div>
         <h3 className="small-movie-card__title">
-          <a onClick={this._onHeaderClickHandler} className="small-movie-card__link" href="movie-page.html">{`${title}`}</a>
+          <Link
+            to={Routes.MOVIE.replace(`:id`, String(id))}
+            href=""
+            onClick={this._onHeaderClickHandler}
+            className="small-movie-card__link" >{`${title}`}
+          </Link>
         </h3>
       </article>
     );

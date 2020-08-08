@@ -8,10 +8,15 @@ import withMovieScreen from "@hocs/with-movie-screen.jsx";
 import {connect} from "react-redux";
 import {getAllFilms} from "@reducer/data/selectors.js";
 import {Authorization} from "../../const.js";
-import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
+import {getAuthorizationStatus} from "@reducer/user/selectors.js";
+import {getMovieId} from "@reducer/movie/selectors.js";
 
 
 const DetailedMovieInfo = (props) => {
+  console.log(props);
+  if (props.films.length < 1) {
+    return `LOADING`;
+  }
   const {
     films,
     page,
@@ -22,10 +27,12 @@ const DetailedMovieInfo = (props) => {
     movieID,
     onHeaderClickHandler,
     authorizationStatus,
+    match,
   } = props;
+  const {params} = match;
 
   const movie = films.find((it) => {
-    return it.id === movieID;
+    return String(it.id) === params.id;
   });
 
   const {title, details, preview} = movie;
@@ -131,6 +138,9 @@ const DetailedMovieInfo = (props) => {
 
 
 DetailedMovieInfo.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.object.isRequired,
+  }),
   authorizationStatus: PropTypes.string.isRequired,
   movieID: PropTypes.number.isRequired,
   renderMovieScreen: PropTypes.func.isRequired,
@@ -151,6 +161,7 @@ const mapStateToProps = (state) => {
   return {
     films: getAllFilms(state),
     authorizationStatus: getAuthorizationStatus(state),
+    movieID: getMovieId(state),
   };
 };
 

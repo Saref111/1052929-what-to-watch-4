@@ -62,6 +62,7 @@ const filterMovies = (films, genre) => {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case Actions.LOAD_FILMS:
+      console.log(action.payload);
       return extend(state, {
         allFilms: action.payload,
       });

@@ -40,16 +40,11 @@ class App extends PureComponent {
           filterGenre={filterGenre}
         />
       );
-    } else {
-      return (
-        <DetailedMovieInfo movieID={movieID} onHeaderClickHandler={onHeaderClickHandler}/>
-      );
     }
-
-
   }
 
   render() {
+    const {onHeaderClickHandler} = this.props;
 
     return (
       <BrowserRouter>
@@ -60,7 +55,16 @@ class App extends PureComponent {
           <Route exact path={Routes.LOGIN} render={(props) => {
             return <SignIn {...props} />;
           }} />
+          <Route exact path={Routes.MOVIE} render={(props) => {
+            return <DetailedMovieInfo {...props} onHeaderClickHandler={onHeaderClickHandler}/>;
+          }}/>
           <Route exact path={Routes.FAVORITES}>
+
+          </Route>
+          <Route exact path={Routes.REVIEW}>
+
+          </Route>
+          <Route exact path={Routes.PLAYER}>
 
           </Route>
         </Switch>

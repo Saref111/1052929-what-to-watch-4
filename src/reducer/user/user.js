@@ -38,7 +38,6 @@ const actionCreator = {
     };
   },
   setSigningInStatus(status) {
-    console.log(status);
     return {
       type: Actions.SET_IS_SIGNING_IN_STATUS,
       payload: status,
