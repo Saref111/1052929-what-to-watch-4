@@ -28,14 +28,10 @@ class App extends PureComponent {
       onHeaderClickHandler,
       // login,
       // authorizationStatus,
-      isSigningIn,
+      // isSigningIn,
     } = this.props;
 
-    if (isSigningIn) {
-      return (
-        <SignIn />
-      );
-    } else if (movieID < 0) {
+    if (movieID < 0) {
       return (
         <Main
           promo={promo}
@@ -80,7 +76,7 @@ App.propTypes = {
   onHeaderClickHandler: PropTypes.func.isRequired,
   movieID: PropTypes.number.isRequired,
   filterGenre: PropTypes.string.isRequired,
-  isSigningIn: PropTypes.bool.isRequired,
+  // isSigningIn: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => {

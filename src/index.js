@@ -28,6 +28,7 @@ const MOCK_DATA = {
 };
 
 const onUnauthorized = (store) => {
+  console.log(1);
   store.dispatch(userActionCreator.requiredAuthorization(Authorization.NO_AUTH));
   store.dispatch(userActionCreator.setSigningInStatus(true));
 };
