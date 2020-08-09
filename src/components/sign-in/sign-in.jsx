@@ -71,7 +71,7 @@ class SignIn extends React.PureComponent {
               </div>
             </div>
             <div className="sign-in__submit">
-              <button className="sign-in__btn" type="submit">Sign in</button>
+              <Link to={Routes.ROOT} className="sign-in__btn" type="submit">Sign in</Link>
             </div>
           </form>
         </div>

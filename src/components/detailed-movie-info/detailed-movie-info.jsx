@@ -10,7 +10,7 @@ import {getAllFilms, getComments} from "@reducer/data/selectors.js";
 import {actionCreator as userActionCreator} from "@reducer/user/user.js";
 import {Operation as dataOperation} from "@reducer/data/data.js";
 import {Authorization, Routes} from "../../const.js";
-import {getAuthorizationStatus} from "@reducer/user/selectors.js";
+import {getAuthorizationStatus, getUserData} from "@reducer/user/selectors.js";
 import {getMovieId} from "@reducer/movie/selectors.js";
 import {Link} from "react-router-dom";
 
@@ -34,6 +34,7 @@ const DetailedMovieInfo = (props) => {
     startAuthorizationHandler,
     match,
     comments,
+    userData,
   } = props;
   const {params, url} = match;
 
@@ -72,7 +73,11 @@ const DetailedMovieInfo = (props) => {
 
             <div className="user-block">
               {authorizationStatus === Authorization.AUTH ?
-                <div className="user-block__avatar"><Link to={Routes.FAVORITES} onClick={renderFavoritesHandler}><img src={`https://4.react.pages.academy${userData.avatar}`} alt="User avatar" width="63" height="63" /></Link></div>
+                <div className="user-block__avatar">
+                  <Link to={Routes.FAVORITES} onClick={() => {}}>
+                    <img src={`https://4.react.pages.academy${userData.avatar}`} alt="User avatar" width="63" height="63" />
+                  </Link>
+                </div>
                 : <Link to={Routes.LOGIN} href="#" onClick={startAuthorizationHandler} className="user-block__link">Sign in</Link>}
             </div>
           </header>
@@ -99,7 +104,7 @@ const DetailedMovieInfo = (props) => {
                   <span>My list</span>
                 </button>
                 {authorizationStatus === Authorization.AUTH ?
-                  <a href="add-review.html" className="btn movie-card__button">Add review</a> : ``}
+                  <Link to={Routes.REVIEW.replace(`:id`, String(params.id))} href="" className="btn movie-card__button">Add review</Link> : ``}
               </div>
             </div>
           </div>
@@ -177,6 +182,7 @@ const mapStateToProps = (state) => {
     authorizationStatus: getAuthorizationStatus(state),
     movieID: getMovieId(state),
     comments: getComments(state),
+    userData: getUserData(state),
   };
 };
 

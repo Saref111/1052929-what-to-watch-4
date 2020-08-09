@@ -4,7 +4,7 @@ import {formatDate, stringifyDate} from "../../helpers/helpers.js";
 
 const TabReviews = (props) => {
   const {comments} = props;
-  console.log(comments);
+
   return (
     <div className="movie-card__reviews movie-card__row">
       <div className="movie-card__reviews-col">

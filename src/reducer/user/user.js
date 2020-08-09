@@ -73,8 +73,8 @@ const Operation = {
   },
 
   sendReview: (data, id) => (dispatch, getState, api) => {
-    return api.post(`/comments/${id}`, data).then(() => {
-      // console.log(resp);
+    return api.post(`/comments/${id}`, data).catch((err) => {
+      throw err;
     });
   },
 };
