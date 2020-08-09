@@ -7,13 +7,21 @@ import {Operation as userOperation} from "@reducer/user/user.js";
 import {connect} from "react-redux";
 
 const NewReviewPage = (props) => {
-  const {userData, movieID, allFilms, sendNewReview} = props;
+  const {
+    userData,
+    movieID,
+    allFilms,
+    sendNewReview,
+    match,
+  } = props;
+  const {params} = match;
+
   if (allFilms.length < 1) {
     return ``;
   }
 
   const currentMovie = allFilms.find(({id}) => {
-    return id === movieID;
+    return String(id) === params.id;
   });
 
   const {src, title} = currentMovie;

@@ -14,7 +14,7 @@ import {getSigningInStatus} from "@reducer/user/selectors";
 import history from "../../history.js";
 import MovieScreen from "@components/movie-screen/movie-screen.jsx";
 import withMovieScreen from "../../hocs/with-movie-screen.jsx";
-// import NewReviewPage from "@components/new-review-page/new-review-page";
+import NewReviewPage from "@components/new-review-page/new-review-page";
 import {Routes} from "../../const.js";
 
 const WrapperScreen = withMovieScreen(MovieScreen);
@@ -61,10 +61,12 @@ class App extends PureComponent {
             return <DetailedMovieInfo {...props} onHeaderClickHandler={onHeaderClickHandler}/>;
           }}/>
           <Route exact path={Routes.FAVORITES}/>
-          <Route exact path={Routes.REVIEW}/>
+          <Route exact path={Routes.REVIEW} render={(props) => {
+            return <NewReviewPage {...props} />;
+          }} />
           <Route exact path={Routes.PLAYER} render={(props) => {
             return <DetailedMovieInfo {...props} onHeaderClickHandler={onHeaderClickHandler}/>;
-          }}/>
+          }} />
         </Switch>
       </BrowserRouter>
     );

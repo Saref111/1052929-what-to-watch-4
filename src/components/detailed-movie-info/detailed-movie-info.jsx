@@ -18,6 +18,7 @@ const DetailedMovieInfo = (props) => {
   if (props.films.length < 1) {
     return `LOADING`;
   }
+
   const {
     films,
     page,

@@ -21,9 +21,11 @@ const MovieScreen = (props) => {
     match,
   } = props;
   const {params} = match;
+
   const style = {
     left: currentPosition + `%`,
   };
+  
   const handle = useFullScreenHandle();
 
   return (
