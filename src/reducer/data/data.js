@@ -96,7 +96,7 @@ const Operation = {
     return api.get(`/favorite`).then((response) => {
       const {data} = response;
 
-      dispatch(actionCreator.loadFavorites(data));
+      dispatch(actionCreator.loadFavorites(filmsAdapter(data)));
     }).catch((err) => {
       throw err;
     });
