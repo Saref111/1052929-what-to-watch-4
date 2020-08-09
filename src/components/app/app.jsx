@@ -59,8 +59,10 @@ class App extends PureComponent {
           }} />
           <Route exact path={Routes.MOVIE} render={(props) => {
             return <DetailedMovieInfo {...props} onHeaderClickHandler={onHeaderClickHandler}/>;
-          }}/>
-          <Route exact path={Routes.FAVORITES}/>
+          }} />
+          <Route exact path={Routes.FAVORITES} render={(props) => {
+            return <FavoritesList {...props} />;
+          }} />
           <Route exact path={Routes.REVIEW} render={(props) => {
             return <NewReviewPage {...props} />;
           }} />

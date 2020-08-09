@@ -35,6 +35,7 @@ const DetailedMovieInfo = (props) => {
     match,
     comments,
     userData,
+    toggleFavorite
   } = props;
   const {params, url} = match;
 
@@ -46,7 +47,7 @@ const DetailedMovieInfo = (props) => {
     return String(it.id) === params.id;
   });
 
-  const {title, details, preview} = movie;
+  const {title, details, preview, isFavorite} = movie;
   const {bgPoster, cover, genre, year, time} = details;
 
   return (isShowingScreen || url.endsWith(`player`) ?
@@ -97,12 +98,22 @@ const DetailedMovieInfo = (props) => {
                   </svg>
                   <span>Play</span>
                 </Link>
-                <button className="btn btn--list movie-card__button" type="button">
+                {!isFavorite ? <button onClick={() => {
+                  toggleFavorite(params.id);
+                }} className="btn btn--list movie-card__button" type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
                   </svg>
                   <span>My list</span>
-                </button>
+                </button> :
+                  <button onClick={() => {
+                    toggleFavorite(params.id);
+                  }} className="btn btn--list movie-card__button" type="button">
+                    <svg viewBox="0 0 18 14" width="18" height="14">
+                      <use xlinkHref="#in-list"></use>
+                    </svg>
+                    <span>My list</span>
+                  </button>}
                 {authorizationStatus === Authorization.AUTH ?
                   <Link to={Routes.REVIEW.replace(`:id`, String(params.id))} href="" className="btn movie-card__button">Add review</Link> : ``}
               </div>
@@ -194,6 +205,10 @@ const mapDispatchToProps = (dispatch) => {
 
     loadComments(id) {
       dispatch(dataOperation.loadReviews(id));
+    },
+
+    toggleFavorite(id) {
+      dispatch(dataOperation.toggleFavorite(id));
     },
   };
 };

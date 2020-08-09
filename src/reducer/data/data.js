@@ -6,6 +6,7 @@ const initialState = {
   filterGenre: `All genres`,
   films: [],
   comments: null,
+  favorites: [],
 };
 
 const Actions = {
@@ -14,6 +15,7 @@ const Actions = {
   LOAD_FILMS: `LOAD_FILMS`,
   LOAD_COMMENTS: `LOAD_COMMENTS`,
   ADD_NEW_COMMENT: `ADD_NEW_COMMENT`,
+  LOAD_FAVORITES: `LOAD_FAVORITES`,
 };
 
 
@@ -45,6 +47,13 @@ const actionCreator = {
       payload: filterMovies(films, filter),
     };
   },
+
+  loadFavorites: (favorites) => {
+    return {
+      type: Actions.LOAD_FAVORITES,
+      payload: favorites,
+    };
+  },
 };
 
 const Operation = {
@@ -64,6 +73,26 @@ const Operation = {
       const {data} = response;
 
       dispatch(actionCreator.loadComments(data));
+    }).catch((err) => {
+      throw err;
+    });
+  },
+
+  toggleFavorite: (id) => (dispatch, getState, api) => {
+    const {DATA} = getState();
+    const {allFilms} = DATA;
+    const current = allFilms.find((it) => it.id === id);
+
+    return api.post(`/favorite/${id}/${!current.isFavorite}`).catch((err) => {
+      throw err;
+    });
+  },
+
+  loadFavorites: () => (dispatch, getState, api) => {
+    return api.get(`/favorite`).then((response) => {
+      const {data} = response;
+
+      dispatch(actionCreator.loadFavorites(data));
     }).catch((err) => {
       throw err;
     });
@@ -100,6 +129,11 @@ const reducer = (state = initialState, action) => {
     case Actions.LOAD_COMMENTS:
       return extend(state, {
         comments: action.payload,
+      });
+
+    case Actions.LOAD_FAVORITES:
+      return extend(state, {
+        favorites: action.payload,
       });
   }
 
