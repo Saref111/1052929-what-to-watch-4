@@ -60,10 +60,9 @@ const Operation = {
 
   loadReviews: (id) => (dispatch, getState, api) => {
     return api.get(`/comments/${id}`).then((response) => {
-      console.log(response);
       const {data} = response;
 
-      dispatch(actionCreator.loaComments(data));
+      dispatch(actionCreator.loadComments(data));
     }).catch((err) => {
       throw err;
     });
