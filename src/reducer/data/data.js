@@ -6,7 +6,7 @@ const initialState = {
   filterGenre: `All genres`,
   films: [],
   comments: null,
-  favorites: [],
+  favorites: null,
 };
 
 const Actions = {
@@ -81,9 +81,13 @@ const Operation = {
   toggleFavorite: (id) => (dispatch, getState, api) => {
     const {DATA} = getState();
     const {allFilms} = DATA;
-    const current = allFilms.find((it) => it.id === id);
+    const current = allFilms.find((it) => String(it.id) === String(id));
 
-    return api.post(`/favorite/${id}/${!current.isFavorite}`).catch((err) => {
+    return api.post(`/favorite/${id}/${current.isFavorite ? 0 : 1}`).then(() => {
+      current.isFavorite = !current.isFavorite;
+      dispatch(actionCreator.loadFavorites(allFilms.slice().filter((it) => it.isFavorite)));
+      dispatch(actionCreator.loadFilms(allFilms.slice()));
+    }).catch((err) => {
       throw err;
     });
   },

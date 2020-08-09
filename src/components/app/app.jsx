@@ -11,13 +11,9 @@ import {getAuthorizationStatus} from "@reducer/user/selectors.js";
 import {Operation as UserOperation} from "@reducer/user/user.js";
 import {connect} from "react-redux";
 import {getSigningInStatus} from "@reducer/user/selectors";
-import history from "../../history.js";
-import MovieScreen from "@components/movie-screen/movie-screen.jsx";
-import withMovieScreen from "../../hocs/with-movie-screen.jsx";
-import NewReviewPage from "@components/new-review-page/new-review-page";
+import NewReviewPage from "@components/new-review-page/new-review-page.jsx";
+import FavoritesList from "@components/favorites-list/favorites-list.jsx";
 import {Routes} from "../../const.js";
-
-const WrapperScreen = withMovieScreen(MovieScreen);
 
 class App extends PureComponent {
   constructor(props) {
@@ -27,12 +23,8 @@ class App extends PureComponent {
   _renderApp() {
     const {
       promo,
-      movieID,
       filterGenre,
       onHeaderClickHandler,
-      // login,
-      // authorizationStatus,
-      // isSigningIn,
     } = this.props;
 
     return (
@@ -61,7 +53,7 @@ class App extends PureComponent {
             return <DetailedMovieInfo {...props} onHeaderClickHandler={onHeaderClickHandler}/>;
           }} />
           <Route exact path={Routes.FAVORITES} render={(props) => {
-            return <FavoritesList {...props} />;
+            return <FavoritesList {...props} onHeaderClickHandler={onHeaderClickHandler}/>;
           }} />
           <Route exact path={Routes.REVIEW} render={(props) => {
             return <NewReviewPage {...props} />;

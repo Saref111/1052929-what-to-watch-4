@@ -23,3 +23,7 @@ export const getFilteredFilms = createSelector(
 export const getComments = (state) => {
   return state[NameSpace.DATA].comments;
 };
+
+export const getFavorites = (state) => {
+  return state[NameSpace.DATA].favorites;
+};

@@ -26,7 +26,6 @@ const Main = (props) => {
     renderMovieScreen,
     authorizationStatus,
     startAuthorizationHandler,
-    renderFavoritesHandler,
     userData,
   } = props;
 
@@ -53,7 +52,7 @@ const Main = (props) => {
 
           <div className="user-block">
             {authorizationStatus === Authorization.AUTH ?
-              <div className="user-block__avatar"><Link to={Routes.FAVORITES} onClick={renderFavoritesHandler}><img src={`https://4.react.pages.academy${userData.avatar}`} alt="User avatar" width="63" height="63" /></Link></div>
+              <div className="user-block__avatar"><Link to={Routes.FAVORITES}><img src={`https://4.react.pages.academy${userData.avatar}`} alt="User avatar" width="63" height="63" /></Link></div>
               : <Link to={Routes.LOGIN} href="#" onClick={startAuthorizationHandler} className="user-block__link">Sign in</Link>}
           </div>
         </header>
