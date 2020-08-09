@@ -6,8 +6,9 @@ import SameGenreMovies from "@components/same-genre-movies/same-genre-movies.jsx
 import withPageId from "@hocs/with-page-id.jsx";
 import withMovieScreen from "@hocs/with-movie-screen.jsx";
 import {connect} from "react-redux";
-import {getAllFilms} from "@reducer/data/selectors.js";
+import {getAllFilms, getComments} from "@reducer/data/selectors.js";
 import {actionCreator as userActionCreator} from "@reducer/user/user.js";
+import {Operation as dataOperation} from "@reducer/data/data.js";
 import {Authorization, Routes} from "../../const.js";
 import {getAuthorizationStatus} from "@reducer/user/selectors.js";
 import {getMovieId} from "@reducer/movie/selectors.js";
@@ -27,12 +28,18 @@ const DetailedMovieInfo = (props) => {
     toggleMovieScreenHandler,
     renderMovieScreen,
     movieID,
+    loadComments,
     onHeaderClickHandler,
     authorizationStatus,
     startAuthorizationHandler,
     match,
+    comments,
   } = props;
   const {params, url} = match;
+
+  if (!comments || comments.length < 1) {
+    loadComments(Number(params.id));
+  }
 
   const movie = films.find((it) => {
     return String(it.id) === params.id;
@@ -111,6 +118,7 @@ const DetailedMovieInfo = (props) => {
               <Tabs
                 page={page}
                 info={details}
+                comments={comments}
               />
             </div>
           </div>
@@ -118,7 +126,7 @@ const DetailedMovieInfo = (props) => {
       </section>
       <div className="page-content">
         <SameGenreMovies
-          currentID={movieID}
+          currentID={movieID !== -1 ? movieID : Number(params.id)}
           onHeaderClickHandler={onHeaderClickHandler}
           genre={genre}
           films={films}
@@ -168,6 +176,7 @@ const mapStateToProps = (state) => {
     films: getAllFilms(state),
     authorizationStatus: getAuthorizationStatus(state),
     movieID: getMovieId(state),
+    comments: getComments(state),
   };
 };
 
@@ -175,7 +184,11 @@ const mapDispatchToProps = (dispatch) => {
   return {
     startAuthorizationHandler() {
       dispatch(userActionCreator.setSigningInStatus(true));
-    }
+    },
+
+    loadComments(id) {
+      dispatch(dataOperation.loadReviews(id));
+    },
   };
 };
 

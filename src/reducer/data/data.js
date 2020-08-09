@@ -5,16 +5,25 @@ const initialState = {
   allFilms: [],
   filterGenre: `All genres`,
   films: [],
+  comments: null,
 };
 
 const Actions = {
   CHANGE_FILTER: `CHANGE_FILTER`,
   GET_FILMS_BY_GENRE: `GET_FILMS_BY_GENRE`,
   LOAD_FILMS: `LOAD_FILMS`,
+  LOAD_COMMENTS: `LOAD_COMMENTS`,
 };
 
 
 const actionCreator = {
+  loadComments: (comments) => {
+    return {
+      type: Actions.LOAD_COMMENTS,
+      payload: comments,
+    };
+  },
+
   loadFilms: (films) => {
     return {
       type: Actions.LOAD_FILMS,
@@ -41,8 +50,20 @@ const Operation = {
   loadFilms: () => (dispatch, getState, api) => {
     return api.get(`/films`).then((response) => {
       const films = filmsAdapter(response.data);
+
       dispatch(actionCreator.loadFilms(films));
       dispatch(actionCreator.getFilmsByType(films, `All genres`));
+    }).catch((err) => {
+      throw err;
+    });
+  },
+
+  loadReviews: (id) => (dispatch, getState, api) => {
+    return api.get(`/comments/${id}`).then((response) => {
+      console.log(response);
+      const {data} = response;
+
+      dispatch(actionCreator.loaComments(data));
     }).catch((err) => {
       throw err;
     });
@@ -62,7 +83,6 @@ const filterMovies = (films, genre) => {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case Actions.LOAD_FILMS:
-      console.log(action.payload);
       return extend(state, {
         allFilms: action.payload,
       });
@@ -75,6 +95,11 @@ const reducer = (state = initialState, action) => {
     case Actions.GET_FILMS_BY_GENRE:
       return extend(state, {
         films: action.payload
+      });
+
+    case Actions.LOAD_COMMENTS:
+      return extend(state, {
+        comments: action.payload,
       });
   }
 
