@@ -37,6 +37,6 @@ const Routes = {
   MOVIE: `/films/:id`,
   REVIEW: `/films/:id/review`,
   PLAYER: `/films/:id/player`,
-}
+};
 
 export {Routes, GENRES, RATINGS, CARD_MENU, MONTHS, TABS, FILMS_COUNT, Authorization};
