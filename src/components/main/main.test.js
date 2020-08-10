@@ -116,6 +116,7 @@ describe(`Test Main`, () => {
         userData={{}}
         startAuthorizationHandler={() => {}}
         authorizationStatus={`NO_AUTH`}
+        toggleFavorite={() => {}}
       />;
     }}/></BrowserRouter>).toJSON();
 

@@ -105,6 +105,10 @@ describe(`Main e2e test`, () => {
           allFilms={FILMS}
           startAuthorizationHandler={() => {}}
           authorizationStatus={`NO_AUTH`}
+          toggleFavorite={() => {}}
+          history={{
+            push() {}
+          }}
         />
     );
 
