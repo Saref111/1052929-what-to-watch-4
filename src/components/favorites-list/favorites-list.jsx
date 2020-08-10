@@ -85,4 +85,5 @@ FavoritesList.propTypes = {
   })
 };
 
+export {FavoritesList};
 export default connect(mapStateToProps, mapDispatchToProps)(FavoritesList);
