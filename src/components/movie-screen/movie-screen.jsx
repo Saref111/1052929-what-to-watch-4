@@ -25,7 +25,7 @@ const MovieScreen = (props) => {
   const style = {
     left: currentPosition + `%`,
   };
-  
+
   const handle = useFullScreenHandle();
 
   return (
@@ -98,6 +98,9 @@ MovieScreen.propTypes = {
   movieLength: PropTypes.number.isRequired,
   movieSrc: PropTypes.string.isRequired,
   poster: PropTypes.string.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.object.isRequired,
+  }).isRequired,
 };
 
 export default MovieScreen;

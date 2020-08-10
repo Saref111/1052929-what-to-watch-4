@@ -8,7 +8,7 @@ import {getActorsString, rateToString} from "../../helpers/helpers.js";
 
 const Tabs = (props) => {
   const {page, info, comments} = props;
-  const {rate, votes, director, actors, description, time, genre, year, reviews} = info;
+  const {rate, votes, director, actors, description, time, genre, year} = info;
   let tab = null;
 
 

@@ -13,12 +13,9 @@ const FavoritesList = (props) => {
     props.loadFavorites();
   }
   const {
-    history,
-    match,
     onHeaderClickHandler,
     favorites,
     userData,
-    loadFavorites,
   } = props;
 
 
@@ -77,6 +74,15 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(dataOperation.loadFavorites());
     }
   };
+};
+
+FavoritesList.propTypes = {
+  favorites: PropTypes.array.isRequired,
+  loadFavorites: PropTypes.func.isRequired,
+  onHeaderClickHandler: PropTypes.func.isRequired,
+  userData: PropTypes.shape({
+    avatar: PropTypes.string
+  })
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FavoritesList);

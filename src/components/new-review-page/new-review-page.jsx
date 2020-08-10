@@ -5,13 +5,12 @@ import {getAllFilms} from "@reducer/data/selectors.js";
 import {getUserData} from "@reducer/user/selectors.js";
 import {Operation as userOperation} from "@reducer/user/user.js";
 import {connect} from "react-redux";
-import { Routes } from "../../const";
-import { Link } from "react-router-dom";
+import {Routes} from "../../const";
+import {Link} from "react-router-dom";
 
 const NewReviewPage = (props) => {
   const {
     userData,
-    movieID,
     allFilms,
     sendNewReview,
     match,
@@ -147,7 +146,10 @@ NewReviewPage.propTypes = {
     details: PropTypes.object.isRequired,
   })).isRequired,
   sendNewReview: PropTypes.func.isRequired,
-  movieID: PropTypes.number.isRequired,
+  match: PropTypes.object.isRequired,
+  history: PropTypes.shape({
+    goBack: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 const mapStateToProps = (state) => {

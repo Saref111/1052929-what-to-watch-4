@@ -175,9 +175,15 @@ const DetailedMovieInfo = (props) => {
 
 
 DetailedMovieInfo.propTypes = {
+  history: PropTypes.object.isRequired,
+  toggleFavorite: PropTypes.func.isRequired,
+  userData: PropTypes.object.isRequired,
+  comments: PropTypes.array.isRequired,
+  loadComments: PropTypes.func.isRequired,
   startAuthorizationHandler: PropTypes.func.isRequired,
   match: PropTypes.shape({
     params: PropTypes.object.isRequired,
+    url: PropTypes.string.isRequired,
   }),
   authorizationStatus: PropTypes.string.isRequired,
   movieID: PropTypes.number.isRequired,
