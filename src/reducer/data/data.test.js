@@ -184,6 +184,8 @@ test(`Expect initialState`, () => {
     filterGenre: `All genres`,
     films: [],
     allFilms: [],
+    comments: null,
+    favorites: null,
   });
 });
 

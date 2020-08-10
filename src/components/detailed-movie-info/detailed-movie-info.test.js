@@ -1,6 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {DetailedMovieInfoTest} from "./detailed-movie-info.jsx";
+import {BrowserRouter, Route} from "react-router-dom";
 
 const details = {
   bgPoster: `BG_HREF`,
@@ -25,15 +26,41 @@ const movie = {
 
 const films = [movie, movie, movie, movie];
 
+const comments = [{
+  user: {
+    name: `111`
+  },
+  comment: `11111`,
+  date: `11.12.1992`,
+  rating: 8
+}];
+
 describe(`Test DetailedMovieInfo`, () => {
   it(`DetailedMovieInfo snapshot`, () => {
-    const tree = renderer.create(
-        <DetailedMovieInfoTest
-          films={films}
-          movieID={1}
-          onHeaderClickHandler={() => {}}
-        />
-    );
+    const tree = renderer.create(<BrowserRouter><Route render={(props) => {
+      return <DetailedMovieInfoTest
+        {...props}
+        films={films}
+        movieID={1}
+        onHeaderClickHandler={() => {}}
+        comments={comments}
+        toggleFavorite={() => {}}
+        userData={{}}
+        loadComments={() => {}}
+        startAuthorizationHandler={() => {}}
+        authorizationStatus={`NO_AUTH`}
+        match={{
+          params: {
+            id: 1,
+          },
+          url: `1`,
+        }}
+      />;
+    }}/></BrowserRouter>, {
+      createNodeMock() {
+        return {};
+      }
+    }).toJSON();
 
     expect(tree).toMatchSnapshot();
   });

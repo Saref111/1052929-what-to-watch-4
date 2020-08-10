@@ -49,7 +49,7 @@ Array [
       >
         <a
           className="user-block__link"
-          href="#"
+          href="/login"
           onClick={[Function]}
         >
           Sign in
@@ -295,7 +295,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="/films/0"
               onClick={[Function]}
             >
               title
@@ -322,7 +322,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="/films/0"
               onClick={[Function]}
             >
               title
@@ -349,7 +349,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="/films/0"
               onClick={[Function]}
             >
               title
@@ -376,7 +376,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="/films/0"
               onClick={[Function]}
             >
               title
@@ -403,7 +403,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="/films/0"
               onClick={[Function]}
             >
               title
@@ -430,7 +430,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="/films/0"
               onClick={[Function]}
             >
               title
@@ -457,7 +457,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="/films/0"
               onClick={[Function]}
             >
               title
@@ -484,7 +484,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="/films/0"
               onClick={[Function]}
             >
               title

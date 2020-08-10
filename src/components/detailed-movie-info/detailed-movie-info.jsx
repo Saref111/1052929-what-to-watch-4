@@ -45,7 +45,7 @@ const DetailedMovieInfo = (props) => {
   }
 
   const movie = films.find((it) => {
-    return String(it.id) === params.id;
+    return String(it.id) === String(params.id);
   });
 
   const {title, details, preview, isFavorite} = movie;

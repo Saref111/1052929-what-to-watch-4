@@ -1,6 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import MovieCard from "./movie-card.jsx";
+import { BrowserRouter, Route } from "react-router-dom";
 
 const details = {
   bgPoster: `BG_HREF`,
@@ -21,25 +22,27 @@ describe(`Testing MovieCard component`, () => {
   test(`Snapshot test`, ()=> {
     const onCardHoverHandler = jest.fn();
     const onHeaderClickHandler = jest.fn();
-    const tree = renderer.create(
-        <MovieCard
-          renderPlayer={() => {}}
-          isVideo={true}
-          handleMouseOut={() => {}}
-          movie={{
-            id: 1,
-            title: `title`,
-            src: `src`,
-            preview: `preview`,
-            details,
-          }}
-          onCardHoverHandler={onCardHoverHandler}
-          onHeaderClickHandler={onHeaderClickHandler}
-        />, {
-          createNodeMock: () => {
-            return {};
-          }
-        }
+    const tree = renderer.create(<BrowserRouter><Route render={(props) => {
+      return <MovieCard
+        {...props}
+        renderPlayer={() => {}}
+        isVideo={true}
+        handleMouseOut={() => {}}
+        movie={{
+          id: 1,
+          title: `title`,
+          src: `src`,
+          preview: `preview`,
+          details,
+        }}
+        onCardHoverHandler={onCardHoverHandler}
+        onHeaderClickHandler={onHeaderClickHandler}
+      />;
+    }}/></BrowserRouter>, {
+      createNodeMock: () => {
+        return {};
+      }
+    }
     ).toJSON();
 
     expect(tree).toMatchSnapshot();

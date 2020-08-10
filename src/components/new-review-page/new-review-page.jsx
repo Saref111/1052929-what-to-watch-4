@@ -22,7 +22,7 @@ const NewReviewPage = (props) => {
   }
   const {params} = match;
 
-  const currentMovie = allFilms.find(({id}) => String(id) === params.id);
+  const currentMovie = allFilms.find(({id}) => String(id) === String(params.id));
   const {src, title, details} = currentMovie;
 
   const formRef = React.createRef();

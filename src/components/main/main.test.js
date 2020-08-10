@@ -1,6 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {MainTest} from "./main.jsx";
+import { BrowserRouter, Route } from "react-router-dom";
 
 const details = {
   bgPoster: `BG_HREF`,
@@ -102,20 +103,21 @@ const promo = {
 
 describe(`Test Main`, () => {
   it(`Main snapshot`, () => {
-    const tree = renderer.create(
-        <MainTest
-          genresList={[`1`, `2`, `3`, `4`]}
-          filterGenre={`1`}
-          onFilterChangeHandler={() => {}}
-          promo={promo}
-          onHeaderClickHandler={() => {}}
-          films={FILMS}
-          allFilms={FILMS}
-          userData={{}}
-          startAuthorizationHandler={() => {}}
-          authorizationStatus={`NO_AUTH`}
-        />
-    ).toJSON();
+    const tree = renderer.create(<BrowserRouter><Route render={(props) => {
+      return <MainTest
+        {...props}
+        genresList={[`1`, `2`, `3`, `4`]}
+        filterGenre={`1`}
+        onFilterChangeHandler={() => {}}
+        promo={promo}
+        onHeaderClickHandler={() => {}}
+        films={FILMS}
+        allFilms={FILMS}
+        userData={{}}
+        startAuthorizationHandler={() => {}}
+        authorizationStatus={`NO_AUTH`}
+      />;
+    }}/></BrowserRouter>).toJSON();
 
     expect(tree).toMatchSnapshot();
   });

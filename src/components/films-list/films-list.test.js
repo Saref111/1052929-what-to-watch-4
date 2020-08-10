@@ -1,6 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import FilmsList from "./films-list.jsx";
+import {BrowserRouter, Route} from "react-router-dom";
 
 const details = {
   bgPoster: `BG_HREF`,
@@ -86,11 +87,14 @@ const FILMS = [
 describe(`Testing FilmsList component`, () => {
   test(`Snapshot test`, () => {
     const onHeaderClickHandler = jest.fn();
-    const tree = renderer.create(
-        <FilmsList
-          films={FILMS}
-          onHeaderClickHandler={onHeaderClickHandler}
-        />
+    const tree = renderer.create(<BrowserRouter><Route render={(props) => {
+      return <FilmsList
+        {...props}
+        films={FILMS}
+        onHeaderClickHandler={onHeaderClickHandler}
+      />;
+    }}/></BrowserRouter>
+
     );
 
     expect(tree).toMatchSnapshot();

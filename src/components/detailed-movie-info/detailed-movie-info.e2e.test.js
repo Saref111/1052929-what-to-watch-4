@@ -1,6 +1,7 @@
 import React from "react";
-import {mount} from "enzyme";
+import {mount, shallow} from "enzyme";
 import {DetailedMovieInfoTest} from "./detailed-movie-info.jsx";
+import {BrowserRouter, Route} from "react-router-dom";
 
 const details = {
   bgPoster: `BG_HREF`,
@@ -29,28 +30,53 @@ const movie = {
   details,
 };
 
+const comments = [{
+  user: {
+    name: `111`
+  },
+  comment: `11111`,
+  date: `11.12.1992`,
+  rating: 8
+}];
+
 const films = [movie, movie, movie];
 
 describe(`DetailedMovieInfo e2e tests`, () => {
   test(`should call toggleMovieScreenHandler`, () => {
     const toggleMovieScreenHandler = jest.fn();
 
-    const DetailedMovieInfoElement = mount(
-        <DetailedMovieInfoTest
-          films={films}
-          onHeaderClickHandler={() => {}}
-          renderMovieScreen={() => {}}
-          toggleMovieScreenHandler={toggleMovieScreenHandler}
-          isShowingScreen={true}
-          page={0}
-          handleClick={() => {}}
-          movieID={1}
-        />
-    );
+    const DetailedMovieInfoElement = mount(<BrowserRouter><Route render={(props) => {
+      return <DetailedMovieInfoTest
+        {...props}
+        films={films}
+        onHeaderClickHandler={() => {}}
+        renderMovieScreen={() => {}}
+        toggleMovieScreenHandler={toggleMovieScreenHandler}
+        isShowingScreen={false}
+        toggleFavorite={() => {}}
+        userData={{}}
+        loadComments={() => {}}
+        startAuthorizationHandler={() => {}}
+        authorizationStatus={`NO_AUTH`}
+        page={0}
+        handleClick={() => {}}
+        movieID={1}
+        comments={comments}
+        match={{
+          url: `mencfnfnfnf`,
+          params: {
+            id: 1,
+          }
+        }}
+      />;
+    }}/></BrowserRouter>, {
+      createNodeMock: () => {
+        return {};
+      }
+    });
 
+    expect(DetailedMovieInfoElement.find(`a.btn--play`).exists()).toBe(true);
 
-    expect(DetailedMovieInfoElement.find(`.movie-card__button.btn--play`).exists()).toBe(true);
-    DetailedMovieInfoElement.find(`.movie-card__button.btn--play`).simulate(`click`, {});
-    // expect(toggleMovieScreenHandler).toHaveBeenCalledTimes(1);
+    expect(toggleMovieScreenHandler).toHaveBeenCalledTimes(0);
   });
 });

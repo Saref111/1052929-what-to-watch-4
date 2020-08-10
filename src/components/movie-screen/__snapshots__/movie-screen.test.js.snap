@@ -11,13 +11,14 @@ exports[`MovieScreen snaptests Snapshot MovieScreen test 1`] = `
       className="player__video"
       crossOrigin="anonymous"
     />
-    <button
+    <a
       className="player__exit"
+      href="/films/undefined"
       onClick={[Function]}
       type="button"
     >
       Exit
-    </button>
+    </a>
     <div
       className="player__controls"
     >
@@ -110,13 +111,14 @@ exports[`MovieScreen snaptests Snapshot MovieScreen test fullscreen mode 1`] = `
       className="player__video"
       crossOrigin="anonymous"
     />
-    <button
+    <a
       className="player__exit"
+      href="/films/undefined"
       onClick={[Function]}
       type="button"
     >
       Exit
-    </button>
+    </a>
     <div
       className="player__controls"
     >
