@@ -27,3 +27,7 @@ export const getComments = (state) => {
 export const getFavorites = (state) => {
   return state[NameSpace.DATA].favorites;
 };
+
+export const getPromo = (state) => {
+  return state[NameSpace.DATA].promo;
+};

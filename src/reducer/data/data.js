@@ -7,6 +7,7 @@ const initialState = {
   films: [],
   comments: null,
   favorites: null,
+  promo: null,
 };
 
 const Actions = {
@@ -16,10 +17,18 @@ const Actions = {
   LOAD_COMMENTS: `LOAD_COMMENTS`,
   ADD_NEW_COMMENT: `ADD_NEW_COMMENT`,
   LOAD_FAVORITES: `LOAD_FAVORITES`,
+  LOAD_PROMO: `LOAD_PROMO`,
 };
 
 
 const actionCreator = {
+  loadPromo: ([promo]) => {
+    return {
+      type: Actions.LOAD_PROMO,
+      payload: promo,
+    };
+  },
+
   loadComments: (comments) => {
     return {
       type: Actions.LOAD_COMMENTS,
@@ -57,6 +66,14 @@ const actionCreator = {
 };
 
 const Operation = {
+  loadPromo: () => (dispatch, getState, api) => {
+    return api.get(`/films/promo`).then((response) => {
+      const {data} = response;
+
+      dispatch(actionCreator.loadPromo(filmsAdapter([data])));
+    }).catch((err) => err);
+  },
+
   loadFilms: () => (dispatch, getState, api) => {
     return api.get(`/films`).then((response) => {
       const films = filmsAdapter(response.data);
@@ -115,6 +132,11 @@ const filterMovies = (films, genre) => {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case Actions.LOAD_PROMO:
+      return extend(state, {
+        promo: action.payload,
+      });
+
     case Actions.LOAD_FILMS:
       return extend(state, {
         allFilms: action.payload,
