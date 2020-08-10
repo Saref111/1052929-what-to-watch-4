@@ -131,6 +131,7 @@ const filterMovies = (films, genre) => {
 };
 
 const reducer = (state = initialState, action) => {
+
   switch (action.type) {
     case Actions.LOAD_PROMO:
       return extend(state, {

@@ -178,7 +178,7 @@ DetailedMovieInfo.propTypes = {
   history: PropTypes.object.isRequired,
   toggleFavorite: PropTypes.func.isRequired,
   userData: PropTypes.object.isRequired,
-  comments: PropTypes.array.isRequired,
+  comments: PropTypes.array,
   loadComments: PropTypes.func.isRequired,
   startAuthorizationHandler: PropTypes.func.isRequired,
   match: PropTypes.shape({

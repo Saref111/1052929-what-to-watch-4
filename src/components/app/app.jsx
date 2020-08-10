@@ -21,31 +21,19 @@ class App extends PureComponent {
     super(props);
   }
 
-  _renderApp() {
-    const {
-      promo,
-      filterGenre,
-      onHeaderClickHandler,
-    } = this.props;
-
-    return (
-      <Main
-        promo={promo}
-
-        onHeaderClickHandler={onHeaderClickHandler}
-        filterGenre={filterGenre}
-      />
-    );
-  }
-
   render() {
-    const {onHeaderClickHandler} = this.props;
+    const {onHeaderClickHandler, filterGenre} = this.props;
 
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path={Routes.ROOT}>
-            {this._renderApp()}
+          <Route exact path={Routes.ROOT} render={(props) => {
+            return <Main
+              {...props}
+              onHeaderClickHandler={onHeaderClickHandler}
+              filterGenre={filterGenre}
+            />;
+          }}>
           </Route>
           <Route exact path={Routes.LOGIN} render={(props) => {
             return <SignIn {...props} />;
@@ -71,7 +59,6 @@ class App extends PureComponent {
 App.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
   login: PropTypes.func.isRequired,
-  promo: PropTypes.object.isRequired,
   onHeaderClickHandler: PropTypes.func.isRequired,
   movieID: PropTypes.number.isRequired,
   filterGenre: PropTypes.string.isRequired,
