@@ -35,7 +35,8 @@ const DetailedMovieInfo = (props) => {
     match,
     comments,
     userData,
-    toggleFavorite
+    toggleFavorite,
+    history,
   } = props;
   const {params, url} = match;
 
@@ -98,22 +99,29 @@ const DetailedMovieInfo = (props) => {
                   </svg>
                   <span>Play</span>
                 </Link>
-                {!isFavorite ? <button onClick={() => {
-                  toggleFavorite(params.id);
-                }} className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button> :
-                  <button onClick={() => {
-                    toggleFavorite(params.id);
+                {
+
+                  !isFavorite ? <button onClick={() => {
+                    if (authorizationStatus === Authorization.AUTH) {
+                      toggleFavorite(params.id);
+                    } else {
+                      history.push(Routes.LOGIN);
+                    }
                   }} className="btn btn--list movie-card__button" type="button">
-                    <svg viewBox="0 0 18 14" width="18" height="14">
-                      <use xlinkHref="#in-list"></use>
+                    <svg viewBox="0 0 19 20" width="19" height="20">
+                      <use xlinkHref="#add"></use>
                     </svg>
                     <span>My list</span>
-                  </button>}
+                  </button> :
+                    <button onClick={() => {
+                      toggleFavorite(params.id);
+                    }} className="btn btn--list movie-card__button" type="button">
+                      <svg viewBox="0 0 18 14" width="18" height="14">
+                        <use xlinkHref="#in-list"></use>
+                      </svg>
+                      <span>My list</span>
+                    </button>
+                }
                 {authorizationStatus === Authorization.AUTH ?
                   <Link to={Routes.REVIEW.replace(`:id`, String(params.id))} href="" className="btn movie-card__button">Add review</Link> : ``}
               </div>

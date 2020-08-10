@@ -1,4 +1,6 @@
 import Axios from "axios";
+import { Redirect } from "react-router-dom";
+import { Routes } from "./const";
 
 const Error = {
   UNAUTHORIZED: 401
@@ -17,6 +19,7 @@ export const createApi = (onUnauthorized) => {
     const {response} = err;
 
     if (response.status === Error.UNAUTHORIZED && response.config.url !== `/login`) {
+
       onUnauthorized();
 
       throw err;

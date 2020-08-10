@@ -13,6 +13,7 @@ import {connect} from "react-redux";
 import {getSigningInStatus} from "@reducer/user/selectors";
 import NewReviewPage from "@components/new-review-page/new-review-page.jsx";
 import FavoritesList from "@components/favorites-list/favorites-list.jsx";
+import PrivateRoute from "@components/private-route/private-route.jsx";
 import {Routes} from "../../const.js";
 
 class App extends PureComponent {
@@ -52,13 +53,13 @@ class App extends PureComponent {
           <Route exact path={Routes.MOVIE} render={(props) => {
             return <DetailedMovieInfo {...props} onHeaderClickHandler={onHeaderClickHandler}/>;
           }} />
-          <Route exact path={Routes.FAVORITES} render={(props) => {
+          <PrivateRoute exact path={Routes.FAVORITES} render={(props) => {
             return <FavoritesList {...props} onHeaderClickHandler={onHeaderClickHandler}/>;
           }} />
-          <Route exact path={Routes.REVIEW} render={(props) => {
+          <PrivateRoute exact path={Routes.REVIEW} render={(props) => {
             return <NewReviewPage {...props} />;
           }} />
-          <Route exact path={Routes.PLAYER} render={(props) => {
+          <PrivateRoute exact path={Routes.PLAYER} render={(props) => {
             return <DetailedMovieInfo {...props} onHeaderClickHandler={onHeaderClickHandler}/>;
           }} />
         </Switch>
