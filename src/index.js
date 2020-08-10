@@ -29,11 +29,13 @@ const MOCK_DATA = {
 
 const onUnauthorized = (store) => {
   store.dispatch(userActionCreator.requiredAuthorization(Authorization.NO_AUTH));
+  store.dispatch(userActionCreator.setSigningInStatus(true));
 };
 
 const api = createApi(() => {
   onUnauthorized(store);
 });
+
 const store = createStore(
     reducer,
     compose(applyMiddleware(

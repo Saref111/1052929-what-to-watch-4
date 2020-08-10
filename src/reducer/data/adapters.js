@@ -6,6 +6,7 @@ export const filmsAdapter = (films) => {
       src: it.background_image,
       preview: it.preview_video_link,
       movieLink: it.video_link,
+      isFavorite: it.is_favorite,
       details: {
         bgPoster: it.poster_image,
         cover: it.preview_image,
