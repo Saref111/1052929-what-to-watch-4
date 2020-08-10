@@ -1,5 +1,5 @@
 import React from "react";
-import {mount, shallow} from "enzyme";
+import {mount} from "enzyme";
 import {DetailedMovieInfoTest} from "./detailed-movie-info.jsx";
 import {BrowserRouter, Route} from "react-router-dom";
 

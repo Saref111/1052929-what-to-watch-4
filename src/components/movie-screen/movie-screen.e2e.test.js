@@ -1,5 +1,5 @@
 import React from "react";
-import {shallow, mount} from "enzyme";
+import {mount} from "enzyme";
 import MovieScreen from "./movie-screen.jsx";
 import {BrowserRouter} from "react-router-dom";
 

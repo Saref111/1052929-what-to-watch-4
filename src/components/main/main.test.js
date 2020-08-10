@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {MainTest} from "./main.jsx";
-import { BrowserRouter, Route } from "react-router-dom";
+import {BrowserRouter, Route} from "react-router-dom";
 
 const details = {
   bgPoster: `BG_HREF`,
