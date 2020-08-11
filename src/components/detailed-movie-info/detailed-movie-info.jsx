@@ -213,10 +213,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    startAuthorizationHandler() {
-      dispatch(userActionCreator.setSigningInStatus(true));
-    },
-
     loadComments(id) {
       dispatch(dataOperation.loadReviews(id));
     },

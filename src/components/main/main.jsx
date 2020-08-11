@@ -5,7 +5,6 @@ import GenresList from "@components/genres-list/genres-list.jsx";
 import {GENRES, Authorization, Routes} from "../../const.js";
 import withMovieScreen from "@hocs/with-movie-screen.jsx";
 import {actionCreator as dataActionCreator, Operation as dataOperation} from "@reducer/data/data.js";
-import {actionCreator as userActionCreator} from "@reducer/user/user.js";
 import {getAllFilms, getFilteredFilms, getPromo} from "@reducer/data/selectors.js";
 import {uppercaseFirstLetter} from "@helpers/helpers.js";
 import {getAuthorizationStatus, getUserData} from "@reducer/user/selectors.js";
@@ -82,7 +81,6 @@ const Main = (props) => {
                   <span>Play</span>
                 </Link>
                 {
-
                   !promo.isFavorite ? <button onClick={() => {
                     if (authorizationStatus === Authorization.AUTH) {
                       toggleFavorite(promo.id);

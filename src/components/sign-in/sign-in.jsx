@@ -101,9 +101,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  cancelAuthorizationHandler() {
-    dispatch(actionCreator.setSigningInStatus(false));
-  },
   setValidity(status) {
     dispatch(actionCreator.setValidityStatus(status));
   },

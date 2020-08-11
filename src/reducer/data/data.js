@@ -18,10 +18,18 @@ const Actions = {
   ADD_NEW_COMMENT: `ADD_NEW_COMMENT`,
   LOAD_FAVORITES: `LOAD_FAVORITES`,
   LOAD_PROMO: `LOAD_PROMO`,
+  TOGGLE_PROMO_FAVORITE: `TOGGLE_PROMO_FAVORITE`,
 };
 
 
 const actionCreator = {
+  togglePromoFavorite: (promo) => {
+    return {
+      type: Actions.TOGGLE_PROMO_FAVORITE,
+      payload: promo,
+    };
+  },
+
   loadPromo: ([promo]) => {
     return {
       type: Actions.LOAD_PROMO,
@@ -100,6 +108,12 @@ const Operation = {
     const {allFilms} = DATA;
     const current = allFilms.find((it) => String(it.id) === String(id));
 
+    if (String(DATA.promo.id) === String(id)) {
+      const toggledPromo = DATA.promo;
+      toggledPromo.isFavorite = !DATA.promo.isFavorite;
+      dispatch(actionCreator.togglePromoFavorite(toggledPromo));
+    }
+
     return api.post(`/favorite/${id}/${current.isFavorite ? 0 : 1}`).then(() => {
       current.isFavorite = !current.isFavorite;
       dispatch(actionCreator.loadFavorites(allFilms.slice().filter((it) => it.isFavorite)));
@@ -133,6 +147,11 @@ const filterMovies = (films, genre) => {
 const reducer = (state = initialState, action) => {
 
   switch (action.type) {
+    case Actions.TOGGLE_PROMO_FAVORITE:
+      return extend(state, {
+        promo: action.payload
+      });
+
     case Actions.LOAD_PROMO:
       return extend(state, {
         promo: action.payload,
