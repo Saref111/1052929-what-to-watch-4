@@ -1,4 +1,4 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import {Route, Switch, BrowserRouter} from "react-router-dom";
 import Main from "@components/main/main.jsx";
@@ -16,45 +16,39 @@ import FavoritesList from "@components/favorites-list/favorites-list.jsx";
 import PrivateRoute from "@components/private-route/private-route.jsx";
 import {Routes} from "../../const.js";
 
-class App extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
+const App = (appProps) => {
+  const {onHeaderClickHandler, filterGenre} = appProps;
 
-  render() {
-    const {onHeaderClickHandler, filterGenre} = this.props;
-
-    return (
-      <BrowserRouter>
-        <Switch>
-          <Route exact path={Routes.ROOT} render={(props) => {
-            return <Main
-              {...props}
-              onHeaderClickHandler={onHeaderClickHandler}
-              filterGenre={filterGenre}
-            />;
-          }}>
-          </Route>
-          <Route exact path={Routes.LOGIN} render={(props) => {
-            return <SignIn {...props} />;
-          }} />
-          <Route exact path={Routes.MOVIE} render={(props) => {
-            return <DetailedMovieInfo {...props} onHeaderClickHandler={onHeaderClickHandler}/>;
-          }} />
-          <PrivateRoute exact path={Routes.FAVORITES} render={(props) => {
-            return <FavoritesList {...props} onHeaderClickHandler={onHeaderClickHandler}/>;
-          }} />
-          <PrivateRoute exact path={Routes.REVIEW} render={(props) => {
-            return <NewReviewPage {...props} />;
-          }} />
-          <PrivateRoute exact path={Routes.PLAYER} render={(props) => {
-            return <DetailedMovieInfo {...props} onHeaderClickHandler={onHeaderClickHandler}/>;
-          }} />
-        </Switch>
-      </BrowserRouter>
-    );
-  }
-}
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route exact path={Routes.ROOT} render={(props) => {
+          return <Main
+            {...props}
+            onHeaderClickHandler={onHeaderClickHandler}
+            filterGenre={filterGenre}
+          />;
+        }}>
+        </Route>
+        <Route exact path={Routes.LOGIN} render={(props) => {
+          return <SignIn {...props} />;
+        }} />
+        <Route exact path={Routes.MOVIE} render={(props) => {
+          return <DetailedMovieInfo {...props} onHeaderClickHandler={onHeaderClickHandler}/>;
+        }} />
+        <PrivateRoute exact path={Routes.FAVORITES} render={(props) => {
+          return <FavoritesList {...props} onHeaderClickHandler={onHeaderClickHandler}/>;
+        }} />
+        <PrivateRoute exact path={Routes.REVIEW} render={(props) => {
+          return <NewReviewPage {...props} />;
+        }} />
+        <PrivateRoute exact path={Routes.PLAYER} render={(props) => {
+          return <DetailedMovieInfo {...props} onHeaderClickHandler={onHeaderClickHandler}/>;
+        }} />
+      </Switch>
+    </BrowserRouter>
+  );
+};
 
 App.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
