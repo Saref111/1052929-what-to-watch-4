@@ -56,7 +56,7 @@ App.propTypes = {
   onHeaderClickHandler: PropTypes.func.isRequired,
   movieID: PropTypes.number.isRequired,
   filterGenre: PropTypes.string.isRequired,
-  // isSigningIn: PropTypes.bool.isRequired,
+  isSigningIn: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => {
@@ -64,7 +64,7 @@ const mapStateToProps = (state) => {
     filterGenre: getCurrentFilter(state),
     movieID: getMovieId(state),
     authorizationStatus: getAuthorizationStatus(state),
-    isSigningIn: getSigningInStatus(state)
+    isSigningIn: getSigningInStatus(state),
   };
 };
 

@@ -28,7 +28,6 @@ const Main = (props) => {
     toggleMovieScreenHandler,
     renderMovieScreen,
     authorizationStatus,
-    startAuthorizationHandler,
     toggleFavorite,
     userData,
     history,
@@ -58,7 +57,7 @@ const Main = (props) => {
           <div className="user-block">
             {authorizationStatus === Authorization.AUTH ?
               <div className="user-block__avatar"><Link to={Routes.FAVORITES}><img src={`https://4.react.pages.academy${userData.avatar}`} alt="User avatar" width="63" height="63" /></Link></div>
-              : <Link to={Routes.LOGIN} href="#" onClick={startAuthorizationHandler} className="user-block__link">Sign in</Link>}
+              : <Link to={Routes.LOGIN} href="#" className="user-block__link">Sign in</Link>}
           </div>
         </header>
 
@@ -152,7 +151,6 @@ Main.propTypes = {
     name: PropTypes.string,
     avatar: PropTypes.string,
   }),
-  startAuthorizationHandler: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   isShowingScreen: PropTypes.bool.isRequired,
   renderMovieScreen: PropTypes.func.isRequired,
@@ -192,9 +190,6 @@ const mapDispatchToProps = (dispatch) => {
     onFilterChangeHandler(filter, films) {
       dispatch(dataActionCreator.changeFilter(filter));
       dispatch(dataActionCreator.getFilmsByType(films, filter));
-    },
-    startAuthorizationHandler() {
-      dispatch(userActionCreator.setSigningInStatus(true));
     },
     toggleFavorite(id) {
       dispatch(dataOperation.toggleFavorite(id));

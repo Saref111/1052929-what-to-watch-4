@@ -63,7 +63,7 @@ const Operation = {
     return api.post(`/login`, {
       email: authData.email,
       password: authData.password,
-    }).then((data) => {
+    }).then(({data}) => {
       dispatch(actionCreator.requiredAuthorization(Authorization.AUTH));
       dispatch(actionCreator.setUserData(data));
       dispatch(actionCreator.setSigningInStatus(false));

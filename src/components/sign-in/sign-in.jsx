@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {getValidityStatus, getIsWrongStatus, getUserData} from "@reducer/user/selectors";
+import {getValidityStatus, getIsWrongStatus, getUserData, getAuthorizationStatus} from "@reducer/user/selectors";
+import {Redirect} from "react-router-dom";
 import {actionCreator, Operation} from "@reducer/user/user.js";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {Routes} from "../../const";
+import {Routes, Authorization} from "../../const";
 
 class SignIn extends React.PureComponent {
   constructor(props) {
@@ -38,9 +39,11 @@ class SignIn extends React.PureComponent {
   }
 
   render() {
-    const {cancelAuthorizationHandler, isValid, isWrong} = this.props;
+    const {cancelAuthorizationHandler, isValid, isWrong, authorizationStatus} = this.props;
 
-    return (
+    return authorizationStatus === Authorization.AUTH ? (
+      <Redirect to={Routes.ROOT} />
+    ) : (
       <div className="user-page">
         <header className="page-header user-page__head">
           <div className="logo">
@@ -71,7 +74,7 @@ class SignIn extends React.PureComponent {
               </div>
             </div>
             <div className="sign-in__submit">
-              <Link to={Routes.ROOT} className="sign-in__btn" type="submit">Sign in</Link>
+              <button className="sign-in__btn" type="submit">Sign in</button>
             </div>
           </form>
         </div>
@@ -87,12 +90,14 @@ SignIn.propTypes = {
   setValidity: PropTypes.func.isRequired,
   isValid: PropTypes.bool.isRequired,
   isWrong: PropTypes.bool.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   isValid: getValidityStatus(state),
   isWrong: getIsWrongStatus(state),
   userData: getUserData(state),
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
