@@ -88,14 +88,12 @@ exports[`SignIn snapshot tests should match snapshot 1`] = `
       <div
         className="sign-in__submit"
       >
-        <a
+        <button
           className="sign-in__btn"
-          href="/"
-          onClick={[Function]}
           type="submit"
         >
           Sign in
-        </a>
+        </button>
       </div>
     </form>
   </div>
@@ -198,14 +196,12 @@ exports[`SignIn snapshot tests should match snapshot when is wrong 1`] = `
       <div
         className="sign-in__submit"
       >
-        <a
+        <button
           className="sign-in__btn"
-          href="/"
-          onClick={[Function]}
           type="submit"
         >
           Sign in
-        </a>
+        </button>
       </div>
     </form>
   </div>
@@ -300,14 +296,12 @@ exports[`SignIn snapshot tests should match snapshot when isn't valid 1`] = `
       <div
         className="sign-in__submit"
       >
-        <a
+        <button
           className="sign-in__btn"
-          href="/"
-          onClick={[Function]}
           type="submit"
         >
           Sign in
-        </a>
+        </button>
       </div>
     </form>
   </div>

@@ -7,7 +7,6 @@ import withPageId from "@hocs/with-page-id.jsx";
 import withMovieScreen from "@hocs/with-movie-screen.jsx";
 import {connect} from "react-redux";
 import {getAllFilms, getComments} from "@reducer/data/selectors.js";
-import {actionCreator as userActionCreator} from "@reducer/user/user.js";
 import {Operation as dataOperation} from "@reducer/data/data.js";
 import {Authorization, Routes} from "../../const.js";
 import {getAuthorizationStatus, getUserData} from "@reducer/user/selectors.js";
@@ -31,7 +30,6 @@ const DetailedMovieInfo = (props) => {
     loadComments,
     onHeaderClickHandler,
     authorizationStatus,
-    startAuthorizationHandler,
     match,
     comments,
     userData,
@@ -80,7 +78,7 @@ const DetailedMovieInfo = (props) => {
                     <img src={`https://4.react.pages.academy${userData.avatar}`} alt="User avatar" width="63" height="63" />
                   </Link>
                 </div>
-                : <Link to={Routes.LOGIN} href="#" onClick={startAuthorizationHandler} className="user-block__link">Sign in</Link>}
+                : <Link to={Routes.LOGIN} href="#" className="user-block__link">Sign in</Link>}
             </div>
           </header>
 
@@ -180,7 +178,6 @@ DetailedMovieInfo.propTypes = {
   userData: PropTypes.object.isRequired,
   comments: PropTypes.array,
   loadComments: PropTypes.func.isRequired,
-  startAuthorizationHandler: PropTypes.func.isRequired,
   match: PropTypes.shape({
     params: PropTypes.object.isRequired,
     url: PropTypes.string.isRequired,

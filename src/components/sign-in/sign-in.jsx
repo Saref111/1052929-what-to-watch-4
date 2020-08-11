@@ -39,7 +39,7 @@ class SignIn extends React.PureComponent {
   }
 
   render() {
-    const {cancelAuthorizationHandler, isValid, isWrong, authorizationStatus} = this.props;
+    const {isValid, isWrong, authorizationStatus} = this.props;
 
     return authorizationStatus === Authorization.AUTH ? (
       <Redirect to={Routes.ROOT} />
@@ -47,7 +47,7 @@ class SignIn extends React.PureComponent {
       <div className="user-page">
         <header className="page-header user-page__head">
           <div className="logo">
-            <Link to={Routes.ROOT} href="" onClick={cancelAuthorizationHandler} className="logo__link">
+            <Link to={Routes.ROOT} href="#"className="logo__link">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
