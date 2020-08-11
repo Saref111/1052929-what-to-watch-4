@@ -46,11 +46,11 @@ const DetailedMovieInfo = (props) => {
     return String(it.id) === String(params.id);
   });
 
-  const {title, details, preview, isFavorite} = movie;
+  const {title, details, movieLink, isFavorite} = movie;
   const {bgPoster, cover, genre, year, time} = details;
 
   return (isShowingScreen || url.endsWith(`player`) ?
-    renderMovieScreen(time, cover, preview) :
+    renderMovieScreen(time, cover, movieLink) :
     <React.Fragment>
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">

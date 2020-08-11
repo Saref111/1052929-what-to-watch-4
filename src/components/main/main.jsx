@@ -32,10 +32,10 @@ const Main = (props) => {
     history,
   } = props;
 
-  const {details, preview, title} = promo;
+  const {details,  title, movieLink} = promo;
   const {time, cover, year, genre, bgPoster} = details;
 
-  return (isShowingScreen ? renderMovieScreen(time, cover, preview) : // change preview to movie link
+  return (isShowingScreen ? renderMovieScreen(time, cover, movieLink) : 
     <React.Fragment>
       <section className="movie-card">
         <div className="movie-card__bg">
