@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PrivateRoute snaptest should render NewReviewPage 1`] = `null`;
+
+exports[`PrivateRoute snaptest shouldn't render NewReviewPage 1`] = `null`;
