@@ -9,10 +9,10 @@ describe(`SignIn snapshot tests`, () => {
       return <SignIn
         {...props}
         submitAuthFormHandler={() => {}}
-        cancelAuthorizationHandler={() => {}}
         setValidity={() => {}}
         isValid={true}
         isWrong={false}
+        authorizationStatus={`NO_AUTH`}
       />;
     }}/></BrowserRouter>, {
       createNodeMock() {
@@ -28,10 +28,10 @@ describe(`SignIn snapshot tests`, () => {
       return <SignIn
         {...props}
         submitAuthFormHandler={() => {}}
-        cancelAuthorizationHandler={() => {}}
         setValidity={() => {}}
         isValid={false}
         isWrong={false}
+        authorizationStatus={`NO_AUTH`}
       />;
     }}/></BrowserRouter>, {
       createNodeMock() {
@@ -47,7 +47,7 @@ describe(`SignIn snapshot tests`, () => {
       return <SignIn
         {...props}
         submitAuthFormHandler={() => {}}
-        cancelAuthorizationHandler={() => {}}
+        authorizationStatus={`NO_AUTH`}
         setValidity={() => {}}
         isValid={true}
         isWrong={true}

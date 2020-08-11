@@ -2,10 +2,10 @@ import React from "react";
 import renderer from "react-test-renderer";
 import PrivateRoute from "./private-route.jsx";
 import NewReviewPage from "../new-review-page/new-review-page.jsx";
-import { Routes } from "../../const.js";
-import { Provider } from "react-redux";
+import {Routes} from "../../const.js";
+import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
-import { BrowserRouter } from "react-router-dom";
+import {BrowserRouter} from "react-router-dom";
 
 const mockStore = configureStore([]);
 
