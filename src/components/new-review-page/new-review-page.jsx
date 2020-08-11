@@ -9,6 +9,7 @@ import {Routes} from "../../const";
 import {Link} from "react-router-dom";
 
 const NewReviewPage = (props) => {
+  console.log(props);
   const {
     userData,
     allFilms,

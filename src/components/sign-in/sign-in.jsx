@@ -86,7 +86,6 @@ class SignIn extends React.PureComponent {
 
 SignIn.propTypes = {
   submitAuthFormHandler: PropTypes.func.isRequired,
-  cancelAuthorizationHandler: PropTypes.func.isRequired,
   setValidity: PropTypes.func.isRequired,
   isValid: PropTypes.bool.isRequired,
   isWrong: PropTypes.bool.isRequired,
