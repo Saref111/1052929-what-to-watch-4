@@ -95,7 +95,6 @@ const withPlayer = (Component) => {
         <video
           className="player__video"
           ref={this._videoRef}
-          crossOrigin={`anonymous`}
         ></video>
       </Component>;
     }

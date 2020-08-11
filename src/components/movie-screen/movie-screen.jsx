@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import VideoPlayer from "../video-player/video-player.jsx";
 import {FullScreen, useFullScreenHandle} from "react-full-screen";
 import {stringifyCurrentTime} from "../../helpers/helpers.js";
+import {Routes} from "../../const.js";
+import {Link} from "react-router-dom";
 
 const MovieScreen = (props) => {
   const {
@@ -16,10 +18,14 @@ const MovieScreen = (props) => {
     isFullscreen,
     toggleFullScreen,
     getProgress,
+    match,
   } = props;
+  const {params} = match;
+
   const style = {
     left: currentPosition + `%`,
   };
+
   const handle = useFullScreenHandle();
 
   return (
@@ -32,7 +38,7 @@ const MovieScreen = (props) => {
           isMuted={false}
           getProgress={getProgress}
         />
-        <button type="button" onClick={toggleMovieScreenHandler} className="player__exit">Exit</button>
+        <Link to={Routes.MOVIE.replace(`:id`, params.id)} type="button" onClick={toggleMovieScreenHandler} className="player__exit">Exit</Link>
 
         <div className="player__controls">
           <div className="player__controls-row">
@@ -92,6 +98,9 @@ MovieScreen.propTypes = {
   movieLength: PropTypes.number.isRequired,
   movieSrc: PropTypes.string.isRequired,
   poster: PropTypes.string.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.object.isRequired,
+  }).isRequired,
 };
 
 export default MovieScreen;

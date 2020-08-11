@@ -49,7 +49,7 @@ Array [
       >
         <a
           className="user-block__link"
-          href="#"
+          href="/login"
           onClick={[Function]}
         >
           Sign in
@@ -97,8 +97,9 @@ Array [
           <div
             className="movie-card__buttons"
           >
-            <button
+            <a
               className="btn btn--play movie-card__button"
+              href="/films/20/player"
               onClick={[Function]}
               type="button"
             >
@@ -114,9 +115,10 @@ Array [
               <span>
                 Play
               </span>
-            </button>
+            </a>
             <button
               className="btn btn--list movie-card__button"
+              onClick={[Function]}
               type="button"
             >
               <svg
@@ -132,6 +134,7 @@ Array [
                 My list
               </span>
             </button>
+            
           </div>
         </div>
       </div>
@@ -295,7 +298,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="/films/0"
               onClick={[Function]}
             >
               title
@@ -322,7 +325,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="/films/0"
               onClick={[Function]}
             >
               title
@@ -349,7 +352,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="/films/0"
               onClick={[Function]}
             >
               title
@@ -376,7 +379,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="/films/0"
               onClick={[Function]}
             >
               title
@@ -403,7 +406,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="/films/0"
               onClick={[Function]}
             >
               title
@@ -430,7 +433,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="/films/0"
               onClick={[Function]}
             >
               title
@@ -457,7 +460,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="/films/0"
               onClick={[Function]}
             >
               title
@@ -484,7 +487,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="/films/0"
               onClick={[Function]}
             >
               title

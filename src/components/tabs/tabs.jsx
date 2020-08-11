@@ -7,8 +7,8 @@ import {TABS} from "../../const.js";
 import {getActorsString, rateToString} from "../../helpers/helpers.js";
 
 const Tabs = (props) => {
-  const {page, info} = props;
-  const {rate, votes, director, actors, description, time, genre, year, reviews} = info;
+  const {page, info, comments} = props;
+  const {rate, votes, director, actors, description, time, genre, year} = info;
   let tab = null;
 
 
@@ -40,7 +40,7 @@ const Tabs = (props) => {
     case TABS.REVIEWS:
       tab = (
         <TabReviews
-          reviews={reviews}
+          comments={comments}
         />
       );
       break;

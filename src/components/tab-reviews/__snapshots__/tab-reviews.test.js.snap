@@ -16,7 +16,7 @@ exports[`Snapshot test for TabReviews 1`] = `
         <p
           className="review__text"
         >
-          Lorem ipsum dolor sit amet. Eligendi non quis exercitationem culpa
+          11111
         </p>
         <footer
           className="review__details"
@@ -24,20 +24,20 @@ exports[`Snapshot test for TabReviews 1`] = `
           <cite
             className="review__author"
           >
-            Ivan Ivanov
+            111
           </cite>
           <time
             className="review__date"
-            dateTime="20-07-4"
+            dateTime="92-11-12"
           >
-            August 4, 2020
+            November 12, 1992
           </time>
         </footer>
       </blockquote>
       <div
         className="review__rating"
       >
-        8.9
+        8
       </div>
     </div>
   </div>

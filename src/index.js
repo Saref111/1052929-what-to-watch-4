@@ -10,23 +10,6 @@ import {Authorization} from "./const.js";
 import {Operation as DataOperation} from "./reducer/data/data.js";
 import {Operation as UserOperation, actionCreator as userActionCreator} from "./reducer/user/user.js";
 
-const MOCK_DATA = {
-  id: 20,
-  title: `Appleman`,
-  src: `http://dummyimage.com/280x175/D76E00&text=`,
-  preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-  details: {
-    bgPoster: `http://dummyimage.com/1300/D76E00&text=`,
-    cover: `http://dummyimage.com/218x327&text=`,
-    genre: `crime`,
-    year: 2001,
-    rate: 8.8,
-    votes: 666,
-    time: 99,
-    director: `Kevin Smith`,
-  },
-};
-
 const onUnauthorized = (store) => {
   store.dispatch(userActionCreator.requiredAuthorization(Authorization.NO_AUTH));
   store.dispatch(userActionCreator.setSigningInStatus(true));
@@ -43,14 +26,13 @@ const store = createStore(
     window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f)
 );
 
+store.dispatch(DataOperation.loadPromo());
 store.dispatch(DataOperation.loadFilms());
 store.dispatch(UserOperation.checkAuth());
 
 ReactDOM.render(
     <Provider store={store}>
-      <App
-        promo={MOCK_DATA}
-      />
+      <App/>
     </Provider>,
     document.querySelector(`#root`)
 );

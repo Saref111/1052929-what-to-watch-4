@@ -1,6 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {NewReviewPage} from "./new-review-page.jsx";
+import {BrowserRouter, Route} from "react-router-dom";
 
 const details = {
   bgPoster: `BG_HREF`,
@@ -84,17 +85,23 @@ const FILMS = [
 ];
 
 test(`NewReviewPage Snapshot`, () => {
-  const tree = renderer.create(<NewReviewPage
-    userData={{
-      id: 1,
-      email: `1111`,
-      name: `1111`,
-      avatar: `1111`,
-    }}
-    allFilms={FILMS}
-    movieID={1}
-    sendNewReview={() => {}}
-  />).toJSON();
+  const tree = renderer.create(<BrowserRouter><Route render={(props) => {
+    return <NewReviewPage
+      {...props}
+      userData={{
+        id: 1,
+        email: `1111`,
+        name: `1111`,
+        avatar: `1111`,
+      }}
+      allFilms={FILMS}
+      movieID={1}
+      sendNewReview={() => {}}
+      match={{params: {
+        id: 1
+      }}}
+    />;
+  }}/></BrowserRouter>).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import FilmsList from "./films-list.jsx";
+import {FavoritesList} from "./favorites-list.jsx";
 import {BrowserRouter, Route} from "react-router-dom";
 
 const details = {
@@ -84,19 +84,20 @@ const FILMS = [
   },
 ];
 
-describe(`Testing FilmsList component`, () => {
-  test(`Snapshot test`, () => {
-    const onHeaderClickHandler = jest.fn();
-    const tree = renderer.create(<BrowserRouter><Route render={(props) => {
-      return <FilmsList
-        {...props}
-        films={FILMS}
-        onHeaderClickHandler={onHeaderClickHandler}
-      />;
-    }}/></BrowserRouter>
+test(`FavoritesList should match snapshot`, () => {
+  const tree = renderer.create(
+      <BrowserRouter>
+        <Route render={(props) => {
+          return <FavoritesList
+            {...props}
+            favorites={FILMS}
+            onHeaderClickHandler={()=> {}}
+            loadFavorites={()=> {}}
+            userData={{}}
+          />;
+        }}/>
+      </BrowserRouter>
+  ).toJSON();
 
-    );
-
-    expect(tree).toMatchSnapshot();
-  });
+  expect(tree).toMatchSnapshot();
 });

@@ -6,12 +6,19 @@ import SameGenreMovies from "@components/same-genre-movies/same-genre-movies.jsx
 import withPageId from "@hocs/with-page-id.jsx";
 import withMovieScreen from "@hocs/with-movie-screen.jsx";
 import {connect} from "react-redux";
-import {getAllFilms} from "@reducer/data/selectors.js";
-import {Authorization} from "../../const.js";
-import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
+import {getAllFilms, getComments} from "@reducer/data/selectors.js";
+import {Operation as dataOperation} from "@reducer/data/data.js";
+import {Authorization, Routes} from "../../const.js";
+import {getAuthorizationStatus, getUserData} from "@reducer/user/selectors.js";
+import {getMovieId} from "@reducer/movie/selectors.js";
+import {Link} from "react-router-dom";
 
 
 const DetailedMovieInfo = (props) => {
+  if (props.films.length < 1) {
+    return `LOADING`;
+  }
+
   const {
     films,
     page,
@@ -20,19 +27,30 @@ const DetailedMovieInfo = (props) => {
     toggleMovieScreenHandler,
     renderMovieScreen,
     movieID,
+    loadComments,
     onHeaderClickHandler,
     authorizationStatus,
+    match,
+    comments,
+    userData,
+    toggleFavorite,
+    history,
   } = props;
+  const {params, url} = match;
+
+  if (!comments || comments.length < 1) {
+    loadComments(Number(params.id));
+  }
 
   const movie = films.find((it) => {
-    return it.id === movieID;
+    return String(it.id) === String(params.id);
   });
 
-  const {title, details, preview} = movie;
+  const {title, details, movieLink, isFavorite} = movie;
   const {bgPoster, cover, genre, year, time} = details;
 
-  return (isShowingScreen ?
-    renderMovieScreen(time, cover, preview) :
+  return (isShowingScreen || url.endsWith(`player`) ?
+    renderMovieScreen(time, cover, movieLink) :
     <React.Fragment>
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
@@ -44,17 +62,23 @@ const DetailedMovieInfo = (props) => {
 
           <header className="page-header movie-card__head">
             <div className="logo">
-              <a href="main.html" className="logo__link">
+              <Link to={Routes.ROOT} onClick={() => {
+                onHeaderClickHandler(-1);
+              }} href="" className="logo__link">
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
-              </a>
+              </Link>
             </div>
 
             <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
+              {authorizationStatus === Authorization.AUTH ?
+                <div className="user-block__avatar">
+                  <Link to={Routes.FAVORITES} onClick={() => {}}>
+                    <img src={`https://4.react.pages.academy${userData.avatar}`} alt="User avatar" width="63" height="63" />
+                  </Link>
+                </div>
+                : <Link to={Routes.LOGIN} href="#" className="user-block__link">Sign in</Link>}
             </div>
           </header>
 
@@ -67,20 +91,37 @@ const DetailedMovieInfo = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button onClick={toggleMovieScreenHandler} className="btn btn--play movie-card__button" type="button">
+                <Link to={Routes.PLAYER.replace(`:id`, String(params.id))} onClick={toggleMovieScreenHandler} className="btn btn--play movie-card__button" type="button">
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
-                </button>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
+                </Link>
+                {
+
+                  !isFavorite ? <button onClick={() => {
+                    if (authorizationStatus === Authorization.AUTH) {
+                      toggleFavorite(params.id);
+                    } else {
+                      history.push(Routes.LOGIN);
+                    }
+                  }} className="btn btn--list movie-card__button" type="button">
+                    <svg viewBox="0 0 19 20" width="19" height="20">
+                      <use xlinkHref="#add"></use>
+                    </svg>
+                    <span>My list</span>
+                  </button> :
+                    <button onClick={() => {
+                      toggleFavorite(params.id);
+                    }} className="btn btn--list movie-card__button" type="button">
+                      <svg viewBox="0 0 18 14" width="18" height="14">
+                        <use xlinkHref="#in-list"></use>
+                      </svg>
+                      <span>My list</span>
+                    </button>
+                }
                 {authorizationStatus === Authorization.AUTH ?
-                  <a href="add-review.html" className="btn movie-card__button">Add review</a> : ``}
+                  <Link to={Routes.REVIEW.replace(`:id`, String(params.id))} href="" className="btn movie-card__button">Add review</Link> : ``}
               </div>
             </div>
           </div>
@@ -99,6 +140,7 @@ const DetailedMovieInfo = (props) => {
               <Tabs
                 page={page}
                 info={details}
+                comments={comments}
               />
             </div>
           </div>
@@ -106,7 +148,7 @@ const DetailedMovieInfo = (props) => {
       </section>
       <div className="page-content">
         <SameGenreMovies
-          currentID={movieID}
+          currentID={movieID !== -1 ? movieID : Number(params.id)}
           onHeaderClickHandler={onHeaderClickHandler}
           genre={genre}
           films={films}
@@ -131,6 +173,15 @@ const DetailedMovieInfo = (props) => {
 
 
 DetailedMovieInfo.propTypes = {
+  history: PropTypes.object.isRequired,
+  toggleFavorite: PropTypes.func.isRequired,
+  userData: PropTypes.object.isRequired,
+  comments: PropTypes.array,
+  loadComments: PropTypes.func.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.object.isRequired,
+    url: PropTypes.string.isRequired,
+  }),
   authorizationStatus: PropTypes.string.isRequired,
   movieID: PropTypes.number.isRequired,
   renderMovieScreen: PropTypes.func.isRequired,
@@ -151,8 +202,23 @@ const mapStateToProps = (state) => {
   return {
     films: getAllFilms(state),
     authorizationStatus: getAuthorizationStatus(state),
+    movieID: getMovieId(state),
+    comments: getComments(state),
+    userData: getUserData(state),
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loadComments(id) {
+      dispatch(dataOperation.loadReviews(id));
+    },
+
+    toggleFavorite(id) {
+      dispatch(dataOperation.toggleFavorite(id));
+    },
   };
 };
 
 export const DetailedMovieInfoTest = withMovieScreen(withPageId(DetailedMovieInfo));
-export default connect(mapStateToProps)(withMovieScreen(withPageId(DetailedMovieInfo)));
+export default connect(mapStateToProps, mapDispatchToProps)(withMovieScreen(withPageId(DetailedMovieInfo)));

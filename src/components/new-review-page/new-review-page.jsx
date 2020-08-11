@@ -5,18 +5,25 @@ import {getAllFilms} from "@reducer/data/selectors.js";
 import {getUserData} from "@reducer/user/selectors.js";
 import {Operation as userOperation} from "@reducer/user/user.js";
 import {connect} from "react-redux";
+import {Routes} from "../../const";
+import {Link} from "react-router-dom";
 
 const NewReviewPage = (props) => {
-  const {userData, movieID, allFilms, sendNewReview} = props;
+  const {
+    userData,
+    allFilms,
+    sendNewReview,
+    match,
+    history,
+  } = props;
+
   if (allFilms.length < 1) {
-    return ``;
+    return `LOADING`;
   }
+  const {params} = match;
 
-  const currentMovie = allFilms.find(({id}) => {
-    return id === movieID;
-  });
-
-  const {src, title} = currentMovie;
+  const currentMovie = allFilms.find(({id}) => String(id) === String(params.id));
+  const {src, title, details} = currentMovie;
 
   const formRef = React.createRef();
 
@@ -33,15 +40,19 @@ const NewReviewPage = (props) => {
     const reviewText = new FormData(formRef.current).get(`review-text`);
     const reviewStars = new FormData(formRef.current).get(`rating`);
 
+    const toggleFormDisabling = (isDisabled) => {
+      formRef.current.querySelectorAll(`form input, form select, form textarea, form button`)
+        .forEach((it) => isDisabled ? it.setAttribute(`disabled`, `disabled`) : it.removeAttribute(`disabled`));
+    };
 
     if (checkValidity(reviewText)) {
-      formRef.current.querySelectorAll(`form input, form select, form textarea, form button`)
-        .forEach((it) => it.setAttribute(`disabled`, `disabled`));
+      toggleFormDisabling(true);
 
-      sendNewReview({comment: reviewText, rating: reviewStars}, movieID).then(() => {
-        formRef.current.querySelectorAll(`form input, form select, form textarea, form button`)
-        .forEach((it) => it.removeAttribute(`disabled`));
+      sendNewReview({comment: reviewText, rating: reviewStars}, Number(params.id)).then(() => {
+        toggleFormDisabling(false);
+        history.goBack();
       });
+
     }
   };
 
@@ -56,17 +67,17 @@ const NewReviewPage = (props) => {
 
         <header className="page-header">
           <div className="logo">
-            <a href="main.html" className="logo__link">
+            <Link href="" to={Routes.ROOT} className="logo__link">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <a href="movie-page.html" className="breadcrumbs__link">{title}</a>
+                <Link to={Routes.MOVIE.replace(`:id`, params.id)} href="movie-page.html" className="breadcrumbs__link">{title}</Link>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>
@@ -82,7 +93,7 @@ const NewReviewPage = (props) => {
         </header>
 
         <div className="movie-card__poster movie-card__poster--small">
-          <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+          <img src={details.cover} alt={title} width="218" height="327" />
         </div>
       </div>
 
@@ -135,7 +146,10 @@ NewReviewPage.propTypes = {
     details: PropTypes.object.isRequired,
   })).isRequired,
   sendNewReview: PropTypes.func.isRequired,
-  movieID: PropTypes.number.isRequired,
+  match: PropTypes.object.isRequired,
+  history: PropTypes.shape({
+    goBack: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 const mapStateToProps = (state) => {

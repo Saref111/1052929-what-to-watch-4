@@ -63,7 +63,7 @@ const Operation = {
     return api.post(`/login`, {
       email: authData.email,
       password: authData.password,
-    }).then((data) => {
+    }).then(({data}) => {
       dispatch(actionCreator.requiredAuthorization(Authorization.AUTH));
       dispatch(actionCreator.setUserData(data));
       dispatch(actionCreator.setSigningInStatus(false));
@@ -73,8 +73,8 @@ const Operation = {
   },
 
   sendReview: (data, id) => (dispatch, getState, api) => {
-    return api.post(`/comments/${id}`, data).then(() => {
-      // console.log(resp);
+    return api.post(`/comments/${id}`, data).catch((err) => {
+      throw err;
     });
   },
 };

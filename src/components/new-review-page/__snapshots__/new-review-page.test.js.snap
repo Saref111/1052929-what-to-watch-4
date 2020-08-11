@@ -28,7 +28,8 @@ exports[`NewReviewPage Snapshot 1`] = `
       >
         <a
           className="logo__link"
-          href="main.html"
+          href="/"
+          onClick={[Function]}
         >
           <span
             className="logo__letter logo__letter--1"
@@ -58,7 +59,8 @@ exports[`NewReviewPage Snapshot 1`] = `
           >
             <a
               className="breadcrumbs__link"
-              href="movie-page.html"
+              href="/films/1"
+              onClick={[Function]}
             >
               title
             </a>
@@ -93,9 +95,9 @@ exports[`NewReviewPage Snapshot 1`] = `
       className="movie-card__poster movie-card__poster--small"
     >
       <img
-        alt="The Grand Budapest Hotel poster"
+        alt="title"
         height="327"
-        src="img/the-grand-budapest-hotel-poster.jpg"
+        src="POSTER_HREF"
         width="218"
       />
     </div>

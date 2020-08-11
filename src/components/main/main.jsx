@@ -4,15 +4,17 @@ import FilmsList from "@components/films-list/films-list.jsx";
 import GenresList from "@components/genres-list/genres-list.jsx";
 import {GENRES, Authorization, Routes} from "../../const.js";
 import withMovieScreen from "@hocs/with-movie-screen.jsx";
-import {actionCreator as dataActionCreator} from "@reducer/data/data.js";
-import {actionCreator as userActionCreator} from "@reducer/user/user.js";
-import {getAllFilms, getFilteredFilms} from "@reducer/data/selectors.js";
+import {actionCreator as dataActionCreator, Operation as dataOperation} from "@reducer/data/data.js";
+import {getAllFilms, getFilteredFilms, getPromo} from "@reducer/data/selectors.js";
 import {uppercaseFirstLetter} from "@helpers/helpers.js";
 import {getAuthorizationStatus, getUserData} from "@reducer/user/selectors.js";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 
 const Main = (props) => {
+  if (!props.promo) {
+    return `LOADING`;
+  }
 
   const {
     promo,
@@ -25,15 +27,15 @@ const Main = (props) => {
     toggleMovieScreenHandler,
     renderMovieScreen,
     authorizationStatus,
-    startAuthorizationHandler,
-    renderFavoritesHandler,
+    toggleFavorite,
     userData,
+    history,
   } = props;
 
-  const {details, preview, title} = promo;
+  const {details, title, movieLink} = promo;
   const {time, cover, year, genre, bgPoster} = details;
 
-  return (isShowingScreen ? renderMovieScreen(time, cover, preview) : // change preview to movie link
+  return (isShowingScreen ? renderMovieScreen(time, cover, movieLink) :
     <React.Fragment>
       <section className="movie-card">
         <div className="movie-card__bg">
@@ -53,8 +55,8 @@ const Main = (props) => {
 
           <div className="user-block">
             {authorizationStatus === Authorization.AUTH ?
-              <div className="user-block__avatar"><Link to={Routes.FAVORITES} onClick={renderFavoritesHandler}><img src={`https://4.react.pages.academy${userData.avatar}`} alt="User avatar" width="63" height="63" /></Link></div>
-              : <Link to={Routes.LOGIN} href="#" onClick={startAuthorizationHandler} className="user-block__link">Sign in</Link>}
+              <div className="user-block__avatar"><Link to={Routes.FAVORITES}><img src={`https://4.react.pages.academy${userData.avatar}`} alt="User avatar" width="63" height="63" /></Link></div>
+              : <Link to={Routes.LOGIN} href="#" className="user-block__link">Sign in</Link>}
           </div>
         </header>
 
@@ -72,18 +74,36 @@ const Main = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" onClick={toggleMovieScreenHandler} type="button">
+                <Link to={Routes.PLAYER.replace(`:id`, String(promo.id))} className="btn btn--play movie-card__button" onClick={toggleMovieScreenHandler} type="button">
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
-                </button>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
+                </Link>
+                {
+                  !promo.isFavorite ? <button onClick={() => {
+                    if (authorizationStatus === Authorization.AUTH) {
+                      toggleFavorite(promo.id);
+                    } else {
+                      history.push(Routes.LOGIN);
+                    }
+                  }} className="btn btn--list movie-card__button" type="button">
+                    <svg viewBox="0 0 19 20" width="19" height="20">
+                      <use xlinkHref="#add"></use>
+                    </svg>
+                    <span>My list</span>
+                  </button> :
+                    <button onClick={() => {
+                      toggleFavorite(promo.id);
+                    }} className="btn btn--list movie-card__button" type="button">
+                      <svg viewBox="0 0 18 14" width="18" height="14">
+                        <use xlinkHref="#in-list"></use>
+                      </svg>
+                      <span>My list</span>
+                    </button>
+                }
+                {authorizationStatus === Authorization.AUTH ?
+                  <Link to={Routes.REVIEW.replace(`:id`, String(promo.id))} href="" className="btn movie-card__button">Add review</Link> : ``}
               </div>
             </div>
           </div>
@@ -95,7 +115,7 @@ const Main = (props) => {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
           <GenresList
-            genresList={GENRES} // should get then from server
+            genresList={GENRES}
             currentGenre={filterGenre}
             onFilterChangeHandler={onFilterChangeHandler}
             allFilms={allFilms}
@@ -129,14 +149,13 @@ Main.propTypes = {
     name: PropTypes.string,
     avatar: PropTypes.string,
   }),
-  startAuthorizationHandler: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   isShowingScreen: PropTypes.bool.isRequired,
   renderMovieScreen: PropTypes.func.isRequired,
   toggleMovieScreenHandler: PropTypes.func.isRequired,
   onFilterChangeHandler: PropTypes.func.isRequired,
   filterGenre: PropTypes.string.isRequired,
-  promo: PropTypes.object.isRequired,
+  promo: PropTypes.object,
   onHeaderClickHandler: PropTypes.func.isRequired,
   films: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
@@ -150,6 +169,8 @@ Main.propTypes = {
     src: PropTypes.string.isRequired,
     details: PropTypes.object.isRequired,
   })).isRequired,
+  toggleFavorite: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -158,6 +179,7 @@ const mapStateToProps = (state) => {
     films: getFilteredFilms(state),
     authorizationStatus: getAuthorizationStatus(state),
     userData: getUserData(state),
+    promo: getPromo(state),
   };
 };
 
@@ -167,8 +189,8 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(dataActionCreator.changeFilter(filter));
       dispatch(dataActionCreator.getFilmsByType(films, filter));
     },
-    startAuthorizationHandler() {
-      dispatch(userActionCreator.setSigningInStatus(true));
+    toggleFavorite(id) {
+      dispatch(dataOperation.toggleFavorite(id));
     }
   };
 };

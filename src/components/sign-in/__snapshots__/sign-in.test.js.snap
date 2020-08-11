@@ -12,7 +12,7 @@ exports[`SignIn snapshot tests should match snapshot 1`] = `
     >
       <a
         className="logo__link"
-        href="#"
+        href="/"
         onClick={[Function]}
       >
         <span
@@ -112,7 +112,7 @@ exports[`SignIn snapshot tests should match snapshot when is wrong 1`] = `
     >
       <a
         className="logo__link"
-        href="#"
+        href="/"
         onClick={[Function]}
       >
         <span
@@ -220,7 +220,7 @@ exports[`SignIn snapshot tests should match snapshot when isn't valid 1`] = `
     >
       <a
         className="logo__link"
-        href="#"
+        href="/"
         onClick={[Function]}
       >
         <span

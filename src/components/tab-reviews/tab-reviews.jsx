@@ -3,21 +3,22 @@ import PropTypes from "prop-types";
 import {formatDate, stringifyDate} from "../../helpers/helpers.js";
 
 const TabReviews = (props) => {
-  const {reviews} = props;
+  const {comments} = props;
 
   return (
     <div className="movie-card__reviews movie-card__row">
       <div className="movie-card__reviews-col">
-        {reviews.map((review, i) => {
-          const {name, text, date, rate: userRate} = review;
+        {comments.map((review, i) => {
+          const {user, comment, date: stringDate, rating: userRate} = review;
+          const date = new Date(stringDate);
 
           return (
-            <div key={`${name}-${i}`} className="review">
+            <div key={`${user.name}-${i}`} className="review">
               <blockquote className="review__quote">
-                <p className="review__text">{text}</p>
+                <p className="review__text">{comment}</p>
 
                 <footer className="review__details">
-                  <cite className="review__author">{name}</cite>
+                  <cite className="review__author">{user.name}</cite>
                   <time className="review__date" dateTime={formatDate(date)}>{stringifyDate(date)}</time>
                 </footer>
               </blockquote>
@@ -32,12 +33,7 @@ const TabReviews = (props) => {
 };
 
 TabReviews.propTypes = {
-  reviews: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    date: PropTypes.instanceOf(Date).isRequired,
-    text: PropTypes.string.isRequired,
-    rate: PropTypes.number.isRequired,
-  })).isRequired,
+  comments: PropTypes.array.isRequired,
 };
 
 

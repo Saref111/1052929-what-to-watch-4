@@ -19,3 +19,15 @@ export const getFilteredFilms = createSelector(
       return films.filter((film) => film.details.genre === genre);
     }
 );
+
+export const getComments = (state) => {
+  return state[NameSpace.DATA].comments;
+};
+
+export const getFavorites = (state) => {
+  return state[NameSpace.DATA].favorites;
+};
+
+export const getPromo = (state) => {
+  return state[NameSpace.DATA].promo;
+};

@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {getValidityStatus, getIsWrongStatus, getUserData} from "@reducer/user/selectors";
+import {getValidityStatus, getIsWrongStatus, getUserData, getAuthorizationStatus} from "@reducer/user/selectors";
+import {Redirect} from "react-router-dom";
 import {actionCreator, Operation} from "@reducer/user/user.js";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {Routes} from "../../const";
+import {Routes, Authorization} from "../../const";
 
 class SignIn extends React.PureComponent {
   constructor(props) {
@@ -38,13 +39,15 @@ class SignIn extends React.PureComponent {
   }
 
   render() {
-    const {cancelAuthorizationHandler, isValid, isWrong} = this.props;
+    const {isValid, isWrong, authorizationStatus} = this.props;
 
-    return (
+    return authorizationStatus === Authorization.AUTH ? (
+      <Redirect to={Routes.ROOT} />
+    ) : (
       <div className="user-page">
         <header className="page-header user-page__head">
           <div className="logo">
-            <Link to={Routes.ROOT} href="" onClick={cancelAuthorizationHandler} className="logo__link">
+            <Link to={Routes.ROOT} href="#"className="logo__link">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
@@ -83,22 +86,20 @@ class SignIn extends React.PureComponent {
 
 SignIn.propTypes = {
   submitAuthFormHandler: PropTypes.func.isRequired,
-  cancelAuthorizationHandler: PropTypes.func.isRequired,
   setValidity: PropTypes.func.isRequired,
   isValid: PropTypes.bool.isRequired,
   isWrong: PropTypes.bool.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   isValid: getValidityStatus(state),
   isWrong: getIsWrongStatus(state),
   userData: getUserData(state),
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  cancelAuthorizationHandler() {
-    dispatch(actionCreator.setSigningInStatus(false));
-  },
   setValidity(status) {
     dispatch(actionCreator.setValidityStatus(status));
   },

@@ -1,6 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import SameGenreMovies from "./same-genre-movies.jsx";
+import {BrowserRouter, Route} from "react-router-dom";
 
 const details = {
   bgPoster: `BG_HREF`,
@@ -32,13 +33,16 @@ const movie = {
 const films = [movie, movie, movie, movie];
 
 test(`Snapshot SameGenreMovies`, () => {
-  const tree = renderer.create(<SameGenreMovies
-    currentID={1}
-    films={films}
-    genre={`comedy`}
-    onHeaderClickHandler={() => {}}
-    onCardHoverHandler={() => {}}
-  />);
+  const tree = renderer.create(<BrowserRouter><Route render={(props) => {
+    return <SameGenreMovies
+      {...props}
+      currentID={1}
+      films={films}
+      genre={`comedy`}
+      onHeaderClickHandler={() => {}}
+      onCardHoverHandler={() => {}}
+    />;
+  }}/></BrowserRouter>);
 
   expect(tree).toMatchSnapshot();
 });

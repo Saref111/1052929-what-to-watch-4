@@ -9,8 +9,17 @@ const reviews = [{
   text: `Lorem ipsum dolor sit amet. Eligendi non quis exercitationem culpa`,
 }];
 
+const comments = [{
+  user: {
+    name: `111`
+  },
+  comment: `11111`,
+  date: `11.12.1992`,
+  rating: 8
+}];
+
 test(`Snapshot test for TabReviews`, () => {
-  const tree = renderer.create(<TabReviews reviews={reviews} />);
+  const tree = renderer.create(<TabReviews reviews={reviews} comments={comments}/>);
 
   expect(tree).toMatchSnapshot();
 });
