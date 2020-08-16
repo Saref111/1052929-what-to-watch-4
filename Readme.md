@@ -1,5 +1,14 @@
 # Личный проект «Что посмотреть» [![Build status][travis-image]][travis-url]
 
+Чтобы посмотреть работу приложения скопируйте репозиторий на свой компьютер.
+Затем в консоли, находясь в папке с репозиторием, выполните команду "npm i", а потом "npm run start".
+Проект откроется в браузере. 
+Должен быть установлен Node.js
+
+To open the current project you should cope this repository to your computer.
+Then go to the project's folder using a console line and tipe "npm i" and then "npm run start".
+The project will be opened in your browser. Node.js should be installed
+
 * Студент: [Иван Боровик](https://up.htmlacademy.ru/react/4/user/1052929).
 * Наставник: [Виталий Кудла](https://htmlacademy.ru/profile/id40193).
 
