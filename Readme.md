@@ -8,7 +8,7 @@
 Должен быть установлен Node.js
 
 ### How to start
-To open the current project you should cope this repository to your computer.
+To open the current project you should copy this repository to your computer.
 Then go to the project's folder using a console line and tipe "npm i" and then "npm run start".
 The project will be opened in your browser. Node.js should be installed
 
